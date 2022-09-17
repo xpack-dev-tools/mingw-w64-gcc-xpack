@@ -102,3 +102,21 @@ dist
 
 # TernJS port file
 .tern-port
+# added for xPack
+
+.vscode/c_cpp_properties.json
+
+# xpm
+node_modules/
+xpacks/
+build/
+
+*.tgz
+
+# Windows
+Thumbs.db
+
+# macOS
+.DS_Store
+
+# end
