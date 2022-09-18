@@ -118,7 +118,7 @@ Before the real build, run a test build on the development machine (`wksi`)
 or the production machine (`xbbma`, `xbbmi`):
 
 ```sh
-rm -rf ~/Work/gcc-*-*
+rm -rf ~/Work/mingw-w64-gcc-[0-9]*-*
 
 caffeinate bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --macos
 ```
@@ -126,11 +126,9 @@ caffeinate bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --d
 Similarly on the Intel Linux (`xbbli`):
 
 ```sh
-sudo rm -rf ~/Work/gcc-*-*
+sudo rm -rf ~/Work/mingw-w64-gcc-[0-9]*-*
 
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --linux64
-
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --win64
 ```
 
 ... on the Arm Linux 64-bit (`xbbla64`):
@@ -291,7 +289,7 @@ Install the binaries on all platforms.
 On GNU/Linux and macOS systems, use:
 
 ```sh
-.../xpack-gcc-11.3.0-1/bin/gcc --version
+.../xpack-gcc-11.3.0-1/bin/mingw-w64-gcc --version
 gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
 ```
 
@@ -331,7 +329,7 @@ on the Desktop.
 In the `xpack/web-jekyll` GitHub repo:
 
 - select the `develop` branch
-- copy the new file to `_posts/releases/gcc`
+- copy the new file to `_posts/releases/mingw-w64-gcc`
 
 If any, refer to closed
 [issues](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/issues/).
