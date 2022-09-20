@@ -416,9 +416,6 @@ function build_mingw_gcc_final()
     mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}"
 
     (
-      echo
-      echo "Running mingw-w64 gcc final make..."
-
       mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
       cd "${BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
 
@@ -587,10 +584,37 @@ function test_mingw_gcc()
     cd "${tmp}"
 
     echo
-    echo "Testing if mingw gcc compiles simple Hello programs..."
+    echo "pwd: $(pwd)"
 
-    mkdir -pv "${HOME}/tmp/mingw-gcc"
-    cd "${HOME}/tmp/mingw-gcc"
+    # From https://wiki.winehq.org/Wine_User%27s_Guide#DLL_Overrides
+    # DLLs usually get loaded in the following order:
+    # - The directory the program was started from.
+    # - The current directory.
+    # - The Windows system directory.
+    # - The Windows directory.
+    # - The PATH variable directories.
+
+    # Note: __EOF__ is quoted to prevent substitutions here.
+    cat <<'__EOF__' > hello.c
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+    printf("Hello world!\n");
+    return 0;
+}
+__EOF__
+
+    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" hello.c -o hello-c.exe -v
+
+    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-c.exe
+
+    (
+      xbb_activate
+      if [ "${mingw_arch}" == "x86_64" ]
+      then
+        run_app wine hello-c.exe
+      fi
+    )
 
     # Note: __EOF__ is quoted to prevent substitutions here.
     cat <<'__EOF__' > hello.cpp
@@ -603,12 +627,35 @@ std::cout << "Hello" << std::endl;
 }
 __EOF__
 
-    run_verbose "${BINS_INSTALL_FOLDER_PATH}/usr/bin/${MINGW_TARGET}-g++" hello.cpp -o hello -v -static-libgcc -static-libstdc++
+    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" hello.cpp -o hello-cpp.exe -v
 
-    # TODO
-    # run_verbose wine hello.exe
+    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-cpp.exe
 
-    # rm -rf hello.*
+    (
+      xbb_activate
+
+      export WINEPATH="${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib"
+      # ls -l ${WINEPATH} | grep '\.dll'
+
+      if [ "${mingw_arch}" == "x86_64" ]
+      then
+        run_app wine hello-cpp.exe
+      fi
+    )
+
+    # -static-libgcc -Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic
+    # -static-libgcc -Wl,-Bstatic,-lstdc++,-lwinpthread,-Bdynamic
+    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" hello.cpp -o hello-cpp-staticlibs.exe -v  -static-libgcc -Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic
+
+    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-cpp-staticlibs.exe
+
+    (
+      xbb_activate
+      if [ "${mingw_arch}" == "x86_64" ]
+      then
+        run_app wine hello-cpp-staticlibs.exe
+      fi
+    )
   )
 }
 
