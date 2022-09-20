@@ -1083,7 +1083,6 @@ function build_mingw_winpthreads()
 
           config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}/${mingw_target}") # Arch /usr
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
-#          config_options+=("--bindir=${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib")
 
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${mingw_target}")
@@ -1092,13 +1091,7 @@ function build_mingw_winpthreads()
           config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
 
           config_options+=("--enable-static")
-
-          if true
-          then
-            config_options+=("--enable-shared")
-          else
-            config_options+=("--disable-shared")
-          fi
+          config_options+=("--enable-shared")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/winpthreads/configure" \
             "${config_options[@]}"
@@ -1117,7 +1110,11 @@ function build_mingw_winpthreads()
         # make install-strip
         run_verbose make install
 
-        run_verbose ls -l "${BINS_INSTALL_FOLDER_PATH}/usr/${mingw_target}"
+        # GCC install all DLLs in lib; for consistency, move this one too.
+        run_verbose mv "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/bin/libwinpthread-1.dll" \
+          "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib/"
+
+        run_verbose ls -l "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib/libwinpthread"*
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}/make-output-$(ndate).txt"
     )
