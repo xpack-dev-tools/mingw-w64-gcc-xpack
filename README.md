@@ -35,16 +35,59 @@ The xPack MinGW-w64 GCC binaries include support for:
 
 - C
 - C++
+- Fortran
 - Obj-C
 - Obj-C++
 
+Note: Obj-C support is minimalistic.
+
 ### `-static-libgcc -static-libstdc++`
 
-To avoid issues with shared libraries, specific to toolchains installed
+To avoid issues with DLLs, specific when using toolchains installed
 in custom locations, it is highly recommended to use only the
 static versions of the GCC libraries.
 
-For this append `-static-libgcc -static-libstdc++` to the linker line.
+For C programs, append `-static-libgcc` to the linker line.
+
+For C++ programs, since the toolchain is configured to use POSIX threads,
+instead of `-static-libstdc++`, use the more explicit variant
+`-Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic` when invoking the linker.
+
+### Compiler DLLs
+
+For projects that create multiple executables, using static libraries
+is not space efficient, especially for C++, since the code is multiplied
+in all executables.
+
+The solution is to copy the required DLLs to the folder where the
+compiled .exe files will be installed (like `/bin`).
+
+```
+$ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
+-rwxr-xr-x 1 ilg ilg   38296 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x 1 ilg ilg  535781 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
+-rwxr-xr-x 1 ilg ilg 2981114 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x 1 ilg ilg  247187 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x 1 ilg ilg  383320 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x 1 ilg ilg   22227 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x 1 ilg ilg 1940952 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rwxr-xr-x 1 ilg ilg  106093 Sep 20 12:58 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
+```
+
+and
+
+```
+$ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
+-rwxr-xr-x 1 ilg ilg   37356 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x 1 ilg ilg  652335 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
+-rwxr-xr-x 1 ilg ilg 2753320 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x 1 ilg ilg  266392 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x 1 ilg ilg  570355 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x 1 ilg ilg   22328 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x 1 ilg ilg 2081167 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rwxr-xr-x 1 ilg ilg  112374 Sep 20 13:06 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
+```
+
 
 ### Easy install
 
