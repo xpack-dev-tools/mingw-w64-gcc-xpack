@@ -540,7 +540,7 @@ function test_mingw_gcc()
     run_app "${CC}" -print-multi-lib
     run_app "${CC}" -print-multi-os-directory
     run_app "${CC}" -print-sysroot
-    run_app "${CC}" -print-file-name=libgcc_s.so
+    run_app "${CC}" -print-file-name=libgcc_s_seh-1.dll
     run_app "${CC}" -print-prog-name=cc1
 
     run_app "${CXX}" --help
