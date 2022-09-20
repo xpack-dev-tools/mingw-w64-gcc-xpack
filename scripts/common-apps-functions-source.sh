@@ -490,56 +490,71 @@ function test_mingw_gcc()
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
   (
+    CC="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc"
+    CXX="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++"
+    F90="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gfortran"
+
+    AR="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-ar"
+    NM="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-nm"
+    RANLIB="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-ranlib"
+
+    OBJDUMP="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump"
+
+    GCOV="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcov"
+
+    DLLTOOL="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-dlltool"
+    # GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
+    WIDL="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-widl"
+
     echo
     echo "Testing if mingw-w64 ${mingw_arch} gcc binaries start properly..."
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" --version
-    if [ -f "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gfortran" ]
+    run_app "${CC}" --version
+    run_app "${CXX}" --version
+    if [ -f "${F90}" ]
     then
-      run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gfortran" --version
+      run_app "${F90}" --version
     fi
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-ar" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-nm" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc-ranlib" --version
+    run_app "${AR}" --version
+    run_app "${NM}" --version
+    run_app "${RANLIB}" --version
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcov" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcov-dump" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcov-tool" --version
-
+    run_app "${GCOV}" --version
+    run_app "${GCOV}-dump" --version
+    run_app "${GCOV}-tool" --version
 
     echo
     echo "Showing the mingw-w64 ${mingw_arch} gcc configurations..."
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -v
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -dumpversion
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -dumpmachine
+    run_app "${CC}" --help
+    run_app "${CC}" -v
+    run_app "${CC}" -dumpversion
+    run_app "${CC}" -dumpmachine
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-search-dirs
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-libgcc-file-name
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-multi-directory
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-multi-lib
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-multi-os-directory
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-sysroot
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-file-name=libgcc_s.so
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" -print-prog-name=cc1
+    run_app "${CC}" -print-search-dirs
+    run_app "${CC}" -print-libgcc-file-name
+    run_app "${CC}" -print-multi-directory
+    run_app "${CC}" -print-multi-lib
+    run_app "${CC}" -print-multi-os-directory
+    run_app "${CC}" -print-sysroot
+    run_app "${CC}" -print-file-name=libgcc_s.so
+    run_app "${CC}" -print-prog-name=cc1
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -v
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -dumpversion
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -dumpmachine
+    run_app "${CXX}" --help
+    run_app "${CXX}" -v
+    run_app "${CXX}" -dumpversion
+    run_app "${CXX}" -dumpmachine
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-search-dirs
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-libgcc-file-name
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-multi-directory
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-multi-lib
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-multi-os-directory
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-sysroot
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-file-name=libstdc++-6.dll
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-file-name=libwinpthread-1.dll
-    run_app "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" -print-prog-name=cc1plus
+    run_app "${CXX}" -print-search-dirs
+    run_app "${CXX}" -print-libgcc-file-name
+    run_app "${CXX}" -print-multi-directory
+    run_app "${CXX}" -print-multi-lib
+    run_app "${CXX}" -print-multi-os-directory
+    run_app "${CXX}" -print-sysroot
+    run_app "${CXX}" -print-file-name=libstdc++-6.dll
+    run_app "${CXX}" -print-file-name=libwinpthread-1.dll
+    run_app "${CXX}" -print-prog-name=cc1plus
 
     echo
     echo "Testing if mingw-w64 ${mingw_arch} gcc compiles simple Hello programs..."
@@ -558,6 +573,8 @@ function test_mingw_gcc()
     echo
     echo "pwd: $(pwd)"
 
+    # -------------------------------------------------------------------------
+
     # From https://wiki.winehq.org/Wine_User%27s_Guide#DLL_Overrides
     # DLLs usually get loaded in the following order:
     # - The directory the program was started from.
@@ -566,69 +583,277 @@ function test_mingw_gcc()
     # - The Windows directory.
     # - The PATH variable directories.
 
-    # Note: __EOF__ is quoted to prevent substitutions here.
-    cat <<'__EOF__' > hello.c
-#include <stdio.h>
+    # -------------------------------------------------------------------------
 
-int main(int argc, char* argv[]) {
-    printf("Hello world!\n");
-    return 0;
-}
-__EOF__
+    cp -rv "${helper_folder_path}/tests/c-cpp"/* .
+    cp -rv "${helper_folder_path}/tests/fortran"/* .
+    cp -rv "${helper_folder_path}/tests/wine"/* .
 
-    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcc" hello.c -o hello-c.exe -v
+    # -------------------------------------------------------------------------
 
-    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-c.exe
+    VERBOSE_FLAG=""
+    if [ "${IS_DEVELOP}" == "y" ]
+    then
+      VERBOSE_FLAG="-v"
+    fi
 
-    (
-      xbb_activate
-      if [ "${mingw_arch}" == "x86_64" ]
-      then
-        run_app wine hello-c.exe
-      fi
-    )
+    if [ "$(uname)" == "Linux" ]
+    then
+      GC_SECTION="-Wl,--gc-sections"
+    elif [ "$(uname)" == "Darwin" ]
+    then
+      GC_SECTION="-Wl,-dead_strip"
+    else
+      GC_SECTION=""
+    fi
 
-    # Note: __EOF__ is quoted to prevent substitutions here.
-    cat <<'__EOF__' > hello.cpp
-#include <iostream>
+    # -------------------------------------------------------------------------
 
-int
-main(int argc, char* argv[])
-{
-std::cout << "Hello" << std::endl;
-}
-__EOF__
+    # Run tests in all 3 cases.
+    test_mingw_gcc_one "${mingw_arch}" "" ""
+    test_mingw_gcc_one "${mingw_arch}" "static-lib-" ""
+    test_mingw_gcc_one "${mingw_arch}" "static-" ""
 
-    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" hello.cpp -o hello-cpp.exe -v
-
-    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-cpp.exe
-
-    (
-      xbb_activate
-
-      export WINEPATH="${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib"
-      # ls -l ${WINEPATH} | grep '\.dll'
-
-      if [ "${mingw_arch}" == "x86_64" ]
-      then
-        run_app wine hello-cpp.exe
-      fi
-    )
-
-    # -static-libgcc -Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic
-    # -static-libgcc -Wl,-Bstatic,-lstdc++,-lwinpthread,-Bdynamic
-    run_verbose "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-g++" hello.cpp -o hello-cpp-staticlibs.exe -v  -static-libgcc -Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic
-
-    show_dlls "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump" hello-cpp-staticlibs.exe
-
-    (
-      xbb_activate
-      if [ "${mingw_arch}" == "x86_64" ]
-      then
-        run_app wine hello-cpp-staticlibs.exe
-      fi
-    )
+    # -------------------------------------------------------------------------
   )
+}
+
+function test_mingw_gcc_one()
+{
+  local mingw_arch="$1"
+  local mingw_target="${mingw_arch}-w64-mingw32"
+
+  local prefix="$2" # "", "static-lib-", "static-"
+  local suffix="$3" # ""; reserved for something like "-bootstrap"
+
+  if [ "${prefix}" == "static-lib-" ]
+  then
+    STATIC_LIBGCC="-static-libgcc"
+    # Force static libwinpthread.
+    STATIC_LIBSTD="-Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic" # -static-libstdc++"
+  elif [ "${prefix}" == "static-" ]
+  then
+    STATIC_LIBGCC="-static"
+    STATIC_LIBSTD=""
+  else
+    STATIC_LIBGCC=""
+    STATIC_LIBSTD=""
+
+    # The DLLs are available in the /lib folder.
+    export WINEPATH="${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib;${WINEPATH:-}"
+    echo "WINEPATH=${WINEPATH}"
+  fi
+
+  # ---------------------------------------------------------------------------
+
+  # Test C compile and link in a single step.
+  run_verbose "${CC}" -v -o "${prefix}simple-hello-c1${suffix}.exe" simple-hello.c ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}simple-hello-c1${suffix}.exe" "Hello"
+
+  # Test C compile and link in a single step with gc.
+  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}gc-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}gc-simple-hello-c1${suffix}.exe" "Hello"
+
+  # Test C compile and link in separate steps.
+  run_verbose "${CC}" -o "simple-hello-c.o" -c simple-hello.c -ffunction-sections -fdata-sections
+  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-c2${suffix}.exe" simple-hello-c.o ${GC_SECTION} ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}simple-hello-c2${suffix}.exe" "Hello"
+
+  # Test LTO C compile and link in a single step.
+  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-c1${suffix}.exe" "Hello"
+
+  # Test LTO C compile and link in separate steps.
+  run_verbose "${CC}" -o lto-simple-hello-c.o -c simple-hello.c -ffunction-sections -fdata-sections -flto
+  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c2${suffix}.exe" lto-simple-hello-c.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-c2${suffix}.exe" "Hello"
+
+  # ---------------------------------------------------------------------------
+
+  # Test C++ compile and link in a single step.
+  run_verbose "${CXX}" -v -o "${prefix}simple-hello-cpp1${suffix}.exe" simple-hello.cpp ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}simple-hello-cpp1${suffix}.exe" "Hello"
+
+  # Test C++ compile and link in a single step with gc.
+  run_verbose "${CXX}" -v -o "${prefix}gc-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}gc-simple-hello-cpp1${suffix}.exe" "Hello"
+
+  # Test C++ compile and link in separate steps.
+  run_verbose "${CXX}" -o simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-cpp2${suffix}.exe" simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}simple-hello-cpp2${suffix}.exe" "Hello"
+
+  # Test LTO C++ compile and link in a single step.
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-cpp1${suffix}.exe" "Hello"
+
+  # Test LTO C++ compile and link in separate steps.
+  run_verbose "${CXX}" -o lto-simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections -flto
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp2${suffix}.exe" lto-simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-cpp2${suffix}.exe" "Hello"
+
+  # ---------------------------------------------------------------------------
+
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-exception${suffix}.exe" simple-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}simple-exception${suffix}.exe" "MyException"
+
+  # -O0 is an attempt to prevent any interferences with the optimiser.
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-str-exception${suffix}.exe" simple-str-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}simple-str-exception${suffix}.exe" "MyStringException"
+
+  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-int-exception${suffix}.exe" simple-int-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect "${mingw_arch}" "${prefix}simple-int-exception${suffix}.exe" "42"
+
+  # ---------------------------------------------------------------------------
+
+  # Test a very simple Objective-C (a printf).
+  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-objc${suffix}.exe" simple-objc.m -O0 ${STATIC_LIBGCC}
+  test_expect "${mingw_arch}" "${prefix}simple-objc${suffix}.exe" "Hello World"
+
+  # ---------------------------------------------------------------------------
+
+  # Test a very simple Fortran (a print).
+  run_verbose "${F90}" ${VERBOSE_FLAG}  -o "${prefix}hello-f${suffix}.exe" hello.f90 ${STATIC_LIBGCC}
+  # The space is expected.
+  test_expect "${mingw_arch}" "${prefix}hello-f${suffix}.exe" " Hello"
+
+  run_verbose "${F90}" ${VERBOSE_FLAG}  -o "${prefix}concurrent-f${suffix}.exe" concurrent.f90 ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}concurrent-f${suffix}.exe"
+
+  # ---------------------------------------------------------------------------
+  # Tests borrowed from the llvm-mingw project.
+
+  run_verbose "${CC}" -o "${prefix}hello${suffix}.exe" hello.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}hello${suffix}.exe"
+
+  run_verbose "${CC}" -o "${prefix}setjmp${suffix}.exe" setjmp-patched.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}setjmp${suffix}.exe"
+
+  run_verbose "${CC}" -o "${prefix}hello-tls${suffix}.exe" hello-tls.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}hello-tls${suffix}.exe"
+
+  run_verbose "${CC}" -o "${prefix}crt-test${suffix}.exe" crt-test.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}crt-test${suffix}.exe"
+
+  if [ "${prefix}" != "static-" ]
+  then
+    run_verbose "${CC}" -o autoimport-lib.dll autoimport-lib.c -shared  -Wl,--out-implib,libautoimport-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+    show_dlls "${mingw_arch}" autoimport-lib.dll
+
+    run_verbose "${CC}" -o "${prefix}autoimport-main${suffix}.exe" autoimport-main.c -L. -lautoimport-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+    run_wine "${mingw_arch}" "${prefix}autoimport-main${suffix}.exe"
+  fi
+
+  # The IDL output isn't arch specific, but test each arch frontend
+  run_verbose "${WIDL}" -o idltest.h idltest.idl -h
+  run_verbose "${CC}" -o "${prefix}idltest${suffix}.exe" idltest.c -I. -lole32 ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_wine "${mingw_arch}" "${prefix}idltest${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}hello-cpp${suffix}.exe" hello-cpp.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}hello-cpp${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}hello-exception${suffix}.exe" hello-exception.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}hello-exception${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}exception-locale${suffix}.exe" exception-locale.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}exception-locale${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}exception-reduced${suffix}.exe" exception-reduced.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}exception-reduced${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}global-terminate${suffix}.exe" global-terminate.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}global-terminate${suffix}.exe"
+
+  run_verbose ${CXX} -o "${prefix}longjmp-cleanup${suffix}.exe" longjmp-cleanup.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}longjmp-cleanup${suffix}.exe"
+
+  run_verbose ${CXX} -o tlstest-lib.dll tlstest-lib.cpp -shared -Wl,--out-implib,libtlstest-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  show_dlls "${OBJDUMP}" "tlstest-lib.dll"
+
+  run_verbose ${CXX} -o "${prefix}tlstest-main${suffix}.exe" tlstest-main.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_wine "${mingw_arch}" "${prefix}tlstest-main${suffix}.exe"
+
+  if [ "${prefix}" != "static-" ]
+  then
+    run_verbose ${CXX} -o throwcatch-lib.dll throwcatch-lib.cpp -shared -Wl,--out-implib,libthrowcatch-lib.dll.a ${VERBOSE_FLAG}
+
+    run_verbose ${CXX} -o "${prefix}throwcatch-main${suffix}.exe" throwcatch-main.cpp -L. -lthrowcatch-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+
+    run_wine "${mingw_arch}" "${prefix}throwcatch-main${suffix}.exe"
+  fi
+
+  # On Windows only the -flto linker is capable of understanding weak symbols.
+  run_verbose "${CC}" -c -o "${prefix}hello-weak${suffix}.c.o" hello-weak.c -flto
+  run_verbose "${CC}" -c -o "${prefix}hello-f-weak${suffix}.c.o" hello-f-weak.c -flto
+  run_verbose "${CC}" -o "${prefix}hello-weak${suffix}.exe" "${prefix}hello-weak${suffix}.c.o" "${prefix}hello-f-weak${suffix}.c.o" ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC} -flto
+  test_expect "${mingw_arch}" "${prefix}hello-weak${suffix}.exe" "Hello World!"
+
+  # ---------------------------------------------------------------------------
+}
+
+function test_expect()
+{
+  local mingw_arch="$1"
+  local app_name="$2"
+  local expected="$3"
+  shift 3
+
+  if [ "${IS_DEVELOP}" == "y" ]
+  then
+    show_dlls "${OBJDUMP}" "${app_name}"
+  fi
+
+  # No 32-bit support in XBB wine.
+  # module:load_wow64_ntdll failed to load L"\\??\\C:\\windows\\syswow64\\ntdll.dll" error c0000135
+  if [ "${mingw_arch}" == "x86_64" ]
+  then
+    (
+      xbb_activate
+
+      local output
+      # Remove the trailing CR present on Windows.
+      if [ "${app_name:0:1}" == "/" ]
+      then
+        output="$(wine "${app_name}" "$@" | sed 's/\r$//')"
+      else
+        output="$(wine "./${app_name}" "$@" | sed 's/\r$//')"
+      fi
+
+      if [ "x${output}x" == "x${expected}x" ]
+      then
+        echo
+        echo "Test \"${app_name}\" passed :-)"
+      else
+        echo "expected ${#expected}: \"${expected}\""
+        echo "got ${#output}: \"${output}\""
+        echo
+        exit 1
+      fi
+    )
+  fi
+}
+
+function run_wine()
+{
+  local mingw_arch="$1"
+  local app_name="$2"
+  shift 2
+
+  if [ "${IS_DEVELOP}" == "y" ]
+  then
+    show_dlls "${OBJDUMP}" "${app_name}"
+  fi
+
+  # No 32-bit support in XBB wine.
+  # module:load_wow64_ntdll failed to load L"\\??\\C:\\windows\\syswow64\\ntdll.dll" error c0000135
+  if [ "${mingw_arch}" == "x86_64" ]
+  then
+    (
+      xbb_activate
+
+      run_verbose wine "${app_name}" "$@"
+    )
+  fi
 }
 
 # -----------------------------------------------------------------------------
