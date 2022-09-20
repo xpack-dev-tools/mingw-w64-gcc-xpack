@@ -24,7 +24,6 @@ function build_mingw_binutils()
   # https://ftp.gnu.org/gnu/binutils/
 
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-binutils/trunk/PKGBUILD
-  #
 
   # 2017-07-24, "2.29"
   # 2018-07-14, "2.31"
@@ -61,14 +60,6 @@ function build_mingw_binutils()
     download_and_extract "${mingw_binutils_url}" "${mingw_binutils_archive}" \
       "${mingw_binutils_src_folder_name}" \
       "${mingw_binutils_patch_file_path}"
-
-if false
-then
-    # /bin/bash /Host/home/ilg/Work/mingw-w64-gcc-11.3.0-1/linux-x64/sources/gcc-11.3.0/gcc/mkconfig.sh bconfig.h
-    # make: *** No rule to make target '../build-x86_64-pc-linux-gnu/libiberty/libiberty.a', needed by 'build/genmodes'.  Stop.
-    sed -i.bak 's|install_to_$(INSTALL_DEST) ||' \
-      "${mingw_binutils_src_folder_name}/libiberty/Makefile.in"
-fi
 
     mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_binutils_folder_name}"
 
@@ -112,7 +103,6 @@ fi
 
           config_options=()
 
-          # TODO: check if /usr is needed.
           config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}") # Arch, HB
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
@@ -190,8 +180,6 @@ function test_mingw_binutils()
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
   (
-    # xbb_activate_installed_bin
-
     echo
     echo "Checking the mingw-w64 ${mingw_arch} binutils shared libraries..."
 
@@ -318,18 +306,6 @@ function build_mingw_gcc_first()
           then
             env | sort
           fi
-
-if false
-then
-          (
-            # GCC requires the `x86_64-w64-mingw32` folder be mirrored as
-            # `mingw` in the root.
-            cd "${BINS_INSTALL_FOLDER_PATH}"
-            run_verbose rm -fv "mingw"
-            run_verbose ln -sv "usr/${mingw_target}" "mingw"
-          )
-fi
-
 
           echo
           echo "Running mingw-w64 ${mingw_arch} gcc step 1 configure..."
@@ -467,8 +443,6 @@ function build_mingw_gcc_final()
     ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/make-final-output-$(ndate).txt"
 
     (
-      # xbb_activate_installed_bin
-
       if true
       then
 
@@ -516,8 +490,6 @@ function test_mingw_gcc()
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
   (
-    # xbb_activate_installed_bin
-
     echo
     echo "Testing if mingw-w64 ${mingw_arch} gcc binaries start properly..."
 
@@ -780,8 +752,6 @@ function build_mingw_headers()
       mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_headers_folder_name}"
       cd "${BUILD_FOLDER_PATH}/${mingw_headers_folder_name}"
 
-      # xbb_activate_installed_dev
-
       if [ ! -f "config.status" ]
       then
         (
@@ -829,15 +799,6 @@ function build_mingw_headers()
 
         # make install-strip
         run_verbose make install
-
-        if false
-        then
-          # Remove dummy headers, overriden by winpthread.
-          # Arch
-          rm -v "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/include/pthread_signal.h"
-          rm -v "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/include/pthread_time.h"
-          rm -v "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/include/pthread_unistd.h"
-        fi
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_headers_folder_name}/make-output-$(ndate).txt"
 
@@ -968,8 +929,8 @@ function build_mingw_crt()
       mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_crt_folder_name}"
       cd "${BUILD_FOLDER_PATH}/${mingw_crt_folder_name}"
 
+      # To use the new toolchain.
       xbb_activate_installed_bin
-#      xbb_activate_installed_dev
 
       # Overwrite the flags, -ffunction-sections -fdata-sections result in
       # {standard input}: Assembler messages:
@@ -1093,8 +1054,8 @@ function build_mingw_winpthreads()
       mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}"
       cd "${BUILD_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}"
 
+      # To use the new toolchain.
       xbb_activate_installed_bin
-      # xbb_activate_installed_dev
 
       CPPFLAGS=""
       CFLAGS="-O2 -pipe -w"
@@ -1106,9 +1067,6 @@ function build_mingw_winpthreads()
       export CFLAGS
       export CXXFLAGS
       export LDFLAGS
-
-      # export CC=""
-      # prepare_gcc_env "${MINGW_TARGET}-"
 
       if [ ! -f "config.status" ]
       then
