@@ -20,10 +20,8 @@ function set_bins_install()
 
 function build_versions()
 {
-  export GCC_BRANDING="${DISTRO_NAME} MinGW-w64 ${APP_NAME} ${TARGET_MACHINE}"
+  export GCC_BRANDING="${DISTRO_NAME} MinGW-w64 GCC ${TARGET_MACHINE}"
   export BINUTILS_BRANDING="${DISTRO_NAME} MinGW-w64 binutils ${TARGET_MACHINE}"
-  export GCC_BOOTSTRAP_BRANDING="${DISTRO_NAME} MinGW-w64 ${APP_NAME}-bootstrap ${TARGET_MACHINE}"
-  export BINUTILS_BOOTSTRAP_BRANDING="${DISTRO_NAME} MinGW-w64 binutils-bootstrap ${TARGET_MACHINE}"
 
   export GCC_VERSION="$(echo "${RELEASE_VERSION}" | sed -e 's|-.*||')"
   export GCC_VERSION_MAJOR=$(echo ${GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
