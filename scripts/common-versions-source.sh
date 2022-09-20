@@ -114,6 +114,8 @@ function build_versions()
       download_mingw
 
       MINGW_ARCHITECTURES=("x86_64" "i686")
+      # MINGW_ARCHITECTURES=("x86_64") # Use it temporarily during tests.
+      # MINGW_ARCHITECTURES=("i686") # Use it temporarily during tests.
 
       # depends=('zlib')
       for arch in "${MINGW_ARCHITECTURES[@]}"
