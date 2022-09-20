@@ -140,6 +140,8 @@ function build_versions()
 
       done
 
+      # Save a few MB.
+      rm -rf "${BINS_INSTALL_FOLDER_PATH}/share/info"
     )
 
   # ---------------------------------------------------------------------------
