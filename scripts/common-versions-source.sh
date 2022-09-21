@@ -72,6 +72,8 @@ function build_versions()
 
       BINUTILS_VERSION="2.38"
 
+      MINGW_VERSION="9.0.0"
+
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
         prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
@@ -122,7 +124,7 @@ function build_versions()
       tests_add set_bins_install "${APP_INSTALL_FOLDER_PATH}"
 
       # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
-      prepare_mingw_env "9.0.0"
+      prepare_mingw2_env "${MINGW_VERSION}"
 
       download_mingw
 
@@ -134,29 +136,43 @@ function build_versions()
       for arch in "${MINGW_ARCHITECTURES[@]}"
       do
         # https://ftp.gnu.org/gnu/binutils/
-        build_mingw_binutils "${BINUTILS_VERSION}" "${arch}"
+        build_mingw2_binutils "${BINUTILS_VERSION}" "${arch}"
 
         # Deploy the headers, they are needed by the compiler.
-        build_mingw_headers "${arch}"
+        build_mingw2_headers "${arch}"
 
         MINGW_GCC_PATCH_FILE_NAME="gcc-${GCC_VERSION}-cross.patch.diff"
-        build_mingw_gcc_first "${GCC_VERSION}" "${arch}"
 
-        build_mingw_widl "${arch}"
+        if [ "${TARGET_PLATFORM}" == "win32" ]
+        then
 
-        # On macOS there is no <malloc.h>.
-        # build_mingw_libmangle "${arch}"
-        # build_mingw_gendef "${arch}"
+          build_mingw2_widl "${arch}"
+          build_mingw2_crt "${arch}"
+          build_mingw2_winpthreads "${arch}"
 
-        (
-          prepare_gcc_env "${arch}-w64-mingw32-"
+          build_mingw2_gcc "${GCC_VERSION}" "${arch}"
 
-          build_mingw_crt "${arch}"
-          build_mingw_winpthreads "${arch}"
-        )
+        else # linux & darwin
 
-        # With the run-time available, build the C/C++ libraries and the rest.
-        build_mingw_gcc_final "${arch}"
+          build_mingw2_gcc_first "${GCC_VERSION}" "${arch}"
+
+          build_mingw2_widl "${arch}"
+
+          # On macOS there is no <malloc.h>.
+          # build_mingw2_libmangle "${arch}"
+          # build_mingw2_gendef "${arch}"
+
+          (
+            prepare_gcc_env "${arch}-w64-mingw32-"
+
+            build_mingw2_crt "${arch}"
+            build_mingw2_winpthreads "${arch}"
+          )
+
+          # With the run-time available, build the C/C++ libraries and the rest.
+          build_mingw2_gcc_final "${arch}"
+
+        fi
 
       done
 

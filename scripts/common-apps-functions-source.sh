@@ -19,7 +19,7 @@
 # -----------------------------------------------------------------------------
 # mingw-w64
 
-function build_mingw_binutils()
+function build_mingw2_binutils()
 {
   # https://ftp.gnu.org/gnu/binutils/
 
@@ -166,7 +166,7 @@ function build_mingw_binutils()
     )
 
     (
-      test_mingw_binutils "${mingw_arch}"
+      test_mingw2_binutils "${mingw_arch}"
     ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_binutils_folder_name}/test-output-$(ndate).txt"
 
     hash -r
@@ -177,10 +177,10 @@ function build_mingw_binutils()
     echo "Component mingw-w64 ${mingw_arch} binutils already installed."
   fi
 
-  tests_add "test_mingw_binutils" "${mingw_arch}"
+  tests_add "test_mingw2_binutils" "${mingw_arch}"
 }
 
-function test_mingw_binutils()
+function test_mingw2_binutils()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -233,7 +233,7 @@ function test_mingw_binutils()
 # -----------------------------------------------------------------------------
 
 # MINGW_GCC_PATCH_FILE_NAME
-function build_mingw_gcc_first()
+function build_mingw2_gcc_first()
 {
   # https://gcc.gnu.org
   # https://gcc.gnu.org/wiki/InstallingGCC
@@ -394,7 +394,7 @@ function build_mingw_gcc_first()
   fi
 }
 
-function build_mingw_gcc_final()
+function build_mingw2_gcc_final()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -486,7 +486,7 @@ function build_mingw_gcc_final()
     ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/strip-final-output-$(ndate).txt"
 
     (
-      test_mingw_gcc "${mingw_arch}"
+      test_mingw2_gcc "${mingw_arch}"
     ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/test-final-output-$(ndate).txt"
 
     hash -r
@@ -497,10 +497,10 @@ function build_mingw_gcc_final()
     echo "Component mingw-w64 ${mingw_target} gcc final already installed."
   fi
 
-  tests_add "test_mingw_gcc" "${mingw_arch}"
+  tests_add "test_mingw2_gcc" "${mingw_arch}"
 }
 
-function test_mingw_gcc()
+function test_mingw2_gcc()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -619,15 +619,15 @@ function test_mingw_gcc()
     # -------------------------------------------------------------------------
 
     # Run tests in all 3 cases.
-    test_mingw_gcc_one "${mingw_arch}" "" ""
-    test_mingw_gcc_one "${mingw_arch}" "static-lib-" ""
-    test_mingw_gcc_one "${mingw_arch}" "static-" ""
+    test_mingw2_gcc_one "${mingw_arch}" "" ""
+    test_mingw2_gcc_one "${mingw_arch}" "static-lib-" ""
+    test_mingw2_gcc_one "${mingw_arch}" "static-" ""
 
     # -------------------------------------------------------------------------
   )
 }
 
-function test_mingw_gcc_one()
+function test_mingw2_gcc_one()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -911,7 +911,7 @@ function run_wine()
 # 2021-05-22, "9.0.0"
 # 2022-04-04, "10.0.0"
 
-function prepare_mingw_env()
+function prepare_mingw2_env()
 {
   export mingw_version="$1"
 
@@ -948,7 +948,7 @@ function download_mingw()
 # Used to initialise options in all mingw builds:
 # `config_options=("${config_options_common[@]}")`
 
-function prepare_mingw_config_options_common()
+function prepare_mingw2_config_options_common()
 {
   # ---------------------------------------------------------------------------
   # Used in multiple configurations.
@@ -960,7 +960,7 @@ function prepare_mingw_config_options_common()
   then
     config_options_common+=("--prefix=$1")
   else
-    echo "prepare_mingw_config_options_common requires a prefix path"
+    echo "prepare_mingw2_config_options_common requires a prefix path"
     exit 1
   fi
 
@@ -980,7 +980,7 @@ function prepare_mingw_config_options_common()
 }
 
 
-function build_mingw_headers()
+function build_mingw2_headers()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-headers/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-headers-git/PKGBUILD
@@ -1017,7 +1017,7 @@ function build_mingw_headers()
           fi
 
           # Use architecture subfolders.
-          prepare_mingw_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch
+          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch
           config_options=("${config_options_common[@]}")
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
@@ -1066,7 +1066,7 @@ function build_mingw_headers()
 
 # -----------------------------------------------------------------------------
 
-function build_mingw_widl()
+function build_mingw2_widl()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -1156,7 +1156,7 @@ function build_mingw_widl()
 }
 
 # Fails on macOS, due to <malloc.h>.
-function build_mingw_libmangle()
+function build_mingw2_libmangle()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -1241,7 +1241,7 @@ function build_mingw_libmangle()
 }
 
 
-function build_mingw_gendef()
+function build_mingw2_gendef()
 {
   local mingw_arch="$1"
   local mingw_target="${mingw_arch}-w64-mingw32"
@@ -1331,7 +1331,7 @@ function build_mingw_gendef()
 
 # -----------------------------------------------------------------------------
 
-function build_mingw_crt()
+function build_mingw2_crt()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-crt/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-crt-git/PKGBUILD
@@ -1397,7 +1397,7 @@ function build_mingw_crt()
 
           config_options=()
 
-          prepare_mingw_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch /usr
+          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch /usr
           config_options=("${config_options_common[@]}")
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
@@ -1456,7 +1456,7 @@ function build_mingw_crt()
 # -----------------------------------------------------------------------------
 
 
-function build_mingw_winpthreads()
+function build_mingw2_winpthreads()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-winpthreads/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-winpthreads-git/PKGBUILD
