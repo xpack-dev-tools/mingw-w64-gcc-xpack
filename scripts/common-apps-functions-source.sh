@@ -333,7 +333,7 @@ function build_mingw_gcc_first()
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${BUILD}")
+          config_options+=("--host=${HOST}")
           config_options+=("--target=${mingw_target}") # Arch
 
           if [ "${TARGET_PLATFORM}" == "win32" ]
@@ -1122,7 +1122,7 @@ function build_mingw_widl()
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${BUILD}") # Native!
+          config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
           config_options+=("--with-widl-includedir=${BINS_INSTALL_FOLDER_PATH}/include")
@@ -1211,7 +1211,7 @@ function build_mingw_libmangle()
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${BUILD}") # Native!
+          config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/libmangle/configure" \
@@ -1298,7 +1298,7 @@ function build_mingw_gendef()
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${BUILD}") # Native!
+          config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
           config_options+=("--with-mangle=${LIBS_INSTALL_FOLDER_PATH}")
