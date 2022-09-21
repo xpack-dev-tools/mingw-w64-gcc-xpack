@@ -656,151 +656,151 @@ function test_mingw2_gcc_one()
   # ---------------------------------------------------------------------------
 
   # Test C compile and link in a single step.
-  run_verbose "${CC}" -v -o "${prefix}simple-hello-c1${suffix}.exe" simple-hello.c ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}simple-hello-c1${suffix}.exe" "Hello"
+  run_app "${CC}" -v -o "${prefix}simple-hello-c1${suffix}.exe" simple-hello.c ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-hello-c1${suffix}.exe" "Hello"
 
   # Test C compile and link in a single step with gc.
-  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}gc-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}gc-simple-hello-c1${suffix}.exe" "Hello"
+  run_app "${CC}" ${VERBOSE_FLAG} -o "${prefix}gc-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}gc-simple-hello-c1${suffix}.exe" "Hello"
 
   # Test C compile and link in separate steps.
-  run_verbose "${CC}" -o "simple-hello-c.o" -c simple-hello.c -ffunction-sections -fdata-sections
-  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-c2${suffix}.exe" simple-hello-c.o ${GC_SECTION} ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}simple-hello-c2${suffix}.exe" "Hello"
+  run_app "${CC}" -o "simple-hello-c.o" -c simple-hello.c -ffunction-sections -fdata-sections
+  run_app "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-c2${suffix}.exe" simple-hello-c.o ${GC_SECTION} ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-hello-c2${suffix}.exe" "Hello"
 
   # Test LTO C compile and link in a single step.
-  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-c1${suffix}.exe" "Hello"
+  run_app "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c1${suffix}.exe" simple-hello.c -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}lto-simple-hello-c1${suffix}.exe" "Hello"
 
   # Test LTO C compile and link in separate steps.
-  run_verbose "${CC}" -o lto-simple-hello-c.o -c simple-hello.c -ffunction-sections -fdata-sections -flto
-  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c2${suffix}.exe" lto-simple-hello-c.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-c2${suffix}.exe" "Hello"
+  run_app "${CC}" -o lto-simple-hello-c.o -c simple-hello.c -ffunction-sections -fdata-sections -flto
+  run_app "${CC}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-c2${suffix}.exe" lto-simple-hello-c.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}lto-simple-hello-c2${suffix}.exe" "Hello"
 
   # ---------------------------------------------------------------------------
 
   # Test C++ compile and link in a single step.
-  run_verbose "${CXX}" -v -o "${prefix}simple-hello-cpp1${suffix}.exe" simple-hello.cpp ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}simple-hello-cpp1${suffix}.exe" "Hello"
+  run_app "${CXX}" -v -o "${prefix}simple-hello-cpp1${suffix}.exe" simple-hello.cpp ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-hello-cpp1${suffix}.exe" "Hello"
 
   # Test C++ compile and link in a single step with gc.
-  run_verbose "${CXX}" -v -o "${prefix}gc-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}gc-simple-hello-cpp1${suffix}.exe" "Hello"
+  run_app "${CXX}" -v -o "${prefix}gc-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}gc-simple-hello-cpp1${suffix}.exe" "Hello"
 
   # Test C++ compile and link in separate steps.
-  run_verbose "${CXX}" -o simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-cpp2${suffix}.exe" simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}simple-hello-cpp2${suffix}.exe" "Hello"
+  run_app "${CXX}" -o simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-hello-cpp2${suffix}.exe" simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-hello-cpp2${suffix}.exe" "Hello"
 
   # Test LTO C++ compile and link in a single step.
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-cpp1${suffix}.exe" "Hello"
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp1${suffix}.exe" simple-hello.cpp -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}lto-simple-hello-cpp1${suffix}.exe" "Hello"
 
   # Test LTO C++ compile and link in separate steps.
-  run_verbose "${CXX}" -o lto-simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections -flto
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp2${suffix}.exe" lto-simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}lto-simple-hello-cpp2${suffix}.exe" "Hello"
+  run_app "${CXX}" -o lto-simple-hello-cpp.o -c simple-hello.cpp -ffunction-sections -fdata-sections -flto
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}lto-simple-hello-cpp2${suffix}.exe" lto-simple-hello-cpp.o -ffunction-sections -fdata-sections ${GC_SECTION} -flto ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}lto-simple-hello-cpp2${suffix}.exe" "Hello"
 
   # ---------------------------------------------------------------------------
 
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-exception${suffix}.exe" simple-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}simple-exception${suffix}.exe" "MyException"
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-exception${suffix}.exe" simple-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-exception${suffix}.exe" "MyException"
 
   # -O0 is an attempt to prevent any interferences with the optimiser.
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-str-exception${suffix}.exe" simple-str-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}simple-str-exception${suffix}.exe" "MyStringException"
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-str-exception${suffix}.exe" simple-str-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-str-exception${suffix}.exe" "MyStringException"
 
-  run_verbose "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-int-exception${suffix}.exe" simple-int-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  test_expect "${mingw_arch}" "${prefix}simple-int-exception${suffix}.exe" "42"
+  run_app "${CXX}" ${VERBOSE_FLAG} -o "${prefix}simple-int-exception${suffix}.exe" simple-int-exception.cpp -ffunction-sections -fdata-sections ${GC_SECTION} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-int-exception${suffix}.exe" "42"
 
   # ---------------------------------------------------------------------------
 
   # Test a very simple Objective-C (a printf).
-  run_verbose "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-objc${suffix}.exe" simple-objc.m -O0 ${STATIC_LIBGCC}
-  test_expect "${mingw_arch}" "${prefix}simple-objc${suffix}.exe" "Hello World"
+  run_app "${CC}" ${VERBOSE_FLAG} -o "${prefix}simple-objc${suffix}.exe" simple-objc.m -O0 ${STATIC_LIBGCC}
+  test_expect_wine "${mingw_arch}" "${prefix}simple-objc${suffix}.exe" "Hello World"
 
   # ---------------------------------------------------------------------------
 
   # Test a very simple Fortran (a print).
-  run_verbose "${F90}" ${VERBOSE_FLAG}  -o "${prefix}hello-f${suffix}.exe" hello.f90 ${STATIC_LIBGCC}
+  run_app "${F90}" ${VERBOSE_FLAG}  -o "${prefix}hello-f${suffix}.exe" hello.f90 ${STATIC_LIBGCC}
   # The space is expected.
-  test_expect "${mingw_arch}" "${prefix}hello-f${suffix}.exe" " Hello"
+  test_expect_wine "${mingw_arch}" "${prefix}hello-f${suffix}.exe" " Hello"
 
-  run_verbose "${F90}" ${VERBOSE_FLAG}  -o "${prefix}concurrent-f${suffix}.exe" concurrent.f90 ${STATIC_LIBGCC}
+  run_app "${F90}" ${VERBOSE_FLAG}  -o "${prefix}concurrent-f${suffix}.exe" concurrent.f90 ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}concurrent-f${suffix}.exe"
 
   # ---------------------------------------------------------------------------
   # Tests borrowed from the llvm-mingw project.
 
-  run_verbose "${CC}" -o "${prefix}hello${suffix}.exe" hello.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
+  run_app "${CC}" -o "${prefix}hello${suffix}.exe" hello.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}hello${suffix}.exe"
 
-  run_verbose "${CC}" -o "${prefix}setjmp${suffix}.exe" setjmp-patched.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
+  run_app "${CC}" -o "${prefix}setjmp${suffix}.exe" setjmp-patched.c ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}setjmp${suffix}.exe"
 
-  run_verbose "${CC}" -o "${prefix}hello-tls${suffix}.exe" hello-tls.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_app "${CC}" -o "${prefix}hello-tls${suffix}.exe" hello-tls.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}hello-tls${suffix}.exe"
 
-  run_verbose "${CC}" -o "${prefix}crt-test${suffix}.exe" crt-test.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_app "${CC}" -o "${prefix}crt-test${suffix}.exe" crt-test.c ${VERBOSE_FLAG} ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}crt-test${suffix}.exe"
 
   if [ "${prefix}" != "static-" ]
   then
-    run_verbose "${CC}" -o autoimport-lib.dll autoimport-lib.c -shared  -Wl,--out-implib,libautoimport-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC}
-    show_dlls "${mingw_arch}" autoimport-lib.dll
+    run_app "${CC}" -o autoimport-lib.dll autoimport-lib.c -shared  -Wl,--out-implib,libautoimport-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+    show_dlls "${mingw_target}-objdump" autoimport-lib.dll
 
-    run_verbose "${CC}" -o "${prefix}autoimport-main${suffix}.exe" autoimport-main.c -L. -lautoimport-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+    run_app "${CC}" -o "${prefix}autoimport-main${suffix}.exe" autoimport-main.c -L. -lautoimport-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC}
     run_wine "${mingw_arch}" "${prefix}autoimport-main${suffix}.exe"
   fi
 
   # The IDL output isn't arch specific, but test each arch frontend
-  run_verbose "${WIDL}" -o idltest.h idltest.idl -h
-  run_verbose "${CC}" -o "${prefix}idltest${suffix}.exe" idltest.c -I. -lole32 ${VERBOSE_FLAG} ${STATIC_LIBGCC}
+  run_app "${WIDL}" -o idltest.h idltest.idl -h
+  run_app "${CC}" -o "${prefix}idltest${suffix}.exe" idltest.c -I. -lole32 ${VERBOSE_FLAG} ${STATIC_LIBGCC}
   run_wine "${mingw_arch}" "${prefix}idltest${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}hello-cpp${suffix}.exe" hello-cpp.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}hello-cpp${suffix}.exe" hello-cpp.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}hello-cpp${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}hello-exception${suffix}.exe" hello-exception.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}hello-exception${suffix}.exe" hello-exception.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}hello-exception${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}exception-locale${suffix}.exe" exception-locale.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}exception-locale${suffix}.exe" exception-locale.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}exception-locale${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}exception-reduced${suffix}.exe" exception-reduced.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}exception-reduced${suffix}.exe" exception-reduced.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}exception-reduced${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}global-terminate${suffix}.exe" global-terminate.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}global-terminate${suffix}.exe" global-terminate.cpp -std=c++17 ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}global-terminate${suffix}.exe"
 
-  run_verbose ${CXX} -o "${prefix}longjmp-cleanup${suffix}.exe" longjmp-cleanup.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}longjmp-cleanup${suffix}.exe" longjmp-cleanup.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}longjmp-cleanup${suffix}.exe"
 
-  run_verbose ${CXX} -o tlstest-lib.dll tlstest-lib.cpp -shared -Wl,--out-implib,libtlstest-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
-  show_dlls "${OBJDUMP}" "tlstest-lib.dll"
+  run_app ${CXX} -o tlstest-lib.dll tlstest-lib.cpp -shared -Wl,--out-implib,libtlstest-lib.dll.a ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  show_dlls "${mingw_target}-objdump" "tlstest-lib.dll"
 
-  run_verbose ${CXX} -o "${prefix}tlstest-main${suffix}.exe" tlstest-main.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+  run_app ${CXX} -o "${prefix}tlstest-main${suffix}.exe" tlstest-main.cpp ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
   run_wine "${mingw_arch}" "${prefix}tlstest-main${suffix}.exe"
 
   if [ "${prefix}" != "static-" ]
   then
-    run_verbose ${CXX} -o throwcatch-lib.dll throwcatch-lib.cpp -shared -Wl,--out-implib,libthrowcatch-lib.dll.a ${VERBOSE_FLAG}
+    run_app ${CXX} -o throwcatch-lib.dll throwcatch-lib.cpp -shared -Wl,--out-implib,libthrowcatch-lib.dll.a ${VERBOSE_FLAG}
 
-    run_verbose ${CXX} -o "${prefix}throwcatch-main${suffix}.exe" throwcatch-main.cpp -L. -lthrowcatch-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
+    run_app ${CXX} -o "${prefix}throwcatch-main${suffix}.exe" throwcatch-main.cpp -L. -lthrowcatch-lib ${VERBOSE_FLAG} ${STATIC_LIBGCC} ${STATIC_LIBSTD}
 
     run_wine "${mingw_arch}" "${prefix}throwcatch-main${suffix}.exe"
   fi
 
   # On Windows only the -flto linker is capable of understanding weak symbols.
-  run_verbose "${CC}" -c -o "${prefix}hello-weak${suffix}.c.o" hello-weak.c -flto
-  run_verbose "${CC}" -c -o "${prefix}hello-f-weak${suffix}.c.o" hello-f-weak.c -flto
-  run_verbose "${CC}" -o "${prefix}hello-weak${suffix}.exe" "${prefix}hello-weak${suffix}.c.o" "${prefix}hello-f-weak${suffix}.c.o" ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC} -flto
-  test_expect "${mingw_arch}" "${prefix}hello-weak${suffix}.exe" "Hello World!"
+  run_app "${CC}" -c -o "${prefix}hello-weak${suffix}.c.o" hello-weak.c -flto
+  run_app "${CC}" -c -o "${prefix}hello-f-weak${suffix}.c.o" hello-f-weak.c -flto
+  run_app "${CC}" -o "${prefix}hello-weak${suffix}.exe" "${prefix}hello-weak${suffix}.c.o" "${prefix}hello-f-weak${suffix}.c.o" ${VERBOSE_FLAG} -lm ${STATIC_LIBGCC} -flto
+  test_expect_wine "${mingw_arch}" "${prefix}hello-weak${suffix}.exe" "Hello World!"
 
   # ---------------------------------------------------------------------------
 }
 
-function test_expect()
+function test_expect_wine()
 {
   local mingw_arch="$1"
   local app_name="$2"
@@ -809,7 +809,7 @@ function test_expect()
 
   if [ "${IS_DEVELOP}" == "y" ]
   then
-    show_dlls "${OBJDUMP}" "${app_name}"
+    show_dlls "${mingw_target}-objdump" "${app_name}"
   fi
 
   # No 32-bit support in XBB wine.
