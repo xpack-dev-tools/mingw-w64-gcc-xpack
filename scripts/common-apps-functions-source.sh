@@ -500,6 +500,233 @@ function build_mingw2_gcc_final()
   tests_add "test_mingw2_gcc" "${mingw_arch}"
 }
 
+function build_mingw2_gcc()
+{
+  # https://gcc.gnu.org
+  # https://gcc.gnu.org/wiki/InstallingGCC
+
+  # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-gcc/trunk/PKGBUILD
+
+  # MSYS2 uses a lot of patches.
+  # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-gcc/PKGBUILD
+
+  # https://github.com/Homebrew/homebrew-core/blob/master/Formula/mingw-w64.rb
+
+  # https://ftp.gnu.org/gnu/gcc/
+  # 2019-02-22, "8.3.0"
+  # 2019-05-03, "9.1.0"
+  # 2019-08-12, "9.2.0"
+  # 2019-11-14, "7.5.0" *
+  # 2020-03-04, "8.4.0"
+  # 2020-03-12, "9.3.0"
+  # 2021-04-08, "10.3.0"
+  # 2021-04-27, "11.1.0" +
+  # 2021-05-14, "8.5.0" *
+  # 2021-07-28, "11.2.0"
+  # 2022-04-21, "11.3.0"
+  # 2022-05-06, "12.1.0"
+  # 2022-08-19, "12.2.0"
+
+  export mingw_gcc_version="$1"
+  local mingw_arch="$2"
+  local mingw_target="${mingw_arch}-w64-mingw32"
+
+  # Number
+  local mingw_gcc_version_major=$(echo ${mingw_gcc_version} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+
+  local mingw_gcc_src_folder_name="gcc-${mingw_gcc_version}"
+
+  local mingw_gcc_archive="${mingw_gcc_src_folder_name}.tar.xz"
+  local mingw_gcc_url="https://ftp.gnu.org/gnu/gcc/gcc-${mingw_gcc_version}/${mingw_gcc_archive}"
+
+  export mingw_gcc_folder_name="mingw-gcc-${mingw_gcc_version}-${mingw_arch}"
+
+  local mingw_gcc_step1_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-mingw-gcc-${mingw_gcc_version}-${mingw_arch}-installed"
+  if [ ! -f "${mingw_gcc_step1_stamp_file_path}" ]
+  then
+
+    cd "${SOURCES_FOLDER_PATH}"
+
+    download_and_extract "${mingw_gcc_url}" "${mingw_gcc_archive}" \
+      "${mingw_gcc_src_folder_name}" \
+      "${MINGW_GCC_PATCH_FILE_NAME:-none}"
+
+    mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}"
+
+    (
+      mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
+      cd "${BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
+
+      xbb_activate_installed_dev
+
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
+      # LDFLAGS="${XBB_LDFLAGS_APP_STATIC_GCC}"
+      LDFLAGS="${XBB_LDFLAGS_APP}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
+
+      if [ ! -f "config.status" ]
+      then
+        (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
+          echo
+          echo "Running mingw-w64 ${mingw_arch} gcc configure..."
+
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            # For the native build, --disable-shared failed with errors in libstdc++-v3
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/gcc/configure" --help
+          fi
+
+          config_options=()
+
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}") # Arch /usr
+          config_options+=("--libexecdir=${BINS_INSTALL_FOLDER_PATH}/lib") # Arch /usr/lib
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${HOST}")
+          config_options+=("--target=${mingw_target}") # Arch
+
+          if [ "${TARGET_PLATFORM}" == "win32" ]
+          then
+            config_options+=("--program-prefix=${mingw_target}-")
+
+            config_options+=("--with-arch=x86-64")
+            config_options+=("--with-tune=generic")
+
+            config_options+=("--enable-mingw-wildcard")
+            config_options+=("--with-native-system-header-dir=${BINS_INSTALL_FOLDER_PATH}/include")
+
+            # Disable look up installations paths in the registry.
+            config_options+=("--disable-win32-registry")
+            # Turn off symbol versioning in the shared library
+            config_options+=("--disable-symvers")
+          else
+            config_options+=("--with-dwarf2") # Arch
+          fi
+
+          # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
+          config_options+=("--with-pkgversion=${GCC_BRANDING}")
+
+          config_options+=("--enable-languages=c,c++,fortran,objc,obj-c++,lto") # Arch
+          config_options+=("--enable-shared") # Arch
+          config_options+=("--enable-static") # Arch
+          config_options+=("--enable-threads=posix") # Arch
+          config_options+=("--enable-fully-dynamic-string") # Arch
+          config_options+=("--enable-libstdcxx-time=yes") # Arch
+          config_options+=("--enable-libstdcxx-filesystem-ts=yes") # Arch
+          config_options+=("--enable-cloog-backend=isl") # Arch
+          config_options+=("--enable-lto") # Arch
+          config_options+=("--enable-libgomp") # Arch
+          config_options+=("--enable-checking=release") # Arch
+
+          # config_options+=("--disable-dw2-exceptions")
+          config_options+=("--disable-sjlj-exceptions") # Arch
+          config_options+=("--disable-multilib") # Arch
+
+          # config_options+=("ac_cv_header_sys_mman_h=no")
+
+          # Arch configures only the gcc folder, but in this case it
+          # fails with missing libiberty.a.
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/configure" \
+            "${config_options[@]}"
+
+          cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/config-step1-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/configure-step1-output-$(ndate).txt"
+      fi
+
+      (
+        echo
+        echo "Running mingw-w64 ${mingw_arch} gcc make..."
+
+        # Build.
+        run_verbose make -j ${JOBS}
+
+        run_verbose make install-strip
+
+        if [ "${TARGET_PLATFORM}" == "win32" ]
+        then
+          # The DLLs are expected to be in the /${mingw_target}/lib folder.
+          run_verbose cp -v "${BINS_INSTALL_FOLDER_PATH}/bin"/*.dll \
+            "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib"
+          run_verbose cp -v "${BINS_INSTALL_FOLDER_PATH}/lib"/*.dll \
+            "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib"
+        fi
+
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/make-output-$(ndate).txt"
+    )
+
+    (
+      if true
+      then
+
+        echo
+        echo "Stripping mingw-w64 ${mingw_arch} gcc libraries..."
+
+name_suffix="-bootstrap"
+ls -l "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/"
+
+        cd "${BINS_INSTALL_FOLDER_PATH}" # ! usr
+
+        set +e
+        find ${mingw_target} \
+          -name '*.so' -type f \
+          -print \
+          -exec "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip" --strip-debug {} \;
+        find ${mingw_target} \
+          -name '*.so.*'  \
+          -type f \
+          -print \
+          -exec "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip" --strip-debug {} \;
+        # Note: without ranlib, windows builds failed.
+        find ${mingw_target} lib/gcc/${mingw_target} \
+          -name '*.a'  \
+          -type f  \
+          -print \
+          -exec "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip" --strip-debug {} \; \
+          -exec "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ranlib" {} \;
+        set -e
+
+      fi
+    ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/strip-output-$(ndate).txt"
+
+    (
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        # The tests also need the libraries DLLs; later on are copied.
+        export WINEPATH="${LIBS_INSTALL_FOLDER_PATH}/bin"
+      fi
+      test_mingw2_gcc "${mingw_arch}"
+    ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/test-output-$(ndate).txt"
+
+
+    hash -r
+
+    touch "${mingw_gcc_step1_stamp_file_path}"
+
+  else
+    echo "Component mingw-w64 ${mingw_arch} gcc already installed."
+  fi
+
+  tests_add "test_mingw2_gcc" "${mingw_arch}"
+}
+
 function test_mingw2_gcc()
 {
   local mingw_arch="$1"
