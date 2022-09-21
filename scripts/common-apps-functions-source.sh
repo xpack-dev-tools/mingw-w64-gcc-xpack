@@ -110,6 +110,11 @@ function build_mingw_binutils()
           config_options+=("--host=${HOST}")
           config_options+=("--target=${mingw_target}") # Arch, HB
 
+          if [ "${TARGET_PLATFORM}" == "win32" ]
+          then
+            config_options+=("--program-prefix=${mingw_target}-")
+          fi
+
           # TODO: why HB uses it and Arch does not?
           # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${BINUTILS_BRANDING}")
@@ -329,6 +334,11 @@ function build_mingw_gcc_first()
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${BUILD}")
           config_options+=("--target=${mingw_target}") # Arch
+
+          if [ "${TARGET_PLATFORM}" == "win32" ]
+          then
+            config_options+=("--program-prefix=${mingw_target}-")
+          fi
 
           # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${GCC_BRANDING}")
