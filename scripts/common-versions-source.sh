@@ -74,6 +74,11 @@ function build_versions()
 
       MINGW_VERSION="9.0.0"
 
+      GMP_VERSION="6.2.1"
+      MPFR_VERSION="4.1.0"
+      MPC_VERSION="1.2.1"
+      ISL_VERSION="0.24"
+
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
         prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
@@ -86,15 +91,15 @@ function build_versions()
       # Libraries, required by gcc & other.
       # https://gmplib.org/download/gmp/
       # depends=('gcc-libs' 'sh')
-      build_gmp "6.2.1"
+      build_gmp "${GMP_VERSION}"
 
       # http://www.mpfr.org/history.html
       # depends=('gmp>=5.0')
-      build_mpfr "4.1.0"
+      build_mpfr "${MPFR_VERSION}"
 
       # https://www.multiprecision.org/mpc/download.html
       # depends=('mpfr')
-      build_mpc "1.2.1"
+      build_mpc "${MPC_VERSION}"
 
       (
         if [ "${TARGET_PLATFORM}" == "darwin" ]
@@ -105,7 +110,7 @@ function build_versions()
 
         # https://sourceforge.net/projects/libisl/files/
         # depends=('gmp')
-        build_isl "0.24"
+        build_isl "${ISL_VERSION}"
       )
 
       # https://ftp.gnu.org/pub/gnu/libiconv/
