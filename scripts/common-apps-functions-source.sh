@@ -507,6 +507,7 @@ function test_mingw_gcc()
     GCOV="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gcov"
 
     DLLTOOL="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-dlltool"
+    # No gendef, libmangle fails on macOS.
     # GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
     WIDL="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-widl"
 
@@ -1140,6 +1141,180 @@ function build_mingw_widl()
 
   else
     echo "Component mingw-w64 ${mingw_arch} widl already installed."
+  fi
+}
+
+# Fails on macOS, due to <malloc.h>.
+function build_mingw_libmangle()
+{
+  local mingw_arch="$1"
+  local mingw_target="${mingw_arch}-w64-mingw32"
+
+  local mingw_libmangle_folder_name="mingw-${mingw_version}-${mingw_arch}-libmangle"
+
+  mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}"
+
+  local mingw_libmangle_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_libmangle_folder_name}-installed"
+  if [ ! -f "${mingw_libmangle_stamp_file_path}" ]
+  then
+    (
+      mkdir -p "${BUILD_FOLDER_PATH}/${mingw_libmangle_folder_name}"
+      cd "${BUILD_FOLDER_PATH}/${mingw_libmangle_folder_name}"
+
+      # xbb_activate_installed_dev
+
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
+      LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
+
+      if [ ! -f "config.status" ]
+      then
+        (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
+          echo
+          echo "Running mingw-w64 ${mingw_arch} libmangle configure..."
+
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/libmangle/configure" --help
+          fi
+
+          config_options=()
+          # Note: native library.
+          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${BUILD}") # Native!
+          config_options+=("--target=${mingw_target}")
+
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/libmangle/configure" \
+            "${config_options[@]}"
+
+         cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}/configure-output-$(ndate).txt"
+      fi
+
+      (
+        echo
+        echo "Running mingw-w64 ${mingw_arch} libmangle make..."
+
+        # Build.
+        run_verbose make -j ${JOBS}
+
+        run_verbose make install-strip
+
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}/make-libmangle-output-$(ndate).txt"
+    )
+
+    touch "${mingw_libmangle_stamp_file_path}"
+
+  else
+    echo "Component mingw-w64 ${mingw_arch} libmangle already installed."
+  fi
+}
+
+
+function build_mingw_gendef()
+{
+  local mingw_arch="$1"
+  local mingw_target="${mingw_arch}-w64-mingw32"
+
+  local mingw_gendef_folder_name="mingw-${mingw_version}-${mingw_arch}-gendef"
+
+  mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_gendef_folder_name}"
+
+  local mingw_gendef_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_gendef_folder_name}-installed"
+  if [ ! -f "${mingw_gendef_stamp_file_path}" ]
+  then
+    (
+      mkdir -p "${BUILD_FOLDER_PATH}/${mingw_gendef_folder_name}"
+      cd "${BUILD_FOLDER_PATH}/${mingw_gendef_folder_name}"
+
+      # To pick libmangle.
+      xbb_activate_installed_dev
+
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
+      # LDFLAGS="${XBB_LDFLAGS_APP_STATIC_GCC}"
+      LDFLAGS="${XBB_LDFLAGS_APP}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
+
+      if [ ! -f "config.status" ]
+      then
+        (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
+          echo
+          echo "Running mingw-w64 ${mingw_arch} gendef configure..."
+
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/gendef/configure" --help
+          fi
+
+          config_options=()
+
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}")
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${BUILD}") # Native!
+          config_options+=("--target=${mingw_target}")
+
+          config_options+=("--with-mangle=${LIBS_INSTALL_FOLDER_PATH}")
+
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/gendef/configure" \
+            "${config_options[@]}"
+
+         cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_gendef_folder_name}/config-gendef-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gendef_folder_name}/configure-output-$(ndate).txt"
+      fi
+
+      (
+        echo
+        echo "Running mingw-w64 ${mingw_arch} gendef make..."
+
+        # Build.
+        run_verbose make -j ${JOBS}
+
+        run_verbose make install-strip
+
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gendef_folder_name}/make-output-$(ndate).txt"
+    )
+
+    touch "${mingw_gendef_stamp_file_path}"
+
+  else
+    echo "Component mingw-w64 ${mingw_arch} gendef already installed."
   fi
 }
 

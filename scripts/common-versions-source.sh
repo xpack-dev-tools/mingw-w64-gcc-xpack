@@ -139,6 +139,10 @@ function build_versions()
 
         build_mingw_widl "${arch}"
 
+        # On macOS there is no <malloc.h>.
+        # build_mingw_libmangle "${arch}"
+        # build_mingw_gendef "${arch}"
+
         (
           prepare_gcc_env "${arch}-w64-mingw32-"
 
