@@ -226,6 +226,7 @@ function test_mingw_binutils()
 
 # -----------------------------------------------------------------------------
 
+# GCC_PATCH_FILE_NAME
 function build_mingw_gcc_first()
 {
   # https://gcc.gnu.org
@@ -274,7 +275,8 @@ function build_mingw_gcc_first()
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${mingw_gcc_url}" "${mingw_gcc_archive}" \
-      "${mingw_gcc_src_folder_name}"
+      "${mingw_gcc_src_folder_name}" \
+      "${MINGW_GCC_PATCH_FILE_NAME:-none}"
 
     mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}"
 

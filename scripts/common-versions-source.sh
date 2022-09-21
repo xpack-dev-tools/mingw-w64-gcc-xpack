@@ -134,7 +134,8 @@ function build_versions()
         # Deploy the headers, they are needed by the compiler.
         build_mingw_headers "${arch}"
 
-        build_mingw_gcc_first "11.3.0" "${arch}"
+        MINGW_GCC_PATCH_FILE_NAME="gcc-${GCC_VERSION}-cross.patch.diff"
+        build_mingw_gcc_first "${GCC_VERSION}" "${arch}"
 
         build_mingw_widl "${arch}"
 
