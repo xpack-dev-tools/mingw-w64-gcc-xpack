@@ -232,7 +232,7 @@ function test_mingw_binutils()
 
 # -----------------------------------------------------------------------------
 
-# GCC_PATCH_FILE_NAME
+# MINGW_GCC_PATCH_FILE_NAME
 function build_mingw_gcc_first()
 {
   # https://gcc.gnu.org
