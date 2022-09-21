@@ -857,7 +857,7 @@ function run_wine()
 
   if [ "${IS_DEVELOP}" == "y" ]
   then
-    show_dlls "${OBJDUMP}" "${app_name}"
+    show_dlls "${mingw_target}-objdump" "${app_name}"
   fi
 
   # No 32-bit support in XBB wine.
