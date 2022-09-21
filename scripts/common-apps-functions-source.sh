@@ -599,15 +599,8 @@ function test_mingw_gcc()
       VERBOSE_FLAG="-v"
     fi
 
-    if [ "$(uname)" == "Linux" ]
-    then
-      GC_SECTION="-Wl,--gc-sections"
-    elif [ "$(uname)" == "Darwin" ]
-    then
-      GC_SECTION="-Wl,-dead_strip"
-    else
-      GC_SECTION=""
-    fi
+    # Always addressed to the mingw linker, which is GNU ld.
+    GC_SECTION="-Wl,--gc-sections"
 
     # -------------------------------------------------------------------------
 
