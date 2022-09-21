@@ -805,24 +805,31 @@ function test_expect()
     (
       xbb_activate
 
-      local output
-      # Remove the trailing CR present on Windows.
-      if [ "${app_name:0:1}" == "/" ]
+      local wine_path=$(which wine 2>/dev/null)
+      if [ ! -z "${wine_path}" ]
       then
-        output="$(wine "${app_name}" "$@" | sed 's/\r$//')"
-      else
-        output="$(wine "./${app_name}" "$@" | sed 's/\r$//')"
-      fi
+        local output
+        # Remove the trailing CR present on Windows.
+        if [ "${app_name:0:1}" == "/" ]
+        then
+          output="$(wine "${app_name}" "$@" | sed 's/\r$//')"
+        else
+          output="$(wine "./${app_name}" "$@" | sed 's/\r$//')"
+        fi
 
-      if [ "x${output}x" == "x${expected}x" ]
-      then
-        echo
-        echo "Test \"${app_name}\" passed :-)"
+        if [ "x${output}x" == "x${expected}x" ]
+        then
+          echo
+          echo "Test \"${app_name}\" passed :-)"
+        else
+          echo "expected ${#expected}: \"${expected}\""
+          echo "got ${#output}: \"${output}\""
+          echo
+          exit 1
+        fi
       else
-        echo "expected ${#expected}: \"${expected}\""
-        echo "got ${#output}: \"${output}\""
         echo
-        exit 1
+        echo "wine" "${app_name}" "$@" "- not available"
       fi
     )
   fi
@@ -846,7 +853,14 @@ function run_wine()
     (
       xbb_activate
 
-      run_verbose wine "${app_name}" "$@"
+      local wine_path=$(which wine 2>/dev/null)
+      if [ ! -z "${wine_path}" ]
+      then
+        run_verbose wine "${app_name}" "$@"
+      else
+        echo
+        echo "wine" "${app_name}" "$@" "- not available"
+      fi
     )
   fi
 }
