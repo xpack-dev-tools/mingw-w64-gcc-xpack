@@ -13,6 +13,69 @@
 
 # -----------------------------------------------------------------------------
 
+
+function xbb_activate_gcc_bootstrap_bins()
+{
+  export PATH="${APP_PREFIX}${BOOTSTRAP_SUFFIX}/bin:${PATH}"
+}
+
+# The XBB MinGW GCC lacks `__LIBGCC_EH_FRAME_SECTION_NAME__`, needed
+# by modern GCC, so the workaround is to build a bootstrap toolchain.
+function build_mingw_bootstrap()
+{
+  # Build a bootstrap toolchain, that runs on Linux and creates Windows
+  # binaries.
+  (
+    # Make the use of XBB GCC explicit.
+    prepare_gcc_env "" "-xbb"
+
+    mkdir -p "${BINS_INSTALL_FOLDER_PATH}${BOOTSTRAP_SUFFIX}"
+    mkdir -p "${LIBS_INSTALL_FOLDER_PATH}${BOOTSTRAP_SUFFIX}"
+
+    # Libraries, required by gcc & other.
+    build_gmp "6.2.1" "${BOOTSTRAP_SUFFIX}"
+    build_mpfr "4.1.0" "${BOOTSTRAP_SUFFIX}"
+    build_mpc "1.2.1" "${BOOTSTRAP_SUFFIX}"
+    build_isl "0.24" "${BOOTSTRAP_SUFFIX}"
+
+    build_native_binutils "${BINUTILS_VERSION}" "${BOOTSTRAP_SUFFIX}"
+
+    prepare_mingw_env "9.0.0" "${BOOTSTRAP_SUFFIX}"
+
+    # Deploy the headers, they are needed by the compiler.
+    build_mingw_headers
+
+    # Download GCC separatelly, it'll be use in binutils too.
+    download_gcc "${GCC_VERSION}"
+
+    # Build only the compiler, without libraries.
+    build_gcc "${GCC_VERSION}" "${BOOTSTRAP_SUFFIX}"
+
+    # Build some native tools.
+    # build_mingw_libmangle
+    # build_mingw_gendef
+    build_mingw_widl # Refers to mingw headers.
+
+    (
+      xbb_activate_gcc_bootstrap_bins
+
+      (
+        # Fails if CC is defined to a native compiler.
+        prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
+
+        build_mingw_crt
+        build_mingw_winpthreads
+      )
+
+      # With the run-time available, build the C/C++ libraries and the rest.
+      build_gcc_final
+
+    )
+  )
+}
+
+# -----------------------------------------------------------------------------
+
 function set_bins_install()
 {
   export BINS_INSTALL_FOLDER_PATH="${APP_INSTALL_FOLDER_PATH}"
@@ -26,11 +89,15 @@ function build_versions()
   export GCC_VERSION="$(echo "${RELEASE_VERSION}" | sed -e 's|-.*||')"
   export GCC_VERSION_MAJOR=$(echo ${GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
 
-  if [ "${TARGET_PLATFORM}" == "win32" ]
-  then
-    echo "Windows not supported"
-    echo 1
-  fi
+# ---------------------------------------------------------------------------
+
+  export BOOTSTRAP_SUFFIX="-bootstrap"
+  export GCC_BOOTSTRAP_BRANDING="${DISTRO_NAME} MinGW-w64 GCC${BOOTSTRAP_SUFFIX} ${TARGET_MACHINE}"
+  export BINUTILS_BOOTSTRAP_BRANDING="${DISTRO_NAME} MinGW-w64 binutils${BOOTSTRAP_SUFFIX} ${TARGET_MACHINE}"
+
+  export GCC_SRC_FOLDER_NAME="gcc-${GCC_VERSION}"
+
+# ---------------------------------------------------------------------------
 
   # Keep the versions in sync with gcc-xpack.
   # https://ftp.gnu.org/gnu/gcc/
@@ -78,6 +145,15 @@ function build_versions()
       MPFR_VERSION="4.1.0"
       MPC_VERSION="1.2.1"
       ISL_VERSION="0.24"
+
+
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_mingw_bootstrap
+
+        # Use the newly compiled bootstrap compiler.
+        xbb_activate_gcc_bootstrap_bins
+      fi
 
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
