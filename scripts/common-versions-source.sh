@@ -72,6 +72,11 @@ function build_versions()
 
       BINUTILS_VERSION="2.38"
 
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
+      fi
+
       # New zlib, used in most of the tools.
       # depends=('glibc')
       build_zlib "1.2.11"
