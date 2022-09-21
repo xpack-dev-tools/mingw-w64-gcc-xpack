@@ -89,9 +89,17 @@ function build_versions()
       # depends=('mpfr')
       build_mpc "1.2.1"
 
-      # https://sourceforge.net/projects/libisl/files/
-      # depends=('gmp')
-      build_isl "0.24"
+      (
+        if [ "${TARGET_PLATFORM}" == "darwin" ]
+        then
+          # The GCC linker fails with an assert.
+          prepare_clang_env "" ""
+        fi
+
+        # https://sourceforge.net/projects/libisl/files/
+        # depends=('gmp')
+        build_isl "0.24"
+      )
 
       # https://ftp.gnu.org/pub/gnu/libiconv/
       build_libiconv "1.16"
