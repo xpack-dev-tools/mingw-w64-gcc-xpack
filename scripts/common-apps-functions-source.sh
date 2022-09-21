@@ -1101,7 +1101,7 @@ function build_mingw_widl()
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/widl/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/widl/configure" --help
           fi
 
           config_options=()
