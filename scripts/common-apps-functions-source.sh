@@ -188,16 +188,17 @@ function test_mingw_binutils()
     echo
     echo "Checking the mingw-w64 ${mingw_arch} binutils shared libraries..."
 
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ar"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-as"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ld"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-nm"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objcopy"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ranlib"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-size"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-strings"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-strip"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ar${DOT_EXE}"
+
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-as${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ld${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-nm${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objcopy${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-objdump${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-ranlib${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-size${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-strings${DOT_EXE}"
+    show_libs "${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-strip${DOT_EXE}"
 
     echo
     echo "Testing if mingw-w64 ${mingw_arch} binutils binaries start properly..."
