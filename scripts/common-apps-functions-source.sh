@@ -274,7 +274,7 @@ function build_mingw2_gcc_first()
 
   export mingw_gcc_folder_name="mingw-gcc-${mingw_gcc_version}-${mingw_arch}"
 
-  local mingw_gcc_step1_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-mingw-gcc-step1-${mingw_gcc_version}-${mingw_arch}-installed"
+  local mingw_gcc_step1_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-mingw-gcc-first-${mingw_gcc_version}-${mingw_arch}-installed"
   if [ ! -f "${mingw_gcc_step1_stamp_file_path}" ]
   then
 
@@ -317,7 +317,7 @@ function build_mingw2_gcc_first()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} gcc step 1 configure..."
+          echo "Running mingw-w64 ${mingw_arch} gcc first configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
@@ -375,7 +375,7 @@ function build_mingw2_gcc_first()
 
       (
         echo
-        echo "Running mingw-w64 ${mingw_arch} gcc step 1 make..."
+        echo "Running mingw-w64 ${mingw_arch} gcc first make..."
 
         # Build.
         run_verbose make -j ${JOBS} all-gcc
@@ -390,7 +390,7 @@ function build_mingw2_gcc_first()
     touch "${mingw_gcc_step1_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_arch} gcc step 1 already installed."
+    echo "Component mingw-w64 ${mingw_arch} gcc first already installed."
   fi
 }
 
@@ -433,7 +433,7 @@ function build_mingw2_gcc_final()
       fi
 
       echo
-      echo "Running mingw-w64 ${mingw_target} gcc step 2 configure..."
+      echo "Running mingw-w64 ${mingw_target} gcc final configure..."
 
       run_verbose make -j configure-target-libgcc
 
@@ -447,7 +447,7 @@ function build_mingw2_gcc_final()
       fi
 
       echo
-      echo "Running mingw-w64 ${mingw_target} gcc step 2 make..."
+      echo "Running mingw-w64 ${mingw_target} gcc final make..."
 
       # Build.
       run_verbose make -j ${JOBS}
