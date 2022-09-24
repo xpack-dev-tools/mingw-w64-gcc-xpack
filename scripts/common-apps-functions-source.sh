@@ -919,7 +919,7 @@ function run_wine()
 }
 
 # -----------------------------------------------------------------------------
-# mingw-w64
+# MinGW-w64
 
 # https://www.mingw-w64.org
 # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
@@ -950,27 +950,16 @@ function run_wine()
 # 2021-05-22, "9.0.0"
 # 2022-04-04, "10.0.0"
 
-function prepare_mingw2_env()
-{
-  export mingw_version="$1"
-
-  # Number
-  export mingw_version_major=$(echo ${mingw_version} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
-
-  # The original SourceForge location.
-  export mingw_src_folder_name="mingw-w64-v${mingw_version}"
-}
-
 function download_mingw()
 {
-  local mingw_folder_archive="${mingw_src_folder_name}.tar.bz2"
+  local mingw_folder_archive="${MINGW_SRC_FOLDER_NAME}.tar.bz2"
   # The original SourceForge location.
   local mingw_url="https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/${mingw_folder_archive}"
 
   # If SourceForge is down, there is also a GitHub mirror.
   # https://github.com/mirror/mingw-w64
-  # mingw_src_folder_name="mingw-w64-${mingw_version}"
-  # mingw_folder_archive="v${mingw_version}.tar.gz"
+  # MINGW_SRC_FOLDER_NAME="mingw-w64-${MINGW_VERSION}"
+  # mingw_folder_archive="v${MINGW_VERSION}.tar.gz"
   # mingw_url="https://github.com/mirror/mingw-w64/archive/${mingw_folder_archive}"
 
   # https://sourceforge.net/p/mingw-w64/wiki2/Cross%20Win32%20and%20Win64%20compiler/
@@ -980,7 +969,7 @@ function download_mingw()
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${mingw_url}" "${mingw_folder_archive}" \
-      "${mingw_src_folder_name}"
+      "${MINGW_SRC_FOLDER_NAME}"
   )
 }
 
@@ -1025,9 +1014,11 @@ function build_mingw2_headers()
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-headers-git/PKGBUILD
 
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_headers_folder_name="mingw-${mingw_version}-${mingw_arch}-headers"
+  local mingw_headers_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-headers${mingw_name_suffix}"
 
   local mingw_headers_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_headers_folder_name}-installed"
   if [ ! -f "${mingw_headers_stamp_file_path}" ]
@@ -1048,17 +1039,17 @@ function build_mingw2_headers()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} headers configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} headers configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-headers/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-headers/configure" --help
           fi
 
           # Use architecture subfolders.
-          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch
+          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}" # Arch
           config_options=("${config_options_common[@]}")
-          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${mingw_target}") # Arch
@@ -1070,7 +1061,7 @@ function build_mingw2_headers()
           config_options+=("--enable-idl") # MYSYS2
           config_options+=("--without-widl") # MSYS2
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-headers/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-headers/configure" \
             "${config_options[@]}"
 
           cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_headers_folder_name}/config-log-$(ndate).txt"
@@ -1079,19 +1070,26 @@ function build_mingw2_headers()
 
       (
         echo
-        echo "Running mingw-w64 headers make..."
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} headers make..."
 
         # Build.
         run_verbose make -j ${JOBS}
 
         # make install-strip
-        run_verbose make install
+        run_verbose make install-strip
+
+        # ?? run_verbose ln -sv ../include include
+        # ?? run_verbose ln -sv "${CROSS_COMPILE_PREFIX}" "mingw"
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_headers_folder_name}/make-output-$(ndate).txt"
 
-      copy_license \
-        "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}" \
-        "mingw-w64-${mingw_version}"
+      # No need to do it again for each component.
+      if [ -z "${mingw_name_suffix}" ]
+      then
+        copy_license \
+          "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}" \
+          "mingw-w64-${MINGW_VERSION}"
+      fi
     )
 
     hash -r
@@ -1099,7 +1097,7 @@ function build_mingw2_headers()
     touch "${mingw_headers_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 headers already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} headers already installed."
   fi
 }
 
@@ -1108,9 +1106,11 @@ function build_mingw2_headers()
 function build_mingw2_widl()
 {
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_widl_folder_name="mingw-${mingw_version}-${mingw_arch}-widl"
+  local mingw_widl_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-widl${mingw_name_suffix}"
 
   mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_widl_folder_name}"
 
@@ -1148,25 +1148,25 @@ function build_mingw2_widl()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} widl configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} widl configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/widl/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/widl/configure" --help
           fi
 
           config_options=()
 
-          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}") # Arch /usr
-          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # Arch /usr
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
-          config_options+=("--with-widl-includedir=${BINS_INSTALL_FOLDER_PATH}/include")
+          config_options+=("--with-widl-includedir=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/include")
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/widl/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/widl/configure" \
             "${config_options[@]}"
 
          cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_widl_folder_name}/config-log-$(ndate).txt"
@@ -1175,7 +1175,7 @@ function build_mingw2_widl()
 
       (
         echo
-        echo "Running mingw-w64 ${mingw_arch} widl make..."
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} widl make..."
 
         # Build.
         run_verbose make -j ${JOBS}
@@ -1190,7 +1190,7 @@ function build_mingw2_widl()
     touch "${mingw_widl_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_arch} widl already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} widl already installed."
   fi
 }
 
@@ -1198,9 +1198,11 @@ function build_mingw2_widl()
 function build_mingw2_libmangle()
 {
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_libmangle_folder_name="mingw-${mingw_version}-${mingw_arch}-libmangle"
+  local mingw_libmangle_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-libmangle${mingw_name_suffix}"
 
   mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}"
 
@@ -1237,23 +1239,24 @@ function build_mingw2_libmangle()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} libmangle configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} libmangle configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/libmangle/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/libmangle/configure" --help
           fi
 
           config_options=()
+
           # Note: native library.
-          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
-          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}")
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/libmangle/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/libmangle/configure" \
             "${config_options[@]}"
 
          cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_libmangle_folder_name}/config-log-$(ndate).txt"
@@ -1262,7 +1265,7 @@ function build_mingw2_libmangle()
 
       (
         echo
-        echo "Running mingw-w64 ${mingw_arch} libmangle make..."
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} libmangle make..."
 
         # Build.
         run_verbose make -j ${JOBS}
@@ -1275,17 +1278,19 @@ function build_mingw2_libmangle()
     touch "${mingw_libmangle_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_arch} libmangle already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} libmangle already installed."
   fi
 }
 
-
+# Currently not used, because of libmangle.
 function build_mingw2_gendef()
 {
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_gendef_folder_name="mingw-${mingw_version}-${mingw_arch}-gendef"
+  local mingw_gendef_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-gendef${mingw_name_suffix}"
 
   mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_gendef_folder_name}"
 
@@ -1324,23 +1329,25 @@ function build_mingw2_gendef()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} gendef configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} gendef configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-tools/gendef/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/gendef/configure" --help
           fi
 
           config_options=()
 
-          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}")
-          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}")
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}") # Native!
           config_options+=("--target=${mingw_target}")
 
-          config_options+=("--with-mangle=${LIBS_INSTALL_FOLDER_PATH}")
+          config_options+=("--program-prefix=${mingw_target}-")
+
+          config_options+=("--with-mangle=${LIBS_INSTALL_FOLDER_PATH}${mingw_name_suffix}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/gendef/configure" \
             "${config_options[@]}"
@@ -1351,7 +1358,7 @@ function build_mingw2_gendef()
 
       (
         echo
-        echo "Running mingw-w64 ${mingw_arch} gendef make..."
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} gendef make..."
 
         # Build.
         run_verbose make -j ${JOBS}
@@ -1364,7 +1371,7 @@ function build_mingw2_gendef()
     touch "${mingw_gendef_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_arch} gendef already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} gendef already installed."
   fi
 }
 
@@ -1377,9 +1384,11 @@ function build_mingw2_crt()
   # https://github.com/Homebrew/homebrew-core/blob/master/Formula/mingw-w64.rb
 
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_crt_folder_name="mingw-${mingw_version}-${mingw_arch}-crt"
+  local mingw_crt_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-crt${mingw_name_suffix}"
 
   local mingw_crt_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_crt_folder_name}-installed"
   if [ ! -f "${mingw_crt_stamp_file_path}" ]
@@ -1392,7 +1401,7 @@ function build_mingw2_crt()
       cd "${BUILD_FOLDER_PATH}/${mingw_crt_folder_name}"
 
       # To use the new toolchain.
-      xbb_activate_installed_bin
+      # xbb_activate_installed_bin
 
       # Overwrite the flags, -ffunction-sections -fdata-sections result in
       # {standard input}: Assembler messages:
@@ -1403,11 +1412,17 @@ function build_mingw2_crt()
       # {standard input}:7150: Error: can't resolve `.text' {.text section} - `.LFB5156' {.text$WinMainCRTStartup section}
       # {standard input}:8937: Error: can't resolve `.text' {.text section} - `.LFB5156' {.text$WinMainCRTStartup section}
 
+      CPPFLAGS=""
       CFLAGS="-O2 -pipe -w"
       CXXFLAGS="-O2 -pipe -w"
 
-      LDFLAGS="-v"
+      LDFLAGS=""
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
 
+      export CPPFLAGS
       export CFLAGS
       export CXXFLAGS
       export LDFLAGS
@@ -1427,39 +1442,39 @@ function build_mingw2_crt()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_arch} crt configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} crt configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-crt/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-crt/configure" --help
           fi
 
           config_options=()
 
-          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}" # Arch /usr
+          prepare_mingw2_config_options_common "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}" # Arch /usr
           config_options=("${config_options_common[@]}")
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
-          config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
+          config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${mingw_target}")
+          config_options+=("--host=${mingw_target}") # Arch
           config_options+=("--target=${mingw_target}")
 
           if [ "${mingw_arch}" == "x86_64" ]
           then
-            config_options+=("--disable-lib32")
-            config_options+=("--enable-lib64")
+            config_options+=("--disable-lib32") # Arch, HB
+            config_options+=("--enable-lib64") # Arch, HB
           elif [ "${mingw_arch}" == "i686" ]
           then
-            config_options+=("--enable-lib32")
-            config_options+=("--disable-lib64")
+            config_options+=("--enable-lib32") # Arch, HB
+            config_options+=("--disable-lib64") # Arch, HB
           else
-            echo "Unsupported mingw_target ${mingw_target}."
+            echo "Unsupported mingw_arch ${mingw_arch}."
             exit 1
           fi
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-crt/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-crt/configure" \
             "${config_options[@]}"
 
           cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_crt_folder_name}/config-log-$(ndate).txt"
@@ -1472,13 +1487,15 @@ function build_mingw2_crt()
 
         # Build.
         # run_verbose make -j ${JOBS}
-        # i686 fails with bfd_open failed reopen stub file
+        # Parallel builds fail with weird messages.
+        # like 'bfd_open failed reopen stub file'
+        # Apparently it'll be fixed in v11.
         run_verbose make -j1
 
         # make install-strip
         run_verbose make install-strip
 
-        ls -l "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}"
+        ls -l "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}"
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_crt_folder_name}/make-output-$(ndate).txt"
     )
@@ -1488,7 +1505,7 @@ function build_mingw2_crt()
     touch "${mingw_crt_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_target} crt already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} crt already installed."
   fi
 }
 
@@ -1502,9 +1519,11 @@ function build_mingw2_winpthreads()
   # https://github.com/Homebrew/homebrew-core/blob/master/Formula/mingw-w64.rb
 
   local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local mingw_build_winpthreads_folder_name="mingw-${mingw_version}-${mingw_arch}-winpthreads"
+  local mingw_build_winpthreads_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-winpthreads${mingw_name_suffix}"
 
   local mingw_winpthreads_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_build_winpthreads_folder_name}-installed"
   if [ ! -f "${mingw_winpthreads_stamp_file_path}" ]
@@ -1517,13 +1536,17 @@ function build_mingw2_winpthreads()
       cd "${BUILD_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}"
 
       # To use the new toolchain.
-      xbb_activate_installed_bin
+      # xbb_activate_installed_bin
 
       CPPFLAGS=""
       CFLAGS="-O2 -pipe -w"
       CXXFLAGS="-O2 -pipe -w"
 
-      LDFLAGS="-v"
+      LDFLAGS=""
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -1539,28 +1562,28 @@ function build_mingw2_winpthreads()
           fi
 
           echo
-          echo "Running mingw-w64 ${mingw_target} winpthreads configure..."
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} winpthreads configure..."
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/winpthreads/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/winpthreads/configure" --help
           fi
 
           config_options=()
 
-          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}/${mingw_target}") # Arch /usr
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}") # Arch /usr
           config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${BUILD}")
-          config_options+=("--host=${mingw_target}")
+          config_options+=("--host=${mingw_target}") # Arch
           config_options+=("--target=${mingw_target}")
 
-          config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
+          config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
 
-          config_options+=("--enable-static")
-          config_options+=("--enable-shared")
+          config_options+=("--enable-static") # Arch
+          config_options+=("--enable-shared") # Arch
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${mingw_src_folder_name}/mingw-w64-libraries/winpthreads/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/winpthreads/configure" \
             "${config_options[@]}"
 
          cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}/config-log-$(ndate).txt"
@@ -1569,19 +1592,23 @@ function build_mingw2_winpthreads()
 
       (
         echo
-        echo "Running mingw-w64 ${mingw_target} winpthreads make..."
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} winpthreads make..."
 
         # Build.
         run_verbose make -j ${JOBS}
 
         # make install-strip
-        run_verbose make install
+        run_verbose make install-strip
 
-        # GCC install all DLLs in lib; for consistency, move this one too.
-        run_verbose mv "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/bin/libwinpthread-1.dll" \
-          "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib/"
+        if true # [ -z "${mingw_name_suffix}" ]
+        then
+          # GCC installs all DLLs in lib; for consistency, copy
+          # libwinpthread-1.dll there too.
+          run_verbose cp -v "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}/bin/libwinpthread-1.dll" \
+            "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}/lib/"
 
-        run_verbose ls -l "${BINS_INSTALL_FOLDER_PATH}/${mingw_target}/lib/libwinpthread"*
+          run_verbose ls -l "${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}/lib/libwinpthread"*
+        fi
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}/make-output-$(ndate).txt"
     )
@@ -1591,7 +1618,102 @@ function build_mingw2_winpthreads()
     touch "${mingw_winpthreads_stamp_file_path}"
 
   else
-    echo "Component mingw-w64 ${mingw_target} winpthreads already installed."
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} winpthreads already installed."
+  fi
+}
+
+# Currently not used.
+function build_mingw2_winstorecompat()
+{
+  local mingw_arch="$1"
+  local mingw_name_suffix=${2-''}
+
+  local mingw_target="${mingw_arch}-w64-mingw32"
+
+  local mingw_build_winstorecompat_folder_name="mingw-${MINGW_VERSION}-${mingw_arch}-winstorecompat${mingw_name_suffix}"
+
+  local mingw_winstorecompat_stamp_file_path="${STAMPS_FOLDER_PATH}/stamp-${mingw_build_winstorecompat_folder_name}-installed"
+  if [ ! -f "${mingw_winstorecompat_stamp_file_path}" ]
+  then
+
+    mkdir -pv "${LOGS_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}"
+
+    (
+      mkdir -pv "${BUILD_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}"
+      cd "${BUILD_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}"
+
+      # To use the new toolchain.
+      # xbb_activate_installed_bin
+
+      CPPFLAGS=""
+      CFLAGS="-O2 -pipe -w"
+      CXXFLAGS="-O2 -pipe -w"
+
+      LDFLAGS=""
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
+
+      if [ ! -f "config.status" ]
+      then
+        (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
+          echo
+          echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} winstorecompat configure..."
+
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/winstorecompat/configure" --help
+          fi
+
+          config_options=()
+
+          config_options+=("--prefix=${BINS_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_target}") # Arch /usr
+          config_options+=("--mandir=${LIBS_INSTALL_FOLDER_PATH}/share/man")
+
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${mingw_target}") # Arch
+          config_options+=("--target=${mingw_target}")
+
+          config_options+=("--enable-static")
+          config_options+=("--enable-shared")
+
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/winstorecompat/configure" \
+            "${config_options[@]}"
+
+         cp "config.log" "${LOGS_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}/configure-output-$(ndate).txt"
+      fi
+
+      (
+        echo
+        echo "Running mingw-w64 ${mingw_arch}${mingw_name_suffix} winstorecompat make..."
+
+        # Build.
+        run_verbose make -j ${JOBS}
+
+        # make install-strip
+        run_verbose make install-strip
+
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_build_winstorecompat_folder_name}/make-output-$(ndate).txt"
+    )
+
+    hash -r
+
+    touch "${mingw_winstorecompat_stamp_file_path}"
+
+  else
+    echo "Component mingw-w64 ${mingw_arch}${mingw_name_suffix} winstorecompat already installed."
   fi
 }
 
