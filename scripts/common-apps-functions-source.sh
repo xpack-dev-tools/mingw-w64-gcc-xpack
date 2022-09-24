@@ -120,6 +120,8 @@ function build_mingw2_binutils()
           # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${BINUTILS_BRANDING}")
 
+          config_options+=("--with-libiconv-prefix=${LIBS_INSTALL_FOLDER_PATH}${name_suffix}")
+
           # Use the zlib compiled from sources.
           config_options+=("--with-system-zlib")
 
