@@ -381,34 +381,61 @@ function build_mingw2_gcc_first()
           # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${GCC_BRANDING}")
 
+          config_options+=("--with-default-libstdcxx-abi=new")
+          config_options+=("--with-diagnostics-color=auto")
           config_options+=("--with-dwarf2") # Arch
-
-          # Use the zlib compiled from sources.
-          config_options+=("--with-system-zlib")
 
           # In file included from /Host/home/ilg/Work/mingw-w64-gcc-11.3.0-1/win32-x64/sources/gcc-11.3.0/libcc1/findcomp.cc:28:
           # /Host/home/ilg/Work/mingw-w64-gcc-11.3.0-1/win32-x64/sources/gcc-11.3.0/libcc1/../gcc/system.h:698:10: fatal error: gmp.h: No such file or directory
           config_options+=("--with-gmp=${LIBS_INSTALL_FOLDER_PATH}${name_suffix}")
+
+          config_options+=("--with-isl")
+          config_options+=("--with-libiconv")
+
+          # Use the zlib compiled from sources.
+          config_options+=("--with-system-zlib")
+
+          config_options+=("--without-cuda-driver")
 
           config_options+=("--enable-languages=c,c++,fortran,objc,obj-c++,lto") # Arch
 
           config_options+=("--enable-shared") # Arch
           config_options+=("--enable-static") # Arch
 
+          config_options+=("--enable-__cxa_atexit")
           config_options+=("--enable-checking=release") # Arch
           config_options+=("--enable-cloog-backend=isl") # Arch
           config_options+=("--enable-fully-dynamic-string") # Arch
           config_options+=("--enable-libgomp") # Arch
+          config_options+=("--enable-libatomic")
+          config_options+=("--enable-graphite")
+          config_options+=("--enable-libquadmath")
+          config_options+=("--enable-libquadmath-support")
+          config_options+=("--enable-libssp")
+
+          config_options+=("--enable-libstdcxx")
+          config_options+=("--enable-libstdcxx-time=yes")
+          config_options+=("--enable-libstdcxx-visibility")
+          config_options+=("--enable-libstdcxx-threads")
           config_options+=("--enable-libstdcxx-filesystem-ts=yes") # Arch
           config_options+=("--enable-libstdcxx-time=yes") # Arch
           config_options+=("--enable-lto") # Arch
+          config_options+=("--enable-pie-tools")
           config_options+=("--enable-threads=posix") # Arch
 
-          # config_options+=("--disable-dw2-exceptions")
-          config_options+=("--disable-multilib") # Arch
-          config_options+=("--disable-sjlj-exceptions") # Arch
+          # Fails with:
+          # x86_64-w64-mingw32/bin/ld: cannot find -lgcc_s: No such file or directory
+          # config_options+=("--enable-version-specific-runtime-libs")
 
-          # config_options+=("ac_cv_header_sys_mman_h=no")
+          # Apparently innefective, on i686 libgcc_s_dw2-1.dll is used anyway.
+          # config_options+=("--disable-dw2-exceptions")
+          config_options+=("--disable-install-libiberty")
+          config_options+=("--disable-libstdcxx-debug")
+          config_options+=("--disable-libstdcxx-pch")
+          config_options+=("--disable-multilib") # Arch
+          config_options+=("--disable-nls")
+          config_options+=("--disable-sjlj-exceptions") # Arch
+          config_options+=("--disable-werror")
 
           # Arch configures only the gcc folder, but in this case it
           # fails with missing libiberty.a.
