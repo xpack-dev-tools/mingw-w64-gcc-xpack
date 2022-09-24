@@ -516,6 +516,9 @@ function build_mingw2_gcc_final()
       if true
       then
 
+        # For *-w64-mingw32-strip
+        xbb_activate_installed_bin
+
         echo
         echo "Stripping mingw-w64 ${mingw_arch} gcc${name_suffix} libraries..."
 
