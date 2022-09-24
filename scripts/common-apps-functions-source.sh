@@ -123,13 +123,14 @@ function build_mingw2_binutils()
           # Use the zlib compiled from sources.
           config_options+=("--with-system-zlib")
 
-          # config_options+=("--enable-static")
+          config_options+=("--enable-static")
+          config_options+=("--enable-shared")
+
           config_options+=("--enable-lto") # Arch
           config_options+=("--enable-plugins") # Arch
           config_options+=("--enable-deterministic-archives") # Arch
           config_options+=("--enable-targets=${mingw_target}") # HB
 
-          # config_options+=("--disable-shared")
           config_options+=("--disable-multilib") # Arch, HB
           config_options+=("--disable-nls") # Arch, HB
           config_options+=("--disable-werror") # arch
