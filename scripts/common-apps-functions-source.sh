@@ -466,7 +466,7 @@ function build_mingw2_gcc_final()
 
       run_verbose make -j configure-target-libgcc
 
-      if [ -f "${mingw_target}/libgcc/auto-target.h" ]
+      if false # [ -f "${mingw_target}/libgcc/auto-target.h" ]
       then
         # Might no longer be needed with modern GCC.
         run_verbose grep 'HAVE_SYS_MMAN_H' "${mingw_target}/libgcc/auto-target.h"
