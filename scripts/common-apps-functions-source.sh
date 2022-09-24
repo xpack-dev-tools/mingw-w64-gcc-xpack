@@ -129,11 +129,11 @@ function build_mingw2_binutils()
           config_options+=("--enable-shared")
 
           config_options+=("--enable-build-warnings=no")
+          config_options+=("--enable-deterministic-archives") # Arch
           config_options+=("--enable-gold")
           config_options+=("--enable-libssp")
           config_options+=("--enable-lto") # Arch
           config_options+=("--enable-plugins") # Arch
-          config_options+=("--enable-deterministic-archives") # Arch
           config_options+=("--enable-targets=${mingw_target}") # HB
           config_options+=("--enable-threads")
 
