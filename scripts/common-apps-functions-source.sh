@@ -349,6 +349,20 @@ function build_mingw2_gcc_first()
           if [ "${TARGET_PLATFORM}" == "win32" ]
           then
             config_options+=("--program-prefix=${mingw_target}-")
+
+            # config_options+=("--with-arch=x86-64")
+            # config_options+=("--with-tune=generic")
+
+            config_options+=("--enable-mingw-wildcard")
+
+            # This should point to the location where mingw headers are,
+            # relative to --prefix, but starting with /.
+            # config_options+=("--with-native-system-header-dir=${mingw_target}/include")
+
+            # Disable look up installations paths in the registry.
+            config_options+=("--disable-win32-registry")
+            # Turn off symbol versioning in the shared library
+            config_options+=("--disable-symvers")
           fi
 
           # config_options+=("--with-sysroot=${BINS_INSTALL_FOLDER_PATH}")
