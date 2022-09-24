@@ -370,6 +370,10 @@ function build_mingw2_gcc_first()
 
           config_options+=("--with-dwarf2") # Arch
 
+          # In file included from /Host/home/ilg/Work/mingw-w64-gcc-11.3.0-1/win32-x64/sources/gcc-11.3.0/libcc1/findcomp.cc:28:
+          # /Host/home/ilg/Work/mingw-w64-gcc-11.3.0-1/win32-x64/sources/gcc-11.3.0/libcc1/../gcc/system.h:698:10: fatal error: gmp.h: No such file or directory
+          config_options+=("--with-gmp=${LIBS_INSTALL_FOLDER_PATH}${name_suffix}")
+
           config_options+=("--enable-languages=c,c++,fortran,objc,obj-c++,lto") # Arch
           config_options+=("--enable-shared") # Arch
           config_options+=("--enable-static") # Arch
