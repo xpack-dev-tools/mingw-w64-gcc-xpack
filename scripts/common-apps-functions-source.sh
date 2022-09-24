@@ -344,6 +344,9 @@ function build_mingw2_gcc_first()
             # For the native build, --disable-shared failed with errors in libstdc++-v3
             run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/configure" --help
             run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/gcc/configure" --help
+
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/libgcc/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${mingw_gcc_src_folder_name}/libstdc++-v3/configure" --help
           fi
 
           config_options=()
