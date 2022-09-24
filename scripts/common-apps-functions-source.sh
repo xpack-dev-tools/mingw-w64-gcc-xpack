@@ -130,6 +130,7 @@ function build_mingw2_binutils()
           config_options+=("--enable-plugins") # Arch
           config_options+=("--enable-deterministic-archives") # Arch
           config_options+=("--enable-targets=${mingw_target}") # HB
+          config_options+=("--enable-threads")
 
           config_options+=("--disable-multilib") # Arch, HB
           config_options+=("--disable-nls") # Arch, HB
