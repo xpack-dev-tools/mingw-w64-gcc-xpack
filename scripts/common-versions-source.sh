@@ -140,45 +140,80 @@ function build_versions()
   elif [[ "${RELEASE_VERSION}" =~ 11\.3\.0-[1] ]]
   then
     (
-      xbb_activate
-
+      # https://ftp.gnu.org/gnu/binutils/
       BINUTILS_VERSION="2.38"
 
+      # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
       MINGW_VERSION="9.0.0"
 
+      # http://zlib.net/fossils/
+      ZLIB_VERSION="1.2.11"
+
+      # https://gmplib.org/download/gmp/
       GMP_VERSION="6.2.1"
+      # http://www.mpfr.org/history.html
       MPFR_VERSION="4.1.0"
+      # https://www.multiprecision.org/mpc/download.html
       MPC_VERSION="1.2.1"
+        # https://sourceforge.net/projects/libisl/files/
       ISL_VERSION="0.24"
 
+      # https://ftp.gnu.org/pub/gnu/libiconv/
+      LIBICONV_VERSION="1.16"
 
+      # Number
+      MINGW_VERSION_MAJOR=$(echo ${MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+
+      MINGW_ARCHITECTURES=("x86_64" "i686")
+      # MINGW_ARCHITECTURES=("x86_64") # Use it temporarily during tests.
+      # MINGW_ARCHITECTURES=("i686") # Use it temporarily during tests.
+
+      GCC_SRC_FOLDER_NAME="gcc-${GCC_VERSION}"
+
+      MINGW_GCC_PATCH_FILE_NAME="gcc-${GCC_VERSION}-cross.patch.diff"
+
+      # The original SourceForge location.
+      MINGW_SRC_FOLDER_NAME="mingw-w64-v${MINGW_VERSION}"
+
+      # -----------------------------------------------------------------------
+
+      xbb_activate
+
+      download_mingw "${MINGW_VERSION}"
+
+      # The bootstrap is needed because the 32-bit toolchain is not
+      # available in the XBB Docker images.
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
-        build_mingw_bootstrap
+        (
+          # Subshell to keep the native environment isolated.
+
+          set_xbb_env "native"
+          set_compiler_env
+
+          # export BOOTSTRAP_SUFFIX=""
+          build_mingw_bootstrap
+        )
+
+        prepare_gcc_env "x86_64-w64-mingw32-"
 
         # Use the newly compiled bootstrap compiler.
         xbb_activate_gcc_bootstrap_bins
       fi
 
-      if [ "${TARGET_PLATFORM}" == "win32" ]
-      then
-        prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
-      fi
+     # -----------------------------------------------------------------------
 
       # New zlib, used in most of the tools.
       # depends=('glibc')
-      build_zlib "1.2.11"
+      build_zlib "${ZLIB_VERSION}"
 
       # Libraries, required by gcc & other.
-      # https://gmplib.org/download/gmp/
       # depends=('gcc-libs' 'sh')
       build_gmp "${GMP_VERSION}"
 
-      # http://www.mpfr.org/history.html
       # depends=('gmp>=5.0')
       build_mpfr "${MPFR_VERSION}"
 
-      # https://www.multiprecision.org/mpc/download.html
       # depends=('mpfr')
       build_mpc "${MPC_VERSION}"
 
@@ -189,17 +224,16 @@ function build_versions()
           prepare_clang_env "" ""
         fi
 
-        # https://sourceforge.net/projects/libisl/files/
         # depends=('gmp')
         build_isl "${ISL_VERSION}"
       )
 
-      # https://ftp.gnu.org/pub/gnu/libiconv/
-      build_libiconv "1.16"
+      build_libiconv "${LIBICONV_VERSION}"
 
       # -----------------------------------------------------------------------
 
-      # No need, a bootstrap gcc is built automatically.
+      # No need, for Linux/Mac, a bootstrap gcc is built automatically,
+      # for Windows it is built manually.
       # build_native_binutils "${BINUTILS_VERSION}"
       # build_native_gcc "${GCC_VERSION}"
 
@@ -209,56 +243,39 @@ function build_versions()
       set_bins_install "${APP_INSTALL_FOLDER_PATH}"
       tests_add set_bins_install "${APP_INSTALL_FOLDER_PATH}"
 
-      # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
-      prepare_mingw2_env "${MINGW_VERSION}"
+      download_mingw "${MINGW_VERSION}"
 
-      download_mingw
-
-      MINGW_ARCHITECTURES=("x86_64" "i686")
-      # MINGW_ARCHITECTURES=("x86_64") # Use it temporarily during tests.
-      # MINGW_ARCHITECTURES=("i686") # Use it temporarily during tests.
-
-      # depends=('zlib')
       for arch in "${MINGW_ARCHITECTURES[@]}"
       do
-        # https://ftp.gnu.org/gnu/binutils/
+
         build_mingw2_binutils "${BINUTILS_VERSION}" "${arch}"
 
         # Deploy the headers, they are needed by the compiler.
         build_mingw2_headers "${arch}"
 
-        MINGW_GCC_PATCH_FILE_NAME="gcc-${GCC_VERSION}-cross.patch.diff"
+        build_mingw2_gcc_first "${GCC_VERSION}" "${arch}"
 
-        if [ "${TARGET_PLATFORM}" == "win32" ]
+        build_mingw2_widl "${arch}"
+
+        if [ "${TARGET_PLATFORM}" == "darwin" ]
         then
+          : # TODO try again on macOS
+        else
+          build_mingw2_libmangle "${arch}"
+          build_mingw2_gendef "${arch}"
+        fi
 
-          build_mingw2_widl "${arch}"
+        (
+          xbb_activate_installed_bin
+
+          prepare_gcc_env "${arch}-w64-mingw32-"
+
           build_mingw2_crt "${arch}"
           build_mingw2_winpthreads "${arch}"
+        )
 
-          build_mingw2_gcc "${GCC_VERSION}" "${arch}"
-
-        else # linux & darwin
-
-          build_mingw2_gcc_first "${GCC_VERSION}" "${arch}"
-
-          build_mingw2_widl "${arch}"
-
-          # On macOS there is no <malloc.h>.
-          # build_mingw2_libmangle "${arch}"
-          # build_mingw2_gendef "${arch}"
-
-          (
-            prepare_gcc_env "${arch}-w64-mingw32-"
-
-            build_mingw2_crt "${arch}"
-            build_mingw2_winpthreads "${arch}"
-          )
-
-          # With the run-time available, build the C/C++ libraries and the rest.
-          build_mingw2_gcc_final "${arch}"
-
-        fi
+        # With the run-time available, build the C/C++ libraries and the rest.
+        build_mingw2_gcc_final "${arch}"
 
       done
 
