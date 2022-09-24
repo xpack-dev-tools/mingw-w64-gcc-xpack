@@ -388,20 +388,22 @@ function build_mingw2_gcc_first()
           config_options+=("--with-gmp=${LIBS_INSTALL_FOLDER_PATH}${name_suffix}")
 
           config_options+=("--enable-languages=c,c++,fortran,objc,obj-c++,lto") # Arch
+
           config_options+=("--enable-shared") # Arch
           config_options+=("--enable-static") # Arch
-          config_options+=("--enable-threads=posix") # Arch
-          config_options+=("--enable-fully-dynamic-string") # Arch
-          config_options+=("--enable-libstdcxx-time=yes") # Arch
-          config_options+=("--enable-libstdcxx-filesystem-ts=yes") # Arch
-          config_options+=("--enable-cloog-backend=isl") # Arch
-          config_options+=("--enable-lto") # Arch
-          config_options+=("--enable-libgomp") # Arch
+
           config_options+=("--enable-checking=release") # Arch
+          config_options+=("--enable-cloog-backend=isl") # Arch
+          config_options+=("--enable-fully-dynamic-string") # Arch
+          config_options+=("--enable-libgomp") # Arch
+          config_options+=("--enable-libstdcxx-filesystem-ts=yes") # Arch
+          config_options+=("--enable-libstdcxx-time=yes") # Arch
+          config_options+=("--enable-lto") # Arch
+          config_options+=("--enable-threads=posix") # Arch
 
           # config_options+=("--disable-dw2-exceptions")
-          config_options+=("--disable-sjlj-exceptions") # Arch
           config_options+=("--disable-multilib") # Arch
+          config_options+=("--disable-sjlj-exceptions") # Arch
 
           # config_options+=("ac_cv_header_sys_mman_h=no")
 
