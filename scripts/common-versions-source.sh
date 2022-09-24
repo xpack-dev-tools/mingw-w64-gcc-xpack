@@ -13,7 +13,6 @@
 
 # -----------------------------------------------------------------------------
 
-
 function xbb_activate_gcc_bootstrap_bins()
 {
   export PATH="${APP_PREFIX}${BOOTSTRAP_SUFFIX}/bin:${PATH}"
@@ -21,16 +20,19 @@ function xbb_activate_gcc_bootstrap_bins()
 
 # The XBB MinGW GCC lacks `__LIBGCC_EH_FRAME_SECTION_NAME__`, needed
 # by modern GCC, so the workaround is to build a bootstrap toolchain.
+
 function build_mingw_bootstrap()
 {
   # Build a bootstrap toolchain, that runs on Linux and creates Windows
   # binaries.
   (
-    # Make the use of XBB GCC explicit.
-    prepare_gcc_env "" "-xbb"
+    xbb_activate
 
     mkdir -p "${BINS_INSTALL_FOLDER_PATH}${BOOTSTRAP_SUFFIX}"
     mkdir -p "${LIBS_INSTALL_FOLDER_PATH}${BOOTSTRAP_SUFFIX}"
+
+    # Do not use yet, it requires some more work for bootstrap.
+    # build_zlib "${ZLIB_VERSION}" "${BOOTSTRAP_SUFFIX}"
 
     # Libraries, required by gcc & other.
     build_gmp "6.2.1" "${BOOTSTRAP_SUFFIX}"
@@ -38,39 +40,42 @@ function build_mingw_bootstrap()
     build_mpc "1.2.1" "${BOOTSTRAP_SUFFIX}"
     build_isl "0.24" "${BOOTSTRAP_SUFFIX}"
 
-    build_native_binutils "${BINUTILS_VERSION}" "${BOOTSTRAP_SUFFIX}"
+    build_libiconv "${LIBICONV_VERSION}" "${BOOTSTRAP_SUFFIX}"
 
-    prepare_mingw_env "9.0.0" "${BOOTSTRAP_SUFFIX}"
+    set_bins_install "${APP_INSTALL_FOLDER_PATH}"
 
-    # Deploy the headers, they are needed by the compiler.
-    build_mingw_headers
+    for arch in "${MINGW_ARCHITECTURES[@]}"
+    do
 
-    # Download GCC separatelly, it'll be use in binutils too.
-    download_gcc "${GCC_VERSION}"
+      build_mingw2_binutils "${BINUTILS_VERSION}" "${arch}" "${BOOTSTRAP_SUFFIX}"
 
-    # Build only the compiler, without libraries.
-    build_gcc "${GCC_VERSION}" "${BOOTSTRAP_SUFFIX}"
+      # Deploy the headers, they are needed by the compiler.
+      build_mingw2_headers "${arch}" "${BOOTSTRAP_SUFFIX}"
 
-    # Build some native tools.
-    # build_mingw_libmangle
-    # build_mingw_gendef
-    build_mingw_widl # Refers to mingw headers.
+      # Build only the compiler, without libraries.
+      build_mingw2_gcc_first "${GCC_VERSION}" "${arch}" "${BOOTSTRAP_SUFFIX}"
 
-    (
-      xbb_activate_gcc_bootstrap_bins
+      # Build some native tools.
+      # build_mingw_libmangle
+      # build_mingw_gendef
+      build_mingw2_widl "${arch}" "${BOOTSTRAP_SUFFIX}" # Refers to mingw headers.
 
       (
-        # Fails if CC is defined to a native compiler.
-        prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
+        xbb_activate_gcc_bootstrap_bins
 
-        build_mingw_crt
-        build_mingw_winpthreads
+        (
+          # Fails if CC is defined to a native compiler.
+          prepare_gcc_env "${arch}-w64-mingw32-"
+
+          build_mingw2_crt "${arch}" "${BOOTSTRAP_SUFFIX}"
+          build_mingw2_winpthreads "${arch}" "${BOOTSTRAP_SUFFIX}"
+        )
+
+        # With the run-time available, build the C/C++ libraries and the rest.
+        build_mingw2_gcc_final "${arch}" "${BOOTSTRAP_SUFFIX}"
       )
 
-      # With the run-time available, build the C/C++ libraries and the rest.
-      build_gcc_final
-
-    )
+    done
   )
 }
 
