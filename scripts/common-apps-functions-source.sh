@@ -745,9 +745,9 @@ function test_mingw2_gcc()
     # -------------------------------------------------------------------------
 
     # Run tests in all 3 cases.
-    test_mingw2_gcc_one "${mingw_arch}" "" "" "${name_suffix}"
-    test_mingw2_gcc_one "${mingw_arch}" "static-lib-" "" "${name_suffix}"
-    test_mingw2_gcc_one "${mingw_arch}" "static-" "" "${name_suffix}"
+    test_mingw2_gcc_one "${test_bin_path}" "${mingw_arch}" "" "" "${name_suffix}"
+    test_mingw2_gcc_one "${test_bin_path}" "${mingw_arch}" "static-lib-" "" "${name_suffix}"
+    test_mingw2_gcc_one "${test_bin_path}" "${mingw_arch}" "static-" "" "${name_suffix}"
 
     # -------------------------------------------------------------------------
   )
@@ -755,12 +755,13 @@ function test_mingw2_gcc()
 
 function test_mingw2_gcc_one()
 {
-  local mingw_arch="$1"
+  local test_bin_path="$1"
+  local mingw_arch="$2"
   local mingw_target="${mingw_arch}-w64-mingw32"
 
-  local prefix="$2" # "", "static-lib-", "static-"
-  local suffix="$3" # ""; reserved for something like "-bootstrap"
-  local name_suffix=${4-''}
+  local prefix="$3" # "", "static-lib-", "static-"
+  local suffix="$4" # ""; reserved for something like "-bootstrap"
+  local name_suffix=${5-''}
 
   if [ "${prefix}" == "static-lib-" ]
   then
@@ -776,7 +777,7 @@ function test_mingw2_gcc_one()
     STATIC_LIBSTD=""
 
     # The DLLs are available in the /lib folder.
-    export WINEPATH="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/${mingw_target}/lib;${WINEPATH:-}"
+    export WINEPATH="${test_bin_path}/../${mingw_target}/lib;${WINEPATH:-}"
     echo "WINEPATH=${WINEPATH}"
   fi
 
