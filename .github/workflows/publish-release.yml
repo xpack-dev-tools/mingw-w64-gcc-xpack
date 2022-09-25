@@ -97,9 +97,131 @@ jobs:
 
 
 
+  linux-arm:
+    needs: create-release
+    name: 'Linux Arm 32 - MinGW-w64 GCC ${{ github.event.inputs.version }} publish release'
+    runs-on: [self-hosted, linux, arm, xbbla32]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*'
+          commit: 'xpack-develop'
+          draft: true
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: false
+          repo: 'mingw-w64-gcc-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - name: 'Show SHA'
+        run: cat ~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*.sha
 
 
 
+  linux-arm64:
+    needs: create-release
+    name: 'Linux Arm 64 - MinGW-w64 GCC ${{ github.event.inputs.version }} publish release'
+    runs-on: [self-hosted, linux, arm64, xbbla64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*'
+          commit: 'xpack-develop'
+          draft: true
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: false
+          repo: 'mingw-w64-gcc-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - name: 'Show SHA'
+        run: cat ~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*.sha
 
 
+
+  macos-x64:
+    needs: create-release
+    name: 'macOS Intel - MinGW-w64 GCC ${{ github.event.inputs.version }} publish release'
+
+    runs-on: [self-hosted, macos, intel]
+
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*'
+          commit: 'xpack-develop'
+          draft: true
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: false
+          repo: 'mingw-w64-gcc-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - name: 'Show SHA'
+        run: cat ~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*.sha
+
+
+
+  macos-arm64:
+    needs: create-release
+    name: 'macOS Arm - MinGW-w64 GCC ${{ github.event.inputs.version }} publish release'
+
+    runs-on: [self-hosted, macos, apple]
+
+    defaults:
+      run:
+        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
+
+    steps:
+      - name: 'Machine'
+        run: uname -a
+
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*'
+          commit: 'xpack-develop'
+          draft: true
+          name: 'xPack MinGW-w64 GCC v${{ github.event.inputs.version }}'
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: false
+          repo: 'mingw-w64-gcc-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - name: 'Show SHA'
+        run: cat ~/Work/mingw-w64-gcc-${{ github.event.inputs.version }}/deploy/*.sha
 
