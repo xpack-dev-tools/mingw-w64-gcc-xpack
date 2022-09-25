@@ -604,7 +604,7 @@ function build_mingw2_gcc_final()
           # The tests also need the libraries DLLs; later on are copied.
           export WINEPATH="${LIBS_INSTALL_FOLDER_PATH}${name_suffix}/bin"
         fi
-        test_mingw2_gcc "${mingw_arch}" "${name_suffix}"
+        test_mingw2_gcc "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_arch}" "${name_suffix}"
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/test-final-output-$(ndate).txt"
     fi
 
@@ -618,32 +618,33 @@ function build_mingw2_gcc_final()
 
   if [ -z "${name_suffix}" ]
   then
-    tests_add "test_mingw2_gcc" "${mingw_arch}" "${name_suffix}"
+    tests_add "test_mingw2_gcc" "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_arch}" "${name_suffix}"
   fi
 }
 
 function test_mingw2_gcc()
 {
-  local mingw_arch="$1"
+  local test_bin_path="$1"
+  local mingw_arch="$2"
   local mingw_target="${mingw_arch}-w64-mingw32"
-  local name_suffix=${2-''}
+  local name_suffix=${3-''}
 
   (
-    CC="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcc"
-    CXX="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-g++"
-    F90="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gfortran"
+    CC="${test_bin_path}/${mingw_target}-gcc"
+    CXX="${test_bin_path}/${mingw_target}-g++"
+    F90="${test_bin_path}/${mingw_target}-gfortran"
 
-    AR="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcc-ar"
-    NM="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcc-nm"
-    RANLIB="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcc-ranlib"
+    AR="${test_bin_path}/${mingw_target}-gcc-ar"
+    NM="${test_bin_path}/${mingw_target}-gcc-nm"
+    RANLIB="${test_bin_path}/${mingw_target}-gcc-ranlib"
 
-    OBJDUMP="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objdump"
+    OBJDUMP="${test_bin_path}/${mingw_target}-objdump"
 
-    GCOV="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcov"
+    GCOV="${test_bin_path}/${mingw_target}-gcov"
 
-    DLLTOOL="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-dlltool"
+    DLLTOOL="${test_bin_path}/${mingw_target}-dlltool"
     GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
-    WIDL="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-widl"
+    WIDL="${test_bin_path}/${mingw_target}-widl"
 
     echo
     echo "Testing if mingw-w64 ${mingw_arch} gcc${name_suffix} binaries start properly..."
