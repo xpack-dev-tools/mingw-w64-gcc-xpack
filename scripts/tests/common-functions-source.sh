@@ -27,10 +27,17 @@ function run_tests()
   echo
   env | sort
 
-  # Call the functions defined in the build code.
-  test_mingw2_binutils
+  MINGW_ARCHITECTURES=("x86_64" "i686")
 
-  test_mingw2_gcc
+  for arch in "${MINGW_ARCHITECTURES[@]}"
+  do
+
+    # Call the functions defined in the build code.
+    test_mingw2_binutils "${arch}"
+
+    test_mingw2_gcc "${arch}"
+
+  done
 }
 
 # -----------------------------------------------------------------------------
