@@ -45,7 +45,7 @@ jobs:
           npm --version
 
       - name: 'Checkout'
-        uses: actions/checkout@v1
+        uses: actions/checkout@v1 # Stick to v1, macOS 10.13 has git 1.17
         with:
           fetch-depth: 3
           submodules: true
@@ -56,7 +56,7 @@ jobs:
       - name: 'Build macOS x64 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --macos
-
+  
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
