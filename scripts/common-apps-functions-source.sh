@@ -914,7 +914,9 @@ function test_expect_wine()
 
   if [ "${IS_DEVELOP}" == "y" ]
   then
-    show_dlls "${mingw_target}-objdump" "${app_name}"
+    # TODO: remove absolute path when migrating to xPacks.
+    # (for now i686-w64-mingw32-objdump is not available in the Docker image)
+    show_dlls "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objdump" "${app_name}"
   fi
 
   # No 32-bit support in XBB wine.
