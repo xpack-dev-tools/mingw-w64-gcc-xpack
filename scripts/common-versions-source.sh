@@ -257,9 +257,11 @@ function build_versions()
 
         build_mingw2_widl "${arch}"
 
-        if [ "${TARGET_PLATFORM}" == "darwin" ]
+        # Disable on all platforms.
+        if true # [ "${TARGET_PLATFORM}" == "darwin" ]
         then
-          : # TODO try again on macOS
+          :
+          # mingw-w64-v9.0.0/mingw-w64-libraries/libmangle/src/m_token.c:26:10: fatal error: malloc.h: No such file or directory
         else
           build_mingw2_libmangle "${arch}"
           build_mingw2_gendef "${arch}"
