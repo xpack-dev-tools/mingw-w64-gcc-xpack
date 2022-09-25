@@ -261,7 +261,7 @@ function test_mingw2_binutils()
     run_app "${test_bin_path}/${mingw_target}-ranlib" --help
     run_app "${test_bin_path}/${mingw_target}-size" --help
     run_app "${test_bin_path}/${mingw_target}-strings" --help
-    run_app "${test_bin_path}/${mingw_target}-strip" --help
+    run_app "${test_bin_path}/${mingw_target}-strip" --help || true
   )
 }
 
