@@ -1051,8 +1051,16 @@ function download_mingw()
   (
     cd "${SOURCES_FOLDER_PATH}"
 
-    download_and_extract "${mingw_url}" "${mingw_folder_archive}" \
-      "${MINGW_SRC_FOLDER_NAME}"
+    if [ ! -d "${MINGW_SRC_FOLDER_NAME}" ]
+    then
+      download_and_extract "${mingw_url}" "${mingw_folder_archive}" \
+        "${MINGW_SRC_FOLDER_NAME}"
+
+      # On MacOS there is no <malloc.h>
+      # mingw-w64-v9.0.0/mingw-w64-libraries/libmangle/src/m_token.c:26:10: fatal error: malloc.h: No such file or directory
+      run_verbose sed -i.bak -e '/^#include <malloc.h>/d' \
+        "${MINGW_SRC_FOLDER_NAME}/mingw-w64-libraries/libmangle/src/"*.c
+    fi
   )
 }
 
