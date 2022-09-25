@@ -35,10 +35,10 @@ function build_mingw_bootstrap()
     # build_zlib "${ZLIB_VERSION}" "${BOOTSTRAP_SUFFIX}"
 
     # Libraries, required by gcc & other.
-    build_gmp "6.2.1" "${BOOTSTRAP_SUFFIX}"
-    build_mpfr "4.1.0" "${BOOTSTRAP_SUFFIX}"
-    build_mpc "1.2.1" "${BOOTSTRAP_SUFFIX}"
-    build_isl "0.24" "${BOOTSTRAP_SUFFIX}"
+    build_gmp "${GMP_VERSION}" "${BOOTSTRAP_SUFFIX}"
+    build_mpfr "${MPFR_VERSION}" "${BOOTSTRAP_SUFFIX}"
+    build_mpc "${MPC_VERSION}" "${BOOTSTRAP_SUFFIX}"
+    build_isl "${ISL_VERSION}" "${BOOTSTRAP_SUFFIX}"
 
     build_libiconv "${LIBICONV_VERSION}" "${BOOTSTRAP_SUFFIX}"
 
