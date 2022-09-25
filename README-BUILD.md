@@ -206,12 +206,12 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/gcc-*/deploy
 total 247864
--rw-rw-r--  1 1000  1000   94916876 Jul 31 21:23 xpack-gcc-11.3.0-1-linux-x64.tar.gz
--rw-rw-r--  1 1000  1000        101 Jul 31 21:23 xpack-gcc-11.3.0-1-linux-x64.tar.gz.sha
--rw-rw-r--  1 1000  1000  107954359 Jul 31 22:36 xpack-gcc-11.3.0-1-win32-ia32.zip
--rw-rw-r--  1 1000  1000         99 Jul 31 22:36 xpack-gcc-11.3.0-1-win32-ia32.zip.sha
--rw-rw-r--  1 1000  1000  112626193 Jul 31 21:41 xpack-gcc-11.3.0-1-win32-x64.zip
--rw-rw-r--  1 1000  1000         98 Jul 31 21:41 xpack-gcc-11.3.0-1-win32-x64.zip.sha
+-rw-rw-r--  1 1000  1000   94916876 Jul 31 21:23 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz
+-rw-rw-r--  1 1000  1000        101 Jul 31 21:23 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz.sha
+-rw-rw-r--  1 1000  1000  107954359 Jul 31 22:36 xpack-mingw-w64-gcc-11.3.0-1-win32-ia32.zip
+-rw-rw-r--  1 1000  1000         99 Jul 31 22:36 xpack-mingw-w64-gcc-11.3.0-1-win32-ia32.zip.sha
+-rw-rw-r--  1 1000  1000  112626193 Jul 31 21:41 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip
+-rw-rw-r--  1 1000  1000         98 Jul 31 21:41 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip.sha
 ```
 
 ### Build the Arm GNU/Linux binaries
@@ -280,10 +280,10 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/gcc-*/deploy
 total 158536
--rw-rw-r-- 1 ilg ilg 84148158 Jul 31 20:58 xpack-gcc-11.3.0-1-linux-arm64.tar.gz
--rw-rw-r-- 1 ilg ilg      103 Jul 31 20:58 xpack-gcc-11.3.0-1-linux-arm64.tar.gz.sha
--rw-rw-r-- 1 ilg ilg 78181315 Jul 31 23:26 xpack-gcc-11.3.0-1-linux-arm.tar.gz
--rw-rw-r-- 1 ilg ilg      101 Jul 31 23:26 xpack-gcc-11.3.0-1-linux-arm.tar.gz.sha
+-rw-rw-r-- 1 ilg ilg 84148158 Jul 31 20:58 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz
+-rw-rw-r-- 1 ilg ilg      103 Jul 31 20:58 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz.sha
+-rw-rw-r-- 1 ilg ilg 78181315 Jul 31 23:26 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz
+-rw-rw-r-- 1 ilg ilg      101 Jul 31 23:26 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz.sha
 ```
 
 ### Build the macOS binaries
@@ -326,8 +326,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/gcc-*/deploy
 total 163376
--rw-r--r--  1 ilg  staff  66170610 Jul 31 21:01 xpack-gcc-11.3.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff       102 Jul 31 21:01 xpack-gcc-11.3.0-1-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  66170610 Jul 31 21:01 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff       102 Jul 31 21:01 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz.sha
 ```
 
 ## Subsequent runs
@@ -411,7 +411,7 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ .../xpack-gcc-11.3.0-1/gcc/bin/gcc --version
+$ .../xpack-mingw-w64-gcc-11.3.0-1/gcc/bin/gcc --version
 gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
 Copyright (C) 2018 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
@@ -428,99 +428,112 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.1
 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.1/.content/
 ├── README.md
 ├── bin
-│   ├── c++
-│   ├── cpp
-│   ├── g++
-│   ├── gcc
-│   ├── gcov
-│   ├── gcov-dump
-│   ├── gcov-tool
-│   ├── gdb
-│   ├── gdb-add-index
-│   ├── lto-dump
-│   ├── x86_64-apple-darwin21.4.0-c++
-│   ├── x86_64-apple-darwin21.4.0-g++
-│   ├── x86_64-apple-darwin21.4.0-gcc
-│   ├── x86_64-apple-darwin21.4.0-gcc-11.3.0
-│   ├── x86_64-apple-darwin21.4.0-gcc-ar
-│   ├── x86_64-apple-darwin21.4.0-gcc-nm
-│   └── x86_64-apple-darwin21.4.0-gcc-ranlib
+│   ├── i686-w64-mingw32-addr2line
+│   ├── i686-w64-mingw32-ar
+│   ├── i686-w64-mingw32-as
+│   ├── i686-w64-mingw32-c++
+│   ├── i686-w64-mingw32-c++filt
+│   ├── i686-w64-mingw32-cpp
+│   ├── i686-w64-mingw32-dlltool
+│   ├── i686-w64-mingw32-dllwrap
+│   ├── i686-w64-mingw32-elfedit
+│   ├── i686-w64-mingw32-g++
+│   ├── i686-w64-mingw32-gcc
+│   ├── i686-w64-mingw32-gcc-11.3.0
+│   ├── i686-w64-mingw32-gcc-ar
+│   ├── i686-w64-mingw32-gcc-nm
+│   ├── i686-w64-mingw32-gcc-ranlib
+│   ├── i686-w64-mingw32-gcov
+│   ├── i686-w64-mingw32-gcov-dump
+│   ├── i686-w64-mingw32-gcov-tool
+│   ├── i686-w64-mingw32-gendef
+│   ├── i686-w64-mingw32-gfortran
+│   ├── i686-w64-mingw32-gprof
+│   ├── i686-w64-mingw32-ld
+│   ├── i686-w64-mingw32-ld.bfd
+│   ├── i686-w64-mingw32-lto-dump
+│   ├── i686-w64-mingw32-nm
+│   ├── i686-w64-mingw32-objcopy
+│   ├── i686-w64-mingw32-objdump
+│   ├── i686-w64-mingw32-ranlib
+│   ├── i686-w64-mingw32-readelf
+│   ├── i686-w64-mingw32-size
+│   ├── i686-w64-mingw32-strings
+│   ├── i686-w64-mingw32-strip
+│   ├── i686-w64-mingw32-widl
+│   ├── i686-w64-mingw32-windmc
+│   ├── i686-w64-mingw32-windres
+│   ├── x86_64-w64-mingw32-addr2line
+│   ├── x86_64-w64-mingw32-ar
+│   ├── x86_64-w64-mingw32-as
+│   ├── x86_64-w64-mingw32-c++
+│   ├── x86_64-w64-mingw32-c++filt
+│   ├── x86_64-w64-mingw32-cpp
+│   ├── x86_64-w64-mingw32-dlltool
+│   ├── x86_64-w64-mingw32-dllwrap
+│   ├── x86_64-w64-mingw32-elfedit
+│   ├── x86_64-w64-mingw32-g++
+│   ├── x86_64-w64-mingw32-gcc
+│   ├── x86_64-w64-mingw32-gcc-11.3.0
+│   ├── x86_64-w64-mingw32-gcc-ar
+│   ├── x86_64-w64-mingw32-gcc-nm
+│   ├── x86_64-w64-mingw32-gcc-ranlib
+│   ├── x86_64-w64-mingw32-gcov
+│   ├── x86_64-w64-mingw32-gcov-dump
+│   ├── x86_64-w64-mingw32-gcov-tool
+│   ├── x86_64-w64-mingw32-gendef
+│   ├── x86_64-w64-mingw32-gfortran
+│   ├── x86_64-w64-mingw32-gprof
+│   ├── x86_64-w64-mingw32-ld
+│   ├── x86_64-w64-mingw32-ld.bfd
+│   ├── x86_64-w64-mingw32-lto-dump
+│   ├── x86_64-w64-mingw32-nm
+│   ├── x86_64-w64-mingw32-objcopy
+│   ├── x86_64-w64-mingw32-objdump
+│   ├── x86_64-w64-mingw32-ranlib
+│   ├── x86_64-w64-mingw32-readelf
+│   ├── x86_64-w64-mingw32-size
+│   ├── x86_64-w64-mingw32-strings
+│   ├── x86_64-w64-mingw32-strip
+│   ├── x86_64-w64-mingw32-widl
+│   ├── x86_64-w64-mingw32-windmc
+│   └── x86_64-w64-mingw32-windres
 ├── distro-info
 │   ├── CHANGELOG.md
 │   ├── licenses
 │   ├── patches
 │   └── scripts
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
 ├── include
-│   ├── c++
-│   └── gdb
 ├── lib
+│   ├── bfd-plugins
 │   ├── gcc
-│   ├── libasan.8.dylib
-│   ├── libasan.dylib -> libasan.8.dylib
-│   ├── libasan.la
-│   ├── libasan_preinit.o
-│   ├── libatomic.1.dylib
-│   ├── libatomic.a
-│   ├── libatomic.dylib -> libatomic.1.dylib
-│   ├── libatomic.la
 │   ├── libcc1.0.so
 │   ├── libcc1.a
 │   ├── libcc1.la
-│   ├── libcc1.so -> libcc1.0.so
-│   ├── libgcc_s.1.1.dylib
-│   ├── libgcc_s.1.dylib
-│   ├── libgomp.1.dylib
-│   ├── libgomp.a
-│   ├── libgomp.dylib -> libgomp.1.dylib
-│   ├── libgomp.la
-│   ├── libgomp.spec
-│   ├── libitm.1.dylib
-│   ├── libitm.a
-│   ├── libitm.dylib -> libitm.1.dylib
-│   ├── libitm.la
-│   ├── libitm.spec
-│   ├── libquadmath.0.dylib
-│   ├── libquadmath.a
-│   ├── libquadmath.dylib -> libquadmath.0.dylib
-│   ├── libquadmath.la
-│   ├── libsanitizer.spec
-│   ├── libssp.0.dylib
-│   ├── libssp.a
-│   ├── libssp.dylib -> libssp.0.dylib
-│   ├── libssp.la
-│   ├── libssp_nonshared.a
-│   ├── libssp_nonshared.la
-│   ├── libstdc++.6.dylib
-│   ├── libstdc++.6.dylib-gdb.py
-│   ├── libstdc++.a
-│   ├── libstdc++.dylib -> libstdc++.6.dylib
-│   ├── libstdc++.la
-│   ├── libstdc++fs.a
-│   ├── libstdc++fs.la
-│   ├── libsupc++.a
-│   ├── libsupc++.la
-│   ├── libubsan.1.dylib
-│   ├── libubsan.dylib -> libubsan.1.dylib
-│   └── libubsan.la
+│   └── libcc1.so -> libcc1.0.so
 ├── libexec
-│   ├── gcc
-│   ├── libexpat.1.8.8.dylib
-│   ├── libexpat.1.dylib -> libexpat.1.8.8.dylib
-│   ├── libgcc_s.1.1.dylib
 │   ├── libgcc_s.1.dylib
 │   ├── libgmp.10.dylib
 │   ├── libiconv.2.dylib
 │   ├── libisl.23.dylib
 │   ├── libmpc.3.dylib
 │   ├── libmpfr.6.dylib
-│   ├── libncursesw.6.dylib
-│   └── libstdc++.6.dylib
-└── share
-    ├── doc
-    ├── gcc-11.3.0
-    └── gdb
+│   ├── libstdc++.6.dylib
+│   ├── libz.1.2.11.dylib
+│   └── libz.1.dylib -> libz.1.2.11.dylib
+├── share
+│   ├── gcc-11.3.0
+│   └── locale
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
 
-16 directories, 77 files
+21 directories, 85 files
 ```
 
 No other files are installed in any system folders or other locations.

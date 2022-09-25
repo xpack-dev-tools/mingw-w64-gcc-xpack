@@ -4,7 +4,7 @@
 
 # The xPack MinGW-w64 GNU Compiler Collection (GCC)
 
-A standalone **MinGW-w64 GCC**
+A standalone cross-platform (Windows/macOS/Linux) **MinGW-w64 GCC**
 binary distribution, intended for reproducible builds.
 
 In addition to the the binary archives and the package meta data,
@@ -62,7 +62,7 @@ in all executables.
 The solution is to copy the required DLLs to the folder where the
 compiled .exe files will be installed (like `/bin`).
 
-```
+```console
 $ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
 -rwxr-xr-x 1 ilg ilg   38296 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
 -rwxr-xr-x 1 ilg ilg  535781 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
@@ -76,7 +76,7 @@ $ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll)
 
 and
 
-```
+```console
 $ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
 -rwxr-xr-x 1 ilg ilg   37356 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
 -rwxr-xr-x 1 ilg ilg  652335 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
@@ -87,7 +87,6 @@ $ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/
 -rwxr-xr-x 1 ilg ilg 2081167 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
 -rwxr-xr-x 1 ilg ilg  112374 Sep 20 13:06 /home/ilg/Work/mingw-w64-gcc-11.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/11.3.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
-
 
 ### Easy install
 

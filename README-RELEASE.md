@@ -108,7 +108,7 @@ repository, in the `xpack-dev-tools/gcc` Git repo:
 
 Possibly add a tag here.
 
-Note: current 12.x does not use the fork repo.
+Note: the current versions do not use the fork repo.
 
 ## Build
 
@@ -129,6 +129,8 @@ Similarly on the Intel Linux (`xbbli`):
 sudo rm -rf ~/Work/mingw-w64-gcc-[0-9]*-*
 
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --linux64
+
+bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --win64
 ```
 
 ... on the Arm Linux 64-bit (`xbbla64`):
@@ -289,14 +291,14 @@ Install the binaries on all platforms.
 On GNU/Linux and macOS systems, use:
 
 ```sh
-.../xpack-gcc-11.3.0-1/bin/mingw-w64-gcc --version
+.../xpack-mingw-w64-gcc-11.3.0-1/bin/mingw-w64-gcc --version
 gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
 ```
 
 On Windows use:
 
 ```dos
-...\xpack-gcc-11.3.0-1\bin\gcc --version
+...\xpack-mingw-w64-gcc-11.3.0-1\bin\gcc --version
 gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
 ```
 
