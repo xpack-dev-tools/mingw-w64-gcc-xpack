@@ -27,6 +27,7 @@ function run_tests()
 
   MINGW_ARCHITECTURES=("x86_64" "i686")
 
+  set -x
   for arch in "${MINGW_ARCHITECTURES[@]}"
   do
 
