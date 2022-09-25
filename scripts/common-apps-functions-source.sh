@@ -195,7 +195,7 @@ function build_mingw2_binutils()
     )
 
     (
-      test_mingw2_binutils "${mingw_arch}" "${name_suffix}"
+      test_mingw2_binutils "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_arch}" "${name_suffix}"
     ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${mingw_binutils_folder_name}/test-output-$(ndate).txt"
 
     hash -r
@@ -208,59 +208,60 @@ function build_mingw2_binutils()
 
   if [ -z "${name_suffix}" ]
   then
-    tests_add "test_mingw2_binutils" "${mingw_arch}" "${name_suffix}"
+    tests_add "test_mingw2_binutils" "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_arch}" "${name_suffix}"
   fi
 }
 
 function test_mingw2_binutils()
 {
-  local mingw_arch="$1"
+  local test_bin_path="$1"
+  local mingw_arch="$2"
   local mingw_target="${mingw_arch}-w64-mingw32"
-  local name_suffix=${2-''}
+  local name_suffix=${3-''}
 
   (
     echo
     echo "Checking the mingw-w64 ${mingw_arch} binutils${name_suffix} shared libraries..."
 
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ar${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-ar${DOT_EXE}"
 
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-as${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ld${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-nm${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objcopy${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objdump${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ranlib${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-size${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strings${DOT_EXE}"
-    show_libs "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-as${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-ld${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-nm${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-objcopy${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-objdump${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-ranlib${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-size${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-strings${DOT_EXE}"
+    show_libs "${test_bin_path}/${mingw_target}-strip${DOT_EXE}"
 
     echo
     echo "Testing if mingw-w64 ${mingw_arch} binutils${name_suffix} binaries start properly..."
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ar" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-as" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ld" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-nm" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objcopy" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objdump" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ranlib" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-size" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strings" --version
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip" --version
+    run_app "${test_bin_path}/${mingw_target}-ar" --version
+    run_app "${test_bin_path}/${mingw_target}-as" --version
+    run_app "${test_bin_path}/${mingw_target}-ld" --version
+    run_app "${test_bin_path}/${mingw_target}-nm" --version
+    run_app "${test_bin_path}/${mingw_target}-objcopy" --version
+    run_app "${test_bin_path}/${mingw_target}-objdump" --version
+    run_app "${test_bin_path}/${mingw_target}-ranlib" --version
+    run_app "${test_bin_path}/${mingw_target}-size" --version
+    run_app "${test_bin_path}/${mingw_target}-strings" --version
+    run_app "${test_bin_path}/${mingw_target}-strip" --version
 
     echo
     echo "Testing if mingw-w64 ${mingw_arch} binutils${name_suffix} binaries display help..."
 
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ar" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-as" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ld" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-nm" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objcopy" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-objdump" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-ranlib" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-size" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strings" --help
-    run_app "${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-strip" --help
+    run_app "${test_bin_path}/${mingw_target}-ar" --help
+    run_app "${test_bin_path}/${mingw_target}-as" --help
+    run_app "${test_bin_path}/${mingw_target}-ld" --help
+    run_app "${test_bin_path}/${mingw_target}-nm" --help
+    run_app "${test_bin_path}/${mingw_target}-objcopy" --help
+    run_app "${test_bin_path}/${mingw_target}-objdump" --help
+    run_app "${test_bin_path}/${mingw_target}-ranlib" --help
+    run_app "${test_bin_path}/${mingw_target}-size" --help
+    run_app "${test_bin_path}/${mingw_target}-strings" --help
+    run_app "${test_bin_path}/${mingw_target}-strip" --help
   )
 }
 

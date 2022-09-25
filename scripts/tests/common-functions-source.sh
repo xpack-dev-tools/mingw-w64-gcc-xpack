@@ -23,6 +23,16 @@ function run_tests()
   GCC_VERSION_MAJOR=$(echo ${GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
 
   BINS_INSTALL_FOLDER_PATH="${APP_PREFIX}/bin"
+  if [ -d "xpacks/.bin" ]
+  then
+    TEST_BIN_PATH="$(pwd)/xpacks/.bin"
+  elif [ -d "${APP_PREFIX}${name_suffix}/bin" ]
+  then
+    TEST_BIN_PATH="${APP_PREFIX}${name_suffix}/bin"
+  else
+    echo "Wrong folder."
+    exit 1
+  fi
 
   echo
   env | sort
@@ -33,9 +43,9 @@ function run_tests()
   do
 
     # Call the functions defined in the build code.
-    test_mingw2_binutils "${arch}"
+    test_mingw2_binutils "${TEST_BIN_PATH}" "${arch}"
 
-    test_mingw2_gcc "${arch}"
+    test_mingw2_gcc "${TEST_BIN_PATH}" "${arch}"
 
   done
 }
