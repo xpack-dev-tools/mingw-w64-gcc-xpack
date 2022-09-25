@@ -643,7 +643,7 @@ function test_mingw2_gcc()
     GCOV="${test_bin_path}/${mingw_target}-gcov"
 
     DLLTOOL="${test_bin_path}/${mingw_target}-dlltool"
-    GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
+    GENDEF="${test_bin_path}/${mingw_target}-gendef"
     WIDL="${test_bin_path}/${mingw_target}-widl"
 
     echo
