@@ -439,8 +439,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.2/.content/
-/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.2/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.3/.content/
+/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/11.3.0-1.3/.content/
 ├── README.md
 ├── bin
 │   ├── i686-w64-mingw32-addr2line
