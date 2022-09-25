@@ -126,7 +126,22 @@ function build_mingw2_binutils()
           config_options+=("--with-system-zlib")
 
           config_options+=("--enable-static")
-          config_options+=("--enable-shared")
+          if [ "${TARGET_PLATFORM}" == "darwin" ]
+          then
+            :
+            # ./libtool: line 8053: @DSYMUTIL@: command not found
+
+            #   CCLD     libctf-nobfd.la
+            # ld: warning: passed two min versions (11.0, 11.0) for platform macOS. Using 11.0.
+            # Undefined symbols for architecture arm64:
+            #   "_ctf_open", referenced from:
+            #       _ctf_link_deduplicating_count_inputs in libctf_nobfd_la-ctf-link.o
+            #       _ctf_link_add_ctf in libctf_nobfd_la-ctf-link.o
+            # ld: symbol(s) not found for architecture arm64
+            # collect2: error: ld returned 1 exit status
+          else
+            config_options+=("--enable-shared")
+          fi
 
           config_options+=("--enable-build-warnings=no")
           config_options+=("--enable-deterministic-archives") # Arch
