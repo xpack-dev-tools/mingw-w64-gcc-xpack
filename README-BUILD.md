@@ -78,7 +78,7 @@ git -C ${HOME}/Work/mingw-w64-gcc-xpack.git submodule update --init --recursive
 
 ## The `Work` folder
 
-The scripts create a temporary build `Work/gcc-${version}` folder in
+The scripts create a temporary build `Work/mingw-w64-gcc-${version}` folder in
 the user home. Although not recommended, if for any reasons you need to
 change the location of the `Work` folder,
 you can redefine `WORK_FOLDER_PATH` variable before invoking the script.
@@ -186,14 +186,14 @@ network connection or a computer entering sleep.
 ```sh
 screen -S gcc
 
-sudo rm -rf ~/Work/gcc-*-*
+sudo rm -rf ~/Work/mingw-w64-gcc-*-*
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --linux64 --win64
 ```
 
 or, for development builds:
 
 ```sh
-sudo rm -rf ~/Work/gcc-*-*
+sudo rm -rf ~/Work/mingw-w64-gcc-*-*
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --without-html --disable-tests --linux64 --win64
 ```
 
@@ -204,14 +204,12 @@ About 110 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/gcc-*/deploy
-total 247864
--rw-rw-r--  1 1000  1000   94916876 Jul 31 21:23 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz
--rw-rw-r--  1 1000  1000        101 Jul 31 21:23 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz.sha
--rw-rw-r--  1 1000  1000  107954359 Jul 31 22:36 xpack-mingw-w64-gcc-11.3.0-1-win32-ia32.zip
--rw-rw-r--  1 1000  1000         99 Jul 31 22:36 xpack-mingw-w64-gcc-11.3.0-1-win32-ia32.zip.sha
--rw-rw-r--  1 1000  1000  112626193 Jul 31 21:41 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip
--rw-rw-r--  1 1000  1000         98 Jul 31 21:41 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip.sha
+$ ls -l ~/Work/mingw-w64-gcc-*/deploy
+total 491416
+-rw-rw-rw- 1 ilg ilg 229104864 Sep 25 17:24 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg       112 Sep 25 17:24 xpack-mingw-w64-gcc-11.3.0-1-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 274091888 Sep 25 18:08 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg       109 Sep 25 18:08 xpack-mingw-w64-gcc-11.3.0-1-win32-x64.zip.sha
 ```
 
 ### Build the Arm GNU/Linux binaries
@@ -260,14 +258,14 @@ network connection or a computer entering sleep.
 ```sh
 screen -S gcc
 
-sudo rm -rf ~/Work/gcc-*-*
+sudo rm -rf ~/Work/mingw-w64-gcc-*-*
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --arm64 --arm32
 ```
 
 or, for development builds:
 
 ```sh
-sudo rm -rf ~/Work/gcc-*-*
+sudo rm -rf ~/Work/mingw-w64-gcc-*-*
 bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --without-html --disable-tests --arm64 --arm32
 ```
 
@@ -278,12 +276,19 @@ About 290 minutes later, the output of the build script is a set of 2
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/gcc-*/deploy
-total 158536
--rw-rw-r-- 1 ilg ilg 84148158 Jul 31 20:58 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz
--rw-rw-r-- 1 ilg ilg      103 Jul 31 20:58 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz.sha
--rw-rw-r-- 1 ilg ilg 78181315 Jul 31 23:26 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz
--rw-rw-r-- 1 ilg ilg      101 Jul 31 23:26 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz.sha
+$ ls -l ~/Work/mingw-w64-gcc-*/deploy
+total 217676
+-rw-rw-rw- 1 ilg ilg 222894574 Sep 25 14:59 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg       114 Sep 25 14:59 xpack-mingw-w64-gcc-11.3.0-1-linux-arm64.tar.gz.sha
+```
+
+and
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-*/deploy
+total 204220
+-rw-rw-rw- 1 ilg ilg 209114896 Sep 25 14:56 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg       112 Sep 25 14:56 xpack-mingw-w64-gcc-11.3.0-1-linux-arm.tar.gz.sha
 ```
 
 ### Build the macOS binaries
@@ -305,14 +310,14 @@ To build the latest macOS version:
 ```sh
 screen -S gcc
 
-rm -rf ~/Work/gcc-*-*
+rm -rf ~/Work/mingw-w64-gcc-*-*
 caffeinate bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --macos
 ```
 
 or, for development builds:
 
 ```sh
-rm -rf ~/Work/gcc-arm-*-*
+rm -rf ~/Work/mingw-w64-gcc-arm-*-*
 caffeinate bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --without-html --disable-tests --macos
 ```
 
@@ -324,11 +329,21 @@ About 60 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/gcc-*/deploy
-total 163376
--rw-r--r--  1 ilg  staff  66170610 Jul 31 21:01 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff       102 Jul 31 21:01 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz.sha
+$ ls -l ~/Work/mingw-w64-gcc-*/deploy
+total 491784
+-rw-r--r--  1 ilg  staff  239159901 Sep 25 17:46 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff        113 Sep 25 17:46 xpack-mingw-w64-gcc-11.3.0-1-darwin-x64.tar.gz.sha
 ```
+
+and
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-*/deploy
+total 492424
+-rw-r--r--  1 ilg  staff  239527734 Sep 25 15:56 xpack-mingw-w64-gcc-11.3.0-1-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff        115 Sep 25 15:56 xpack-mingw-w64-gcc-11.3.0-1-darwin-arm64.tar.gz.sha
+```
+
 
 ## Subsequent runs
 
@@ -411,9 +426,9 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ .../xpack-mingw-w64-gcc-11.3.0-1/gcc/bin/gcc --version
-gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
-Copyright (C) 2018 Free Software Foundation, Inc.
+$ .../xpack-mingw-w64-gcc-11.3.0-1/bin/x86_64-w64-mingw32-gcc --version
+x86_64-w64-mingw32-gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
