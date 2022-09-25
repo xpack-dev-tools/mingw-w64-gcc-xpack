@@ -22,21 +22,15 @@ function run_tests()
   GCC_VERSION="$(echo "${RELEASE_VERSION}" | sed -e 's|-.*||')"
   GCC_VERSION_MAJOR=$(echo ${GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
 
+  BINS_INSTALL_FOLDER_PATH="${APP_PREFIX}/bin"
+
   echo
   env | sort
 
   # Call the functions defined in the build code.
-  if [ "${TARGET_PLATFORM}" != "darwin" ]
-  then
-    test_native_binutils
-  fi
+  test_mingw2_binutils
 
-  test_gcc
-
-  if [ "${TARGET_PLATFORM}" != "darwin" ]
-  then
-    test_gdb
-  fi
+  test_mingw2_gcc
 }
 
 # -----------------------------------------------------------------------------
