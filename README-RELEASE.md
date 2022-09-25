@@ -385,18 +385,18 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _package.json: update urls for 11.3.0-1.1 release_ (without _v_)
+  _package.json: update urls for 11.3.0-1.2 release_ (without _v_)
 
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _- v11.3.0-1.1 published on npmjs.com_
-- commit with a message like _CHANGELOG: publish npm v11.3.0-1.1_
+- update `CHANGELOG.md`, add a line like _- v11.3.0-1.2 published on npmjs.com_
+- commit with a message like _CHANGELOG: publish npm v11.3.0-1.2_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- `npm version 11.3.0-1.1`; the first 4 numbers are the same as the
+- `npm version 11.3.0-1.2`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags`
@@ -425,7 +425,7 @@ The tests results are available from the
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @xpack-dev-tools/mingw-w64-gcc`
-- `npm dist-tag add @xpack-dev-tools/mingw-w64-gcc@11.3.0-1.1 latest`
+- `npm dist-tag add @xpack-dev-tools/mingw-w64-gcc@11.3.0-1.2 latest`
 - `npm dist-tag ls @xpack-dev-tools/mingw-w64-gcc`
 
 In case the previous version is not functional and needs to be unpublished:
