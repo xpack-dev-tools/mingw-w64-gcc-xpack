@@ -10,6 +10,14 @@ summary: "Version **{{ RELEASE_VERSION }}** is a new release; it follows the off
 
 version: "{{ RELEASE_VERSION }}"
 npm_subversion: 1
+gcc_version: "11.3.0"
+gcc_version_major: "11"
+gcc_release_date: "Aug 19, 2022"
+binutils_version: "2.38"
+binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2022-02/msg00009.html"
+binutils_date: "Feb 9, 2022"
+mingw_release: "9.0.0"
+
 download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v{{ RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
@@ -39,6 +47,14 @@ The binary files are available from GitHub [Releases]({% raw %}{{ page.download_
 - GNU/Linux Intel 64-bit: any system with **GLIBC 2.27** or higher
   (like Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
   Fedora 29 or later, etc)
+- GNU/Linux Arm 32/64-bit: any system with **GLIBC 2.27** or higher
+  (like Raspberry Pi OS, Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
+  Fedora 29 or later, etc)
+- Intel Windows 64-bit: Windows 7 with the Universal C Runtime
+  ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
+  Windows 8, Windows 10
+- Intel macOS 64-bit: 10.13 or later
+- Apple Silicon macOS 64-bit: 11.6 or later
 
 ## Install
 
@@ -104,10 +120,11 @@ The xPack MinGW-w64 GCC generally follows the official
 
 The current version is based on:
 
-- GCC version [11.3.0](https://gcc.gnu.org/gcc-11/) from Aug 19, 2022;
+- GCC version [{% raw %}{{ page.gcc_version }}{% endraw %}](https://gcc.gnu.org/gcc-{% raw %}{{ page.gcc_version_major }}{% endraw %}/) from {% raw %}{{ page.gcc_release_date }}{% endraw %};
 - binutils version
-[2.38](https://lists.gnu.org/archive/html/info-gnu/2022-02/msg00009.html)
-from Feb 9, 2022.
+[{% raw %}{{ page.binutils_version }}{% endraw %}]({% raw %}{{ page.binutils_release_url }}{% endraw %})
+from {% raw %}{{ page.binutils_date }}{% endraw %}
+- MinGW-w64 version [{% raw %}{{ page.mingw_release }}{% endraw %}](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/)
 
 ## Supported languages
 
@@ -115,6 +132,7 @@ The supported languages are:
 
 - C
 - C++
+- Fortran
 - Obj-C
 - Obj-C++
 
@@ -143,6 +161,18 @@ runtime to be present on the host.
 
 All dependencies that are build as shared libraries are copied locally
 in the `libexec` folder (or in the same folder as the executable for Windows).
+
+### `-static-libgcc -static-libstdc++`
+
+To avoid issues with DLLs, specific when using toolchains installed
+in custom locations, it is highly recommended to use only the
+static versions of the GCC libraries.
+
+For C programs, append `-static-libgcc` to the linker line.
+
+For C++ programs, since the toolchain is configured to use POSIX threads,
+instead of `-static-libstdc++`, use the more explicit variant
+`-Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic` when invoking the linker.
 
 ### `DT_RPATH` and `LD_LIBRARY_PATH`
 
