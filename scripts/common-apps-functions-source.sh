@@ -662,7 +662,11 @@ function test_mingw2_gcc()
     run_app "${GCOV}-dump" --version
     run_app "${GCOV}-tool" --version
 
-    run_app "${GENDEF}" --help
+    # Not necessary in the bootstrap.
+    if [ -z "${name_suffix}" ]
+    then
+      run_app "${GENDEF}" --help
+    fi
 
     echo
     echo "Showing the mingw-w64 ${mingw_arch} gcc${name_suffix} configurations..."
