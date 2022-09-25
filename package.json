@@ -1,6 +1,6 @@
 {
   "name": "@xpack-dev-tools/mingw-w64-gcc",
-  "version": "11.3.0-1.1",
+  "version": "11.3.0-1.2",
   "description": "A binary xPack with the MinGW-w64 GNU Compiler Collection executables",
   "main": "",
   "scripts": {
