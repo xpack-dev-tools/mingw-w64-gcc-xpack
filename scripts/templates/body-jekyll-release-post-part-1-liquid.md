@@ -24,19 +24,28 @@ date:   {{ RELEASE_DATE }}
 
 categories:
   - releases
-  - gcc
+  - mingw-w64-gcc
 
 tags:
   - releases
   - gcc
+  - mingw
+  - mingw-w64
 
 ---
 
 [The xPack MinGW-w64 GCC](https://xpack.github.io/mingw-w64-gcc/)
 is a standalone cross-platform binary distribution of
+[Mingw-w64](https://www.mingw-w64.org)
 [GCC](http://gcc.org).
 
-There are binaries for **GNU/Linux** (Intel 64-bit).
+There are separate binaries for **Windows** (Intel 64-bit),
+**macOS** (Intel 64-bit, Apple Silicon 64-bit)
+and **GNU/Linux** (Intel 64-bit, Arm 32/64-bit).
+
+{% raw %}{% include note.html content="The main targets for the Arm binaries
+are the **Raspberry Pi** class devices (armv7l and aarch64;
+armv6 is not supported)." %}{% endraw %}
 
 ## Download
 
