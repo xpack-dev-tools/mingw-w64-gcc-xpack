@@ -641,8 +641,7 @@ function test_mingw2_gcc()
     GCOV="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-gcov"
 
     DLLTOOL="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-dlltool"
-    # No gendef, libmangle fails on macOS.
-    # GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
+    GENDEF="${BINS_INSTALL_FOLDER_PATH}/bin/${mingw_target}-gendef"
     WIDL="${BINS_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_target}-widl"
 
     echo
@@ -662,6 +661,8 @@ function test_mingw2_gcc()
     run_app "${GCOV}" --version
     run_app "${GCOV}-dump" --version
     run_app "${GCOV}-tool" --version
+
+    run_app "${GENDEF}" --help
 
     echo
     echo "Showing the mingw-w64 ${mingw_arch} gcc${name_suffix} configurations..."
