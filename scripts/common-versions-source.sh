@@ -189,11 +189,6 @@ function build_common()
 
 # -----------------------------------------------------------------------------
 
-function set_bins_install()
-{
-  export BINS_INSTALL_FOLDER_PATH="${APP_INSTALL_FOLDER_PATH}"
-}
-
 function build_versions()
 {
   export GCC_BRANDING="${DISTRO_NAME} MinGW-w64 GCC ${TARGET_MACHINE}"
