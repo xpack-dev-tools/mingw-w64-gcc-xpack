@@ -9,12 +9,12 @@ The binaries can be available from one of the pre-releases:
 The test script is part of the xPack MinGW-w64 GCC:
 
 ```sh
-rm -rf ~/Work/mingw-w64-gcc-xpack.git; \
-mkdir -p ~/Work; \
+rm -rf ~/Work/mingw-w64-gcc-xpack.git && \
+mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git  \
-  ~/Work/mingw-w64-gcc-xpack.git; \
+  ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/mingw-w64-gcc-xpack.git submodule update --init --recursive
 ```
 

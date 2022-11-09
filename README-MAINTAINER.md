@@ -14,6 +14,7 @@ To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 ```sh
+rm -rf ~/Work/mingw-w64-gcc-xpack.git && \
 git clone https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
   ~/Work/mingw-w64-gcc-xpack.git
 ```
@@ -21,6 +22,8 @@ git clone https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
 For development purposes, clone the `xpack-develop` branch:
 
 ```sh
+rm -rf ~/Work/mingw-w64-gcc-xpack.git && \
+mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
@@ -30,9 +33,12 @@ git clone \
 Same for the helper and link it to the central xPacks store:
 
 ```sh
+rm -rf ~/Work/xbb-helper-xpack.git && \
+mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
+  ~/Work/xbb-helper-xpack.git && \
 xpm link -C ~/Work/xbb-helper-xpack.git
 ```
 
