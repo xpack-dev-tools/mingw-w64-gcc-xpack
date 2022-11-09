@@ -35,7 +35,8 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
+# build/Release
+build/
 
 # Dependency directories
 node_modules/
@@ -102,21 +103,19 @@ dist
 
 # TernJS port file
 .tern-port
-# added for xPack
-
-.vscode/c_cpp_properties.json
 
 # xpm
-node_modules/
 xpacks/
-build/
-
-*.tgz
+xpack-*.tgz
 
 # Windows
 Thumbs.db
 
 # macOS
 .DS_Store
+
+.vscode/c_cpp_properties.json
+
+build/
 
 # end

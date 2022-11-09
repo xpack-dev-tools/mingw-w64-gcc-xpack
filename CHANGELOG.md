@@ -2,6 +2,11 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2022-11-09
+
+* prepare v12.2.0-1
+* update for xbb v5.0.0
+
 ## 2022-09-25
 
 * v11.3.0-1.3 published on npmjs.com

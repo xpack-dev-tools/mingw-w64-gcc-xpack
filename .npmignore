@@ -12,19 +12,6 @@ scripts/
 tests/
 
 README-*
-*.tgz
 LICENSE-*
-
-.vscode/
-build/
-ci/
-docs/
-tests*/
-example/
-
-.clang-*
-.cmake-format
-CONTRIBUTING**
-README-MAINTAINER*.md
 
 *.tgz

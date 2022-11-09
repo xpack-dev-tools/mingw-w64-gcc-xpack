@@ -1,13 +1,67 @@
-# How to make a new release (maintainer info)
+[![license](https://img.shields.io/github/license/xpack-dev-tools/mingw-w64-gcc-xpack)](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/blob/xpack/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/xpack-dev-tools/mingw-w64-gcc-xpack.svg)](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/issues/)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/xpack-dev-tools/mingw-w64-gcc-xpack.svg)](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/pulls)
+
+# Maintainer info
+
+## Project repository
+
+The project is hosted on GitHub:
+
+- <https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git>
+
+To clone the stable branch (`xpack`), run the following commands in a
+terminal (on Windows use the _Git Bash_ console):
+
+```sh
+rm -rf ~/Work/mingw-w64-gcc-xpack.git; \
+git clone https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
+  ~/Work/mingw-w64-gcc-xpack.git
+```
+
+For development purposes, clone the `xpack-develop` branch:
+
+```sh
+rm -rf ~/Work/mingw-w64-gcc-xpack.git; \
+mkdir -p ~/Work; \
+git clone \
+  --branch xpack-develop \
+  https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
+  ~/Work/mingw-w64-gcc-xpack.git
+```
+
+Same for the helper and link it to the central xPacks store:
+
+```sh
+rm -rf ~/Work/xbb-helper-xpack.git; \
+mkdir -p ~/Work; \
+git clone \
+  --branch xpack-develop \
+  https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
+  ~/Work/xbb-helper-xpack.git; \
+xpm link -C ~/Work/xbb-helper-xpack.git
+```
+
+Or, if the repos were already cloned:
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull
+
+git -C ~/Work/xbb-helper-xpack.git pull
+xpm link -C ~/Work/xbb-helper-xpack.git
+```
+
+## Prerequisites
+
+A recent [xpm](https://xpack.github.io/xpm/), which is a portable
+[Node.js](https://nodejs.org/) command line application.
 
 ## Release schedule
 
 The xPack MinGW-w64 GCC release schedule generally follows the original GNU
-[releases](https://gcc.gnu.org/releases.html), but with a
-several weeks filter, which means that releases that are shortly
-overwritten are skipped. Also initial x.y.0 releases are skipped.
+[releases](https://gcc.gnu.org/releases.html).
 
-## Prepare the build
+## How to make new releases
 
 Before starting the build, perform some checks and tweaks.
 
@@ -17,32 +71,18 @@ The build scripts are available in the `scripts` folder of the
 [`xpack-dev-tools/mingw-w64-gcc-xpack`](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack)
 Git repo.
 
-To download them on a new machine, clone the `xpack-develop` branch:
-
-```sh
-rm -rf ${HOME}/Work/mingw-w64-gcc-xpack.git; \
-git clone \
-  --branch xpack-develop \
-  https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git \
-  ${HOME}/Work/mingw-w64-gcc-xpack.git; \
-git -C ${HOME}/Work/mingw-w64-gcc-xpack.git submodule update --init --recursive
-```
-
-> Note: the repository uses submodules; for a successful build it is
-> mandatory to recurse the submodules.
+To download them on a new machine, clone the `xpack-develop` branch,
+as seen above.
 
 ### Check Git
 
 In the `xpack-dev-tools/mingw-w64-gcc-xpack` Git repo:
 
 - switch to the `xpack-develop` branch
+- pull new changes
 - if needed, merge the `xpack` branch
 
 No need to add a tag here, it'll be added when the release is created.
-
-### Update helper
-
-With a git client, go to the helper repo and update to the latest master commit.
 
 ### Check the latest upstream release
 
@@ -52,8 +92,8 @@ With a git client, go to the helper repo and update to the latest master commit.
 
 ### Increase the version
 
-Determine the version (like `11.3.0`) and update the `scripts/VERSION`
-file; the format is `11.3.0-1`. The fourth number is the xPack release number
+Determine the version (like `12.2.0`) and update the `scripts/VERSION`
+file; the format is `12.2.0-1`. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -63,7 +103,7 @@ Check GitHub issues and pull requests:
 
 - <https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/issues/>
 
-and fix them; assign them to a milestone (like `11.3.0-1`).
+and fix them; assign them to a milestone (like `12.2.0-1`).
 
 ### Check `README.md`
 
@@ -73,24 +113,19 @@ but in the version specific release page.
 
 ### Update versions in `README` files
 
-- update version in `README-RELEASE.md`
-- update version in `README-BUILD.md`
+- update version in `README-MAINTAINER.md`
 - update version in `README.md`
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _* v11.3.0-1 prepared_
-- commit with a message like _prepare v11.3.0-1_
-
-Note: if you missed to update the `CHANGELOG.md` before starting the build,
-edit the file and rerun the build, it should take only a few minutes to
-recreate the archives with the correct file.
+- add a new entry like _* v12.2.0-1 prepared_
+- commit with a message like _prepare v12.2.0-1_
 
 ### Update the version specific code
 
-- open the `common-versions-source.sh` file
+- open the `scripts/versioning.sh` file
 - add a new `if` with the new version before the existing code
 
 ### Merge upstream repo
@@ -112,40 +147,266 @@ Note: the current versions do not use the fork repo.
 
 ## Build
 
+The builds currently run on 5 dedicated machines (Intel GNU/Linux,
+Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Apple Silicon macOS).
+
 ### Development run the build scripts
 
-Before the real build, run a test build on the development machine (`wksi`)
-or the production machine (`xbbma`, `xbbmi`):
+Before the real build, run test builds on all platforms.
+
+#### Visual Studio Code
+
+All actions are defined as **xPack actions** and can be
+conveniently triggered via the VS Code graphical interface.
+
+#### Intel macOS
+
+For Intel macOS, first run the build on the development machine
+(`wksi`, a recent macOS):
+
+Update the build scripts (or clone them at the first use):
 
 ```sh
-rm -rf ~/Work/mingw-w64-gcc-[0-9]*-*
+git -C ~/Work/mingw-w64-gcc-xpack.git pull
 
-caffeinate bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --macos
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-Similarly on the Intel Linux (`xbbli`):
+If the helper is also under development and needs changes,
+update it too:
 
 ```sh
-sudo rm -rf ~/Work/mingw-w64-gcc-[0-9]*-*
-
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --linux64
-
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --win64
+git -C ~/Work/xbb-helper-xpack.git pull
 ```
 
-... on the Arm Linux 64-bit (`xbbla64`):
+Install project dependencies:
 
 ```sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --arm64
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-... and on the Arm Linux (`xbbla32`):
+If the writable helper is used,
+link it in the place of the read-only package:
 
 ```sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/build.sh --develop --arm32
+xpm link -C ~/Work/xbb-helper-xpack.git
+
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-Work on the scripts until all platforms pass the build.
+For repeated builds, clean the build folder and install de
+build configuration dependencies:
+
+```sh
+xpm run deep-clean --config darwin-x64  -C ~/Work/mingw-w64-gcc-xpack.git
+
+xpm install --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+Run the native build:
+
+```sh
+caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+The build takes about 22 minutes.
+
+When functional, push the `xpack-develop` branch to GitHub.
+
+Run the native build on the production machine
+(`xbbmi`, an older macOS);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbmi
+```
+
+Repeat the same steps as before.
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run deep-clean --config darwin-x64  -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+About 26 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/darwin-x64/deploy
+total 65392
+-rw-r--r--  1 ilg  staff  32955568 Nov  2 08:47 xpack-mingw-w64-gcc-12.2.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff       107 Nov  2 08:47 xpack-mingw-w64-gcc-12.2.0-1-darwin-x64.tar.gz.sha
+```
+
+#### Apple Silicon macOS
+
+Run the native build on the production machine
+(`xbbma`, an older macOS);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbma
+```
+
+Update the build scripts (or clone them at the first use) and run the following:
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run deep-clean --config darwin-arm64  -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+caffeinate xpm run build-develop --config darwin-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+About 12 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/darwin-arm64/deploy
+total 53040
+-rw-r--r--  1 ilg  staff  27124079 Nov  2 08:38 xpack-mingw-w64-gcc-12.2.0-1-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff       109 Nov  2 08:38 xpack-mingw-w64-gcc-12.2.0-1-darwin-arm64.tar.gz.sha
+```
+
+#### Intel GNU/Linux
+
+Run the docker build on the production machine (`xbbli`);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbli
+```
+
+##### Build the GNU/Linux binaries
+
+Update the build scripts (or clone them at the first use) and run the following:
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run deep-clean --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-build-develop --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+About 12 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/linux-x64/deploy
+total 34664
+-rw-r--r-- 1 ilg ilg 35491744 Nov  2 07:02 xpack-mingw-w64-gcc-12.2.0-1-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg      106 Nov  2 07:02 xpack-mingw-w64-gcc-12.2.0-1-linux-x64.tar.gz.sha
+```
+
+##### Build the Windows binaries
+
+Clean the build folder and prepare the docker container:
+
+```sh
+xpm run deep-clean --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-build-develop --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+```
+
+About 13 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/win32-x64/deploy
+total 41300
+-rw-r--r-- 1 ilg ilg 42284069 Nov  2 07:24 xpack-mingw-w64-gcc-12.2.0-1-win32-x64.zip
+-rw-r--r-- 1 ilg ilg      103 Nov  2 07:24 xpack-mingw-w64-gcc-12.2.0-1-win32-x64.zip.sha
+```
+
+#### Arm GNU/Linux 64-bit
+
+Run the docker build on the production machine (`xbbla64`);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbla64
+```
+
+Update the build scripts (or clone them at the first use) and run the following:
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
+xpm run deep-clean --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-build-develop --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+About 1h30 later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/linux-arm64/deploy
+total 33940
+-rw-r--r-- 1 ilg ilg 34746510 Nov  2 16:10 xpack-mingw-w64-gcc-12.2.0-1-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg      108 Nov  2 16:10 xpack-mingw-w64-gcc-12.2.0-1-linux-arm64.tar.gz.sha
+```
+
+#### Arm GNU/Linux 32-bit
+
+Run the docker build on the production machine (`xbbla32`);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbla32
+```
+
+Update the build scripts (or clone them at the first use) and run the following:
+
+```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
+xpm run deep-clean --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-build-develop --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
+```
+
+About 1h10 later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/mingw-w64-gcc-xpack.git/build/linux-arm/deploy
+total 32688
+-rw-r--r-- 1 ilg ilg 33466799 Nov  2 17:21 xpack-mingw-w64-gcc-12.2.0-1-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg      106 Nov  2 17:21 xpack-mingw-w64-gcc-12.2.0-1-linux-arm.tar.gz.sha
+```
+
+### Files cache
+
+The XBB build scripts use a local cache such that files are downloaded only
+during the first run, later runs being able to use the cached files.
+
+However, occasionally some servers may not be available, and the builds
+may fail.
+
+The workaround is to manually download the files from an alternate
+location (like
+<https://github.com/xpack-dev-tools/files-cache/tree/master/libs>),
+place them in the XBB cache (`Work/cache`) and restart the build.
 
 ## Push the build scripts
 
@@ -163,7 +424,7 @@ The automation is provided by GitHub Actions and three self-hosted runners.
 Run the `generate-workflows` to re-generate the
 GitHub workflow files; commit and push if necessary.
 
-- on the macOS machine (`xbbmi`) open ssh sessions to the build
+- on a permanently running machine (`berry`) open ssh sessions to the build
 machines (`xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
 
 ```sh
@@ -183,7 +444,7 @@ screen -S ga
 # Ctrl-a Ctrl-d
 ```
 
-Check that both the project Git and the submodule are pushed to GitHub.
+Check that the project is pushed to GitHub.
 
 To trigger the GitHub Actions build, use the xPack action:
 
@@ -196,11 +457,11 @@ To trigger the GitHub Actions build, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbli
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla64
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla32
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbmi
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbma
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -231,20 +492,6 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
-On the macOS machine (`xbbmi`) open a ssh sessions to the Arm/Linux
-test machine `xbbla`:
-
-```sh
-caffeinate ssh xbbla
-```
-
-Start both runners (to allow the 32/64-bit tests to run in parallel):
-
-```sh
-~/actions-runners/xpack-dev-tools/1/run.sh &
-~/actions-runners/xpack-dev-tools/2/run.sh &
-```
-
 To trigger the GitHub Actions tests, use the xPack actions:
 
 - `trigger-workflow-test-prime`
@@ -254,9 +501,9 @@ To trigger the GitHub Actions tests, use the xPack actions:
 These are equivalent to:
 
 ```sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/tests/trigger-workflow-test-prime.sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-prime.sh
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -279,7 +526,7 @@ To trigger the Travis test, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ${HOME}/Work/mingw-w64-gcc-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
+bash ~/Work/mingw-w64-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-travis-macos.sh
 ```
 
 This script requires the `TRAVIS_COM_TOKEN` variable to be present
@@ -295,20 +542,20 @@ Install the binaries on all platforms.
 On GNU/Linux and macOS systems, use:
 
 ```sh
-.../xpack-mingw-w64-gcc-11.3.0-1/bin/mingw-w64-gcc --version
-gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
+.../xpack-mingw-w64-gcc-12.2.0-1/bin/mingw-w64-gcc --version
+gcc (xPack MinGW-w64 GCC x86_64) 12.2.0
 ```
 
 On Windows use:
 
 ```dos
-...\xpack-mingw-w64-gcc-11.3.0-1\bin\gcc --version
-gcc (xPack MinGW-w64 GCC x86_64) 11.3.0
+...\xpack-mingw-w64-gcc-12.2.0-1\bin\gcc --version
+gcc (xPack MinGW-w64 GCC x86_64) 12.2.0
 ```
 
 ## Create a new GitHub pre-release draft
 
-- in `CHANGELOG.md`, add the release date and a message like _* v11.3.0-1 released_
+- in `CHANGELOG.md`, add the release date and a message like _* v12.2.0-1 released_
 - commit with _CHANGELOG update_
 - check and possibly update the `templates/body-github-release-liquid.md`
 - push the `xpack-develop` branch
@@ -319,8 +566,8 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/)
-tagged like **v11.3.0-1** (mind the dash in the middle!) and
-named like **xPack MinGW-w64 GCC v11.3.0-1** (mind the dash),
+tagged like **v12.2.0-1** (mind the dash in the middle!) and
+named like **xPack MinGW-w64 GCC v12.2.0-1** (mind the dash),
 with all binaries attached.
 
 - edit the draft and attach it to the `xpack-develop` branch (important!)
@@ -343,7 +590,7 @@ If any, refer to closed
 ## Update the preview Web
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
-  use a message like _xPack MinGW-w64 GCC v11.3.0-1 released_
+  use a message like _xPack MinGW-w64 GCC v12.2.0-1 released_
 - push to GitHub
 - wait for the GitHub Pages build to complete
 - the preview web is <https://xpack.github.io/web-preview/news/>
@@ -361,7 +608,7 @@ If any, refer to closed
 Note: at this moment the system should send a notification to all clients
 watching this project.
 
-## Update the README-BUILD listings and examples
+## Update the READMEs listings and examples
 
 - check and possibly update the `ls -l` output
 - check and possibly update the output of the `--version` runs
@@ -385,18 +632,18 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _package.json: update urls for 11.3.0-1.3 release_ (without _v_)
+  _package.json: update urls for 12.2.0-1.3 release_ (without _v_)
 
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _* v11.3.0-1.3 published on npmjs.com_
-- commit with a message like _CHANGELOG: publish npm v11.3.0-1.3_
+- update `CHANGELOG.md`, add a line like _* v12.2.0-1.3 published on npmjs.com_
+- commit with a message like _CHANGELOG: publish npm v12.2.0-1.3_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- `npm version 11.3.0-1.3`; the first 4 numbers are the same as the
+- `npm version 12.2.0-1.3`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags`
@@ -425,12 +672,12 @@ The tests results are available from the
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @xpack-dev-tools/mingw-w64-gcc`
-- `npm dist-tag add @xpack-dev-tools/mingw-w64-gcc@11.3.0-1.3 latest`
+- `npm dist-tag add @xpack-dev-tools/mingw-w64-gcc@12.2.0-1.3 latest`
 - `npm dist-tag ls @xpack-dev-tools/mingw-w64-gcc`
 
 In case the previous version is not functional and needs to be unpublished:
 
-- `npm unpublish @xpack-dev-tools/mingw-w64-gcc@11.3.0-1.X`
+- `npm unpublish @xpack-dev-tools/mingw-w64-gcc@12.2.0-1.3`
 
 ## Update the Web
 
@@ -452,12 +699,12 @@ In case the previous version is not functional and needs to be unpublished:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack MinGW-w64 GCC v11.3.0-1 released**
+- paste the release name like **xPack MinGW-w64 GCC v12.2.0-1 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/mingw-w64-gcc/releases/)
 - click the **Tweet** button
 
-## Remove pre-release binaries
+## Remove the pre-release binaries
 
 - go to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/>
 - remove the test binaries
@@ -467,5 +714,5 @@ In case the previous version is not functional and needs to be unpublished:
 Run the xPack action `trigger-workflow-deep-clean`, this
 will remove the build folders on all supported platforms.
 
-The tests results are available from the
+The results are available from the
 [Actions](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/actions/) page.
