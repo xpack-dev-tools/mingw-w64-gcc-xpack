@@ -79,6 +79,13 @@ function build_mingw2_gcc_first()
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
 
+      if [ "${XBB_HOST_PLATFORM}" == "win32" ]
+      then
+        # x86_64-w64-mingw32/bin/as: insn-emit.o: too many sections (32823)
+        # `-Wa,-mbig-obj` is passed to the wrong compiler, and fails
+        CXXFLAGS=$(echo ${CXXFLAGS} | sed -e 's|-ffunction-sections -fdata-sections||')
+      fi
+
       # LDFLAGS="${XBB_LDFLAGS_APP_STATIC_GCC}"
       LDFLAGS="${XBB_LDFLAGS_APP}"
       xbb_adjust_ldflags_rpath
