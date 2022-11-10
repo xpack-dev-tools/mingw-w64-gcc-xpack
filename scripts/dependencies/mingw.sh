@@ -218,7 +218,7 @@ function build_mingw2_widl()
       mkdir -p "${XBB_BUILD_FOLDER_PATH}/${mingw_widl_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${mingw_widl_folder_name}"
 
-      xbb_activate_installed_dev
+      xbb_activate_dependencies_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
@@ -303,7 +303,7 @@ function build_mingw2_libmangle()
       mkdir -p "${XBB_BUILD_FOLDER_PATH}/${mingw_libmangle_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${mingw_libmangle_folder_name}"
 
-      # xbb_activate_installed_dev
+      # xbb_activate_dependencies_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
@@ -385,7 +385,7 @@ function build_mingw2_gendef()
       cd "${XBB_BUILD_FOLDER_PATH}/${mingw_gendef_folder_name}"
 
       # To pick libmangle.
-      xbb_activate_installed_dev
+      xbb_activate_dependencies_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"

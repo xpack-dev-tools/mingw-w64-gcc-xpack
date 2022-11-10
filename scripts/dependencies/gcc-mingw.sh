@@ -73,7 +73,7 @@ function build_mingw2_gcc_first()
       mkdir -pv "${XBB_BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
 
-      xbb_activate_installed_dev "${name_suffix}"
+      xbb_activate_dependencies_dev "${name_suffix}"
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
@@ -249,7 +249,7 @@ function build_mingw2_gcc_final()
       mkdir -pv "${XBB_BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${mingw_gcc_folder_name}"
 
-      xbb_activate_installed_dev
+      xbb_activate_dependencies_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
@@ -308,6 +308,7 @@ function build_mingw2_gcc_final()
       if true
       then
 
+        # TODO!
         # For *-w64-mingw32-strip
         xbb_activate_installed_bin
 
