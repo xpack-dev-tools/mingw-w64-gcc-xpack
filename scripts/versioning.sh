@@ -130,8 +130,8 @@ exit 1
     # -------------------------------------------------------------------------
     # Build the application binaries.
 
-    xbb_set_binaries_install "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
-    xbb_set_libraries_install "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
     for triplet in "${XBB_MINGW_TRIPLETS[@]}"
     do
