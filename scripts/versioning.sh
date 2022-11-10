@@ -14,46 +14,49 @@ function xbb_activate_gcc_bootstrap_bins()
   export PATH="${XBB_BINARIES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}/bin:${PATH}"
 }
 
-# The XBB MinGW GCC lacks `__LIBGCC_EH_FRAME_SECTION_NAME__`, needed
-# by modern GCC, so the workaround is to build a bootstrap toolchain.
+# The mingw build requires exactly the same version, otherwise some
+# headers might not be there, like:
+# libsrc/bits.c:15:10: fatal error: bits2_5.h: No such file or directory
+
+# The only way to guarantee the same version is to build a
+# bootstrap toolchain.
 
 function build_mingw_bootstrap()
 {
   # Build a bootstrap toolchain, that runs on Linux and creates Windows
   # binaries.
   (
-    mkdir -p "${XBB_BINARIES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}"
-    mkdir -p "${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}"
+    build_libiconv "${XBB_LIBICONV_VERSION}"
 
-    # Do not use yet, it requires some more work for bootstrap.
-    # build_zlib "${XBB_ZLIB_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
+    build_zlib "${XBB_ZLIB_VERSION}"
 
     # Libraries, required by gcc & other.
-    build_gmp "${XBB_GMP_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
-    build_mpfr "${XBB_MPFR_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
-    build_mpc "${XBB_MPC_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
-    build_isl "${XBB_ISL_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
+    build_gmp "${XBB_GMP_VERSION}"
+    build_mpfr "${XBB_MPFR_VERSION}"
+    build_mpc "${XBB_MPC_VERSION}"
+    build_isl "${XBB_ISL_VERSION}"
 
-    build_libiconv "${XBB_LIBICONV_VERSION}" "${XBB_BOOTSTRAP_SUFFIX}"
+    build_xz "${XBB_XZ_VERSION}"
 
-    set_bins_install "${APP_INSTALL_FOLDER_PATH}"
+    # depends on zlib, xz, (lz4)
+    build_zstd "${XBB_ZSTD_VERSION}"
 
     for triplet in "${XBB_MINGW_TRIPLETS[@]}"
     do
 
-      build_mingw2_binutils "${XBB_BINUTILS_VERSION}" "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
+      build_mingw2_binutils "${XBB_BINUTILS_VERSION}" "${triplet}"
 
       # Deploy the headers, they are needed by the compiler.
-      build_mingw2_headers "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
+      build_mingw2_headers "${triplet}"
 
       # Build only the compiler, without libraries.
-      build_mingw2_gcc_first "${XBB_GCC_VERSION}" "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
+      build_mingw2_gcc_first "${XBB_GCC_VERSION}" "${triplet}"
 
       # Build some native tools.
       # build_mingw_libmangle
       # build_mingw_gendef
-      build_mingw2_widl "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}" # Refers to mingw headers.
-
+      build_mingw2_widl "${triplet}" # Refers to mingw headers.
+exit 1
       (
         xbb_activate_gcc_bootstrap_bins
 
@@ -61,12 +64,12 @@ function build_mingw_bootstrap()
           # Fails if CC is defined to a native compiler.
           xbb_prepare_gcc_env "${triplet}-"
 
-          build_mingw2_crt "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
-          build_mingw2_winpthreads "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
+          build_mingw2_crt "${triplet}"
+          build_mingw2_winpthreads "${triplet}"
         )
 
         # With the run-time available, build the C/C++ libraries and the rest.
-        build_mingw2_gcc_final "${triplet}" "${XBB_BOOTSTRAP_SUFFIX}"
+        build_mingw2_gcc_final "${triplet}" # "${XBB_BOOTSTRAP_SUFFIX}"
       )
 
     done
@@ -84,29 +87,21 @@ function build_common()
     # -------------------------------------------------------------------------
     # Build the native dependencies.
 
-    # The bootstrap is needed because the 32-bit toolchain is not
-    # available in the XBB Docker images.
-    if [ "${XBB_HOST_PLATFORM}" == "win32" ]
-    then
-      (
-        # Subshell to keep the native environment isolated.
-
-        set_xbb_env "native"
-        set_compiler_env
-
-        build_mingw_bootstrap
-      )
-
-      xbb_prepare_gcc_env "x86_64-w64-mingw32-"
-
-      # Use the newly compiled bootstrap compiler.
-      xbb_activate_gcc_bootstrap_bins
-    fi
+    # None.
 
     # -------------------------------------------------------------------------
     # Build the target dependencies.
 
     xbb_set_target "mingw-w64-native"
+
+    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
+    then
+
+      build_mingw_bootstrap
+exit 1
+      xbb_set_target "mingw-w64-cross"
+
+    fi
 
     build_libiconv "${XBB_LIBICONV_VERSION}"
 
