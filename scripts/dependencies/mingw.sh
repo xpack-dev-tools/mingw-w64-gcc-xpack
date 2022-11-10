@@ -86,7 +86,7 @@ function prepare_mingw2_config_options_common()
 
   config_options_common=()
 
-  local prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}
+  local prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}
   if [ $# -ge 1 ]
   then
     config_options_common+=("--prefix=$1")
@@ -145,7 +145,7 @@ function build_mingw2_headers()
           fi
 
           # Use architecture subfolders.
-          prepare_mingw2_config_options_common "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}" # Arch
+          prepare_mingw2_config_options_common "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}" # Arch
           config_options=("${config_options_common[@]}")
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
@@ -248,14 +248,14 @@ function build_mingw2_widl()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # Arch /usr
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # Arch /usr
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")
           config_options+=("--host=${XBB_HOST_TRIPLET}") # Native!
           config_options+=("--target=${mingw_triplet}")
 
-          config_options+=("--with-widl-includedir=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/include")
+          config_options+=("--with-widl-includedir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/include")
 
           run_verbose bash ${DEBUG} "${XBB_SOURCES_FOLDER_PATH}/${XBB_MINGW_SRC_FOLDER_NAME}/mingw-w64-tools/widl/configure" \
             "${config_options[@]}"
@@ -415,7 +415,7 @@ function build_mingw2_gendef()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}")
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}")
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/share/man")
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")
@@ -524,11 +524,11 @@ function build_mingw2_crt()
 
           config_options=()
 
-          prepare_mingw2_config_options_common "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}" # Arch /usr
+          prepare_mingw2_config_options_common "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}" # Arch /usr
           config_options=("${config_options_common[@]}")
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/man")
 
-          config_options+=("--with-sysroot=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
+          config_options+=("--with-sysroot=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")
           config_options+=("--host=${mingw_triplet}") # Arch
@@ -568,7 +568,7 @@ function build_mingw2_crt()
         # make install-strip
         run_verbose make install-strip
 
-        ls -l "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}"
+        ls -l "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}"
 
       ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${mingw_crt_folder_name}/make-output-$(ndate).txt"
     )
@@ -640,14 +640,14 @@ function build_mingw2_winpthreads()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}") # Arch /usr
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}") # Arch /usr
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")
           config_options+=("--host=${mingw_triplet}") # Arch
           config_options+=("--target=${mingw_triplet}")
 
-          config_options+=("--with-sysroot=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
+          config_options+=("--with-sysroot=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}") # HB
 
           config_options+=("--enable-static") # Arch
           config_options+=("--enable-shared") # Arch
@@ -673,10 +673,10 @@ function build_mingw2_winpthreads()
         then
           # GCC installs all DLLs in lib; for consistency, copy
           # libwinpthread-1.dll there too.
-          run_verbose cp -v "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/bin/libwinpthread-1.dll" \
-            "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/lib/"
+          run_verbose cp -v "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/bin/libwinpthread-1.dll" \
+            "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/lib/"
 
-          run_verbose ls -l "${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/lib/libwinpthread"*
+          run_verbose ls -l "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}/lib/libwinpthread"*
         fi
 
       ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${mingw_build_winpthreads_folder_name}/make-output-$(ndate).txt"
@@ -746,7 +746,7 @@ function build_mingw2_winstorecompat()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}") # Arch /usr
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${mingw_name_suffix}/${mingw_triplet}") # Arch /usr
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/man")
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")

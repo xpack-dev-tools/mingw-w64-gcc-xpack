@@ -115,8 +115,8 @@ function build_mingw2_gcc_first()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}") # Arch /usr
-          config_options+=("--libexecdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/lib") # Arch /usr/lib
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}") # Arch /usr
+          config_options+=("--libexecdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/lib") # Arch /usr/lib
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${name_suffix}/share/man")
 
           config_options+=("--build=${XBB_BUILD_TRIPLET}")
@@ -142,7 +142,7 @@ function build_mingw2_gcc_first()
             config_options+=("--disable-symvers")
           fi
 
-          # config_options+=("--with-sysroot=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
+          # config_options+=("--with-sysroot=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${XBB_GCC_BRANDING}")
 
           config_options+=("--with-default-libstdcxx-abi=new")
@@ -292,7 +292,7 @@ function build_mingw2_gcc_final()
       if [ -z "${name_suffix}"]
       then
         (
-          cd "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}"
+          cd "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}"
           run_verbose find . -name '*.dll'
           # The DLLs are expected to be in the /${mingw_triplet}/lib folder.
           run_verbose find bin lib -name '*.dll' -exec cp -v '{}' "${mingw_triplet}/lib" ';'
@@ -300,7 +300,7 @@ function build_mingw2_gcc_final()
       fi
 
       # Remove weird files like x86_64-w64-mingw32-x86_64-w64-mingw32-c++.exe
-      run_verbose rm -rf "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_triplet}-${mingw_triplet}-"*.exe
+      run_verbose rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/bin/${mingw_triplet}-${mingw_triplet}-"*.exe
 
     ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/make-final-output-$(ndate).txt"
 
@@ -314,7 +314,7 @@ function build_mingw2_gcc_final()
         echo
         echo "Stripping ${mingw_triplet}-gcc${name_suffix} libraries..."
 
-        cd "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}" # ! usr
+        cd "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}" # ! usr
 
         set +e
         find ${mingw_triplet} \
@@ -348,7 +348,7 @@ function build_mingw2_gcc_final()
           # The tests also need the libraries DLLs; later on are copied.
           export WINEPATH="${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin"
         fi
-        test_mingw2_gcc "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
+        test_mingw2_gcc "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
       ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${mingw_gcc_folder_name}/test-final-output-$(ndate).txt"
     fi
 
@@ -363,7 +363,7 @@ function build_mingw2_gcc_final()
 
   if [ -z "${name_suffix}" ]
   then
-    tests_add "test_mingw2_gcc" "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
+    tests_add "test_mingw2_gcc" "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
   fi
 }
 

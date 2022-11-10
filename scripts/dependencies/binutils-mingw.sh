@@ -95,7 +95,7 @@ function build_mingw2_binutils()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}") # Arch, HB
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}") # Arch, HB
           # Ineffective.
           # config_options+=("--libdir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${name_suffix}/lib")
           config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${name_suffix}/share/man")
@@ -110,7 +110,7 @@ function build_mingw2_binutils()
           fi
 
           # TODO: why HB uses it and Arch does not?
-          # config_options+=("--with-sysroot=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
+          # config_options+=("--with-sysroot=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}")
           config_options+=("--with-pkgversion=${XBB_BINUTILS_BRANDING}")
 
           config_options+=("--with-libiconv-prefix=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}${name_suffix}")
@@ -191,7 +191,7 @@ function build_mingw2_binutils()
     )
 
     (
-      test_mingw2_binutils "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
+      test_mingw2_binutils "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
     ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${mingw_binutils_folder_name}/test-output-$(ndate).txt"
 
     hash -r
@@ -205,7 +205,7 @@ function build_mingw2_binutils()
 
   if [ -z "${name_suffix}" ]
   then
-    tests_add "test_mingw2_binutils" "${XBB_BINARIES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
+    tests_add "test_mingw2_binutils" "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${name_suffix}/bin" "${mingw_triplet}" "${name_suffix}"
   fi
 }
 

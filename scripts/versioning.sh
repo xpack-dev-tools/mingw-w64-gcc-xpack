@@ -11,7 +11,7 @@
 
 function xbb_activate_gcc_bootstrap_bins()
 {
-  export PATH="${XBB_BINARIES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}/bin:${PATH}"
+  export PATH="${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}/bin:${PATH}"
 }
 
 # The mingw build requires exactly the same version, otherwise some
@@ -164,7 +164,7 @@ exit 1
     done
 
     # Save a few MB.
-    rm -rf "${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/info"
+    rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
   )
 }
 
