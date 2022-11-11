@@ -9,163 +9,119 @@
 
 # -----------------------------------------------------------------------------
 
-function xbb_activate_gcc_bootstrap_bins()
-{
-  export PATH="${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}${XBB_BOOTSTRAP_SUFFIX}/bin:${PATH}"
-}
-
-# The mingw build requires exactly the same version, otherwise some
+# To build mingw-w64-gcc for Windows on Linux, a bootstrap with exactly the
+# same version of GCC & mingw-w64 is required, otherwise some
 # headers might not be there, like:
 # libsrc/bits.c:15:10: fatal error: bits2_5.h: No such file or directory
 
-# The only way to guarantee the same version is to build a
-# bootstrap toolchain.
-
-function build_mingw_bootstrap()
+function build_mingw_gcc_libs()
 {
-  # Build a bootstrap toolchain, that runs on Linux and creates Windows
-  # binaries.
-  (
-    build_libiconv "${XBB_LIBICONV_VERSION}"
+  build_libiconv "${XBB_LIBICONV_VERSION}"
 
-    build_zlib "${XBB_ZLIB_VERSION}"
+  # New zlib, used in most of the tools.
+  # depends=('glibc')
+  build_zlib "${XBB_ZLIB_VERSION}"
 
-    # Libraries, required by gcc & other.
-    build_gmp "${XBB_GMP_VERSION}"
-    build_mpfr "${XBB_MPFR_VERSION}"
-    build_mpc "${XBB_MPC_VERSION}"
-    build_isl "${XBB_ISL_VERSION}"
+  # Libraries, required by gcc & other.
+  # depends=('gcc-libs' 'sh')
+  build_gmp "${XBB_GMP_VERSION}"
 
-    build_xz "${XBB_XZ_VERSION}"
+  # depends=('gmp>=5.0')
+  build_mpfr "${XBB_MPFR_VERSION}"
 
-    # depends on zlib, xz, (lz4)
-    build_zstd "${XBB_ZSTD_VERSION}"
+  # depends=('mpfr')
+  build_mpc "${XBB_MPC_VERSION}"
 
-    for triplet in "${XBB_MINGW_TRIPLETS[@]}"
-    do
+  # depends=('gmp')
+  build_isl "${XBB_ISL_VERSION}"
 
-      build_mingw2_binutils "${XBB_BINUTILS_VERSION}" "${triplet}"
+  # depends=('sh')
+  build_xz "${XBB_XZ_VERSION}"
 
-      # Deploy the headers, they are needed by the compiler.
-      build_mingw2_headers "${triplet}"
+  # depends on zlib, xz, (lz4)
+  build_zstd "${XBB_ZSTD_VERSION}"
+}
 
-      # Build only the compiler, without libraries.
-      build_mingw2_gcc_first "${XBB_GCC_VERSION}" "${triplet}"
+function build_mingw_gcc()
+{
+  for triplet in "${XBB_MINGW_TRIPLETS[@]}"
+  do
 
-      # Build some native tools.
-      # build_mingw_libmangle
-      # build_mingw_gendef
-      build_mingw2_widl "${triplet}" # Refers to mingw headers.
-exit 1
+    build_mingw_binutils "${XBB_BINUTILS_VERSION}" "${triplet}"
+
+    # Deploy the headers, they are needed by the compiler.
+    build_mingw_headers "${triplet}"
+
+    # Build only the compiler, without libraries.
+    build_mingw_gcc_first "${XBB_GCC_VERSION}" "${triplet}"
+
+    build_mingw_widl "${triplet}" # Refers to mingw headers.
+
+    # Build some native tools.
+    build_mingw_libmangle "${triplet}"
+    build_mingw_gendef "${triplet}"
+
+    (
+      xbb_activate_installed_bin
       (
-        xbb_activate_gcc_bootstrap_bins
+        # Fails if CC is defined to a native compiler.
+        xbb_prepare_gcc_env "${triplet}-"
 
-        (
-          # Fails if CC is defined to a native compiler.
-          xbb_prepare_gcc_env "${triplet}-"
-
-          build_mingw2_crt "${triplet}"
-          build_mingw2_winpthreads "${triplet}"
-        )
-
-        # With the run-time available, build the C/C++ libraries and the rest.
-        build_mingw2_gcc_final "${triplet}" # "${XBB_BOOTSTRAP_SUFFIX}"
+        build_mingw_crt "${triplet}"
+        build_mingw_winpthreads "${triplet}"
       )
 
-    done
-  )
+      # With the run-time available, build the C/C++ libraries and the rest.
+      build_mingw_gcc_final "${triplet}" # "${XBB_BOOTSTRAP_SUFFIX}"
+    )
+
+  done
 }
 
 # -----------------------------------------------------------------------------
 
 function build_common()
 {
-  (
-    # download_gcc "${XBB_GCC_VERSION}"
-    download_mingw "${XBB_MINGW_VERSION}"
+  download_mingw "${XBB_MINGW_VERSION}"
 
-    # -------------------------------------------------------------------------
-    # Build the native dependencies.
+  # -------------------------------------------------------------------------
+  # Build the native dependencies.
 
-    # None.
+  # None.
 
-    # -------------------------------------------------------------------------
-    # Build the target dependencies.
+  # -------------------------------------------------------------------------
+  # Build the target dependencies.
 
-    xbb_set_target "mingw-w64-native"
+  xbb_set_target "mingw-w64-native"
 
-    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
-    then
+  if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
+  then
 
-      build_mingw_bootstrap
-exit 1
-      xbb_set_target "mingw-w64-cross"
+    (
+      # Build the bootstrap (a native Linux application).
+      # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
+      build_mingw_gcc_libs
 
-    fi
+      build_mingw_gcc
+    )
 
-    build_libiconv "${XBB_LIBICONV_VERSION}"
+    xbb_set_target "mingw-w64-cross"
 
-    # New zlib, used in most of the tools.
-    # depends=('glibc')
-    build_zlib "${XBB_ZLIB_VERSION}"
+    xbb_activate_installed_bin
+  fi
 
-    # Libraries, required by gcc & other.
-    # depends=('gcc-libs' 'sh')
-    build_gmp "${XBB_GMP_VERSION}"
+  build_mingw_gcc_libs
 
-    # depends=('gmp>=5.0')
-    build_mpfr "${XBB_MPFR_VERSION}"
+  # -------------------------------------------------------------------------
+  # Build the application binaries.
 
-    # depends=('mpfr')
-    build_mpc "${XBB_MPC_VERSION}"
+  xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+  xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-    # depends=('gmp')
-    build_isl "${XBB_ISL_VERSION}"
+  build_mingw_gcc
 
-    build_xz "${XBB_XZ_VERSION}"
-
-    # depends on zlib, xz, (lz4)
-    build_zstd "${XBB_ZSTD_VERSION}"
-
-    # -------------------------------------------------------------------------
-    # Build the application binaries.
-
-    xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
-    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
-
-    for triplet in "${XBB_MINGW_TRIPLETS[@]}"
-    do
-
-      build_mingw2_binutils "${XBB_BINUTILS_VERSION}" "${triplet}"
-
-      # Deploy the headers, they are needed by the compiler.
-      build_mingw2_headers "${triplet}"
-
-      build_mingw2_gcc_first "${XBB_GCC_VERSION}" "${triplet}"
-
-      build_mingw2_widl "${triplet}"
-
-      # libmangle requires a patch to remove <malloc.h>
-      build_mingw2_libmangle "${triplet}"
-      build_mingw2_gendef "${triplet}"
-
-      (
-        xbb_activate_installed_bin
-
-        xbb_prepare_gcc_env "${triplet}-"
-
-        build_mingw2_crt "${triplet}"
-        build_mingw2_winpthreads "${triplet}"
-      )
-
-      # With the run-time available, build the C/C++ libraries and the rest.
-      build_mingw2_gcc_final "${triplet}"
-
-    done
-
-    # Save a few MB.
-    rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
-  )
+  # Save a few MB.
+  rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
 }
 
 # -----------------------------------------------------------------------------
