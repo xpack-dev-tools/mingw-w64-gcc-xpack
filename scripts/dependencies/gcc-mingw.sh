@@ -15,7 +15,7 @@
 # -----------------------------------------------------------------------------
 
 # XBB_MINGW_GCC_PATCH_FILE_NAME
-function build_mingw2_gcc_first()
+function build_mingw_gcc_first()
 {
   # https://gcc.gnu.org
   # https://gcc.gnu.org/wiki/InstallingGCC
@@ -234,7 +234,7 @@ function build_mingw2_gcc_first()
   fi
 }
 
-function build_mingw2_gcc_final()
+function build_mingw_gcc_final()
 {
   local mingw_triplet="$1"
   local name_suffix="${2:-""}"

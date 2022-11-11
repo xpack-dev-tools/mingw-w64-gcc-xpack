@@ -15,7 +15,7 @@
 # -----------------------------------------------------------------------------
 # mingw-w64
 
-function build_mingw2_binutils()
+function build_mingw_binutils()
 {
   # https://ftp.gnu.org/gnu/binutils/
 

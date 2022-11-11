@@ -111,7 +111,7 @@ function prepare_mingw2_config_options_common()
 }
 
 
-function build_mingw2_headers()
+function build_mingw_headers()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-headers/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-headers-git/PKGBUILD
@@ -202,7 +202,7 @@ function build_mingw2_headers()
 
 # -----------------------------------------------------------------------------
 
-function build_mingw2_widl()
+function build_mingw_widl()
 {
   local mingw_triplet="$1"
   local mingw_name_suffix="${2:-""}"
@@ -287,7 +287,7 @@ function build_mingw2_widl()
 }
 
 # Fails on macOS, due to <malloc.h>.
-function build_mingw2_libmangle()
+function build_mingw_libmangle()
 {
   local mingw_triplet="$1"
   local mingw_name_suffix="${2:-""}"
@@ -368,7 +368,7 @@ function build_mingw2_libmangle()
 }
 
 # Currently not used, because of libmangle.
-function build_mingw2_gendef()
+function build_mingw_gendef()
 {
   local mingw_triplet="$1"
   local mingw_name_suffix="${2:-""}"
@@ -455,7 +455,7 @@ function build_mingw2_gendef()
 
 # -----------------------------------------------------------------------------
 
-function build_mingw2_crt()
+function build_mingw_crt()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-crt/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-crt-git/PKGBUILD
@@ -586,7 +586,7 @@ function build_mingw2_crt()
 # -----------------------------------------------------------------------------
 
 
-function build_mingw2_winpthreads()
+function build_mingw_winpthreads()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/mingw-w64-winpthreads/trunk/PKGBUILD
   # https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-winpthreads-git/PKGBUILD
@@ -694,9 +694,9 @@ function build_mingw2_winpthreads()
 
 
 # configure: error: C compiler cannot create executables
-# build_mingw2_winstorecompat "${triplet}"
+# build_mingw_winstorecompat "${triplet}"
 
-function build_mingw2_winstorecompat()
+function build_mingw_winstorecompat()
 {
   local mingw_triplet="$1"
   local mingw_name_suffix="${2:-""}"
