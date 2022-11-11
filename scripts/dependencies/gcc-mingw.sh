@@ -392,6 +392,27 @@ function test_mingw2_gcc()
     WIDL="${test_bin_path}/${mingw_triplet}-widl"
 
     echo
+    echo "Checking the ${mingw_triplet}-gcc${name_suffix} shared libraries..."
+
+    show_libs "${CC}"
+    show_libs "${CXX}"
+    if [ -f "${F90}" ]
+    then
+      show_libs "${F90}"
+    fi
+
+    show_libs "${AR}"
+    show_libs "${NM}"
+    show_libs "${RANLIB}"
+    show_libs "${GCOV}"
+
+    show_libs "$(${CC} --print-prog-name=cc1)"
+    show_libs "$(${CC} --print-prog-name=cc1plus)"
+    show_libs "$(${CC} --print-prog-name=collect2)"
+    show_libs "$(${CC} --print-prog-name=lto1)"
+    show_libs "$(${CC} --print-prog-name=lto-wrapper)"
+
+    echo
     echo "Testing if ${mingw_triplet}-gcc${name_suffix} binaries start properly..."
 
     run_app "${CC}" --version
