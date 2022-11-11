@@ -707,16 +707,16 @@ function test_expect_wine()
   if [ "${mingw_triplet}" == "x86_64-w64-mingw32" ]
   then
     (
-      local wine_path=$(which wine 2>/dev/null)
+      local wine_path=$(which wine64 2>/dev/null)
       if [ ! -z "${wine_path}" ]
       then
         local output
         # Remove the trailing CR present on Windows.
         if [ "${app_name:0:1}" == "/" ]
         then
-          output="$(wine "${app_name}" "$@" | sed 's/\r$//')"
+          output="$(wine64 "${app_name}" "$@" | sed 's/\r$//')"
         else
-          output="$(wine "./${app_name}" "$@" | sed 's/\r$//')"
+          output="$(wine64 "./${app_name}" "$@" | sed 's/\r$//')"
         fi
 
         if [ "x${output}x" == "x${expected}x" ]
@@ -734,6 +734,9 @@ function test_expect_wine()
         echo "wine" "${app_name}" "$@" "- not available"
       fi
     )
+  else
+    echo
+    echo "wine" "${app_name}" "$@" "- ${mingw_triplet} unsupported"
   fi
 }
 
