@@ -22,6 +22,7 @@ function tests_run_all()
   local test_bin_path="$1"
 
   XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" "i686-w64-mingw32" )
+  for triplet in "${XBB_MINGW_TRIPLETS[@]}"
   do
 
     # Call the functions defined in the build code.
