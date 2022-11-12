@@ -13,27 +13,21 @@
 # Requires
 # - app_folder_path
 # - test_folder_path
-# - archive_platform (win32|linux|darwin)
+# - tripletive_platform (win32|linux|darwin)
 
 # -----------------------------------------------------------------------------
 
 function tests_run_all()
 {
-  XBB_GCC_VERSION="$(echo "${XBB_RELEASE_VERSION}" | sed -e 's|-.*||')"
-  XBB_GCC_VERSION_MAJOR=$(echo ${XBB_GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+  local test_bin_path="$1"
 
-  echo
-  env | sort
-
-  XBB_MINGW_TRIPLETS=("x86_64" "i686")
-
-  for arch in "${XBB_MINGW_TRIPLETS[@]}"
+  XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" "i686-w64-mingw32" )
   do
 
     # Call the functions defined in the build code.
-    test_mingw2_binutils "${TEST_BIN_PATH}" "${arch}"
+    test_mingw2_binutils "${test_bin_path}" "${triplet}"
 
-    test_mingw2_gcc "${TEST_BIN_PATH}" "${arch}"
+    test_mingw2_gcc "${test_bin_path}" "${triplet}"
 
   done
 }
@@ -70,7 +64,7 @@ function tests_update_system()
     # pacman -S -yy -u -q --noconfirm
     run_verbose pacman -S -q --noconfirm --noprogressbar git curl tar gzip lsb-release binutils which
     run_verbose pacman -S -q --noconfirm --noprogressbar gcc-libs # TODO: get rid of them
-  elif [[ ${image_name} == *archlinux* ]]
+  elif [[ ${image_name} == *tripletlinux* ]]
   then
     run_verbose pacman -S -y -q --noconfirm
 
