@@ -474,11 +474,11 @@ This command uses the `xpack-develop` branch of this repo.
 
 The builds take more than 5 hours to complete:
 
-- `xbbmi`: 1h08
-- `xbbma`: 28m
-- `xbbli`: 1h12 (26m Linux, 46m Windows)
-- `xbbla64`: 2h32
-- `xbbla32`: 2h28
+- `xbbmi`: 1h04
+- `xbbma`: 0h22
+- `xbbli`: 1h20 (0h27 Linux, 0h53 Windows)
+- `xbbla64`: 2h50
+- `xbbla32`: 2h42
 
 The workflow result and logs are available from the
 [Actions](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/actions/) page.
