@@ -14,7 +14,7 @@
 # headers might not be there, like:
 # libsrc/bits.c:15:10: fatal error: bits2_5.h: No such file or directory
 
-function build_mingw_gcc_libs()
+function build_mingw_gcc_dependencies()
 {
   build_libiconv "${XBB_LIBICONV_VERSION}"
 
@@ -100,7 +100,7 @@ function build_common()
     (
       # Build the bootstrap (a native Linux application).
       # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
-      build_mingw_gcc_libs
+      build_mingw_gcc_dependencies
 
       build_mingw_gcc
     )
@@ -110,7 +110,7 @@ function build_common()
     xbb_activate_installed_bin
   fi
 
-  build_mingw_gcc_libs
+  build_mingw_gcc_dependencies
 
   # -------------------------------------------------------------------------
   # Build the application binaries.
