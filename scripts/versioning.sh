@@ -47,19 +47,20 @@ function build_mingw_gcc_all_triplets()
   for triplet in "${XBB_MINGW_TRIPLETS[@]}"
   do
 
-    build_mingw_binutils "${XBB_BINUTILS_VERSION}" "${triplet}"
+    build_binutils "${XBB_BINUTILS_VERSION}" --triplet="${triplet}"
 
     # Deploy the headers, they are needed by the compiler.
-    build_mingw_headers "${triplet}"
+    build_mingw_headers --triplet="${triplet}"
 
     # Build only the compiler, without libraries.
-    build_mingw_gcc_first "${XBB_GCC_VERSION}" "${triplet}"
+    build_mingw_gcc_first "${XBB_GCC_VERSION}" --triplet="${triplet}"
 
-    build_mingw_widl "${triplet}" # Refers to mingw headers.
+    # Refers to mingw headers.
+    build_mingw_widl --triplet="${triplet}"
 
     # Build some native tools.
-    build_mingw_libmangle "${triplet}"
-    build_mingw_gendef "${triplet}"
+    build_mingw_libmangle --triplet="${triplet}"
+    build_mingw_gendef --triplet="${triplet}"
 
     (
       xbb_activate_installed_bin
@@ -67,12 +68,12 @@ function build_mingw_gcc_all_triplets()
         # Fails if CC is defined to a native compiler.
         xbb_prepare_gcc_env "${triplet}-"
 
-        build_mingw_crt "${triplet}"
-        build_mingw_winpthreads "${triplet}"
+        build_mingw_crt --triplet="${triplet}"
+        build_mingw_winpthreads --triplet="${triplet}"
       )
 
       # With the run-time available, build the C/C++ libraries and the rest.
-      build_mingw_gcc_final "${triplet}" # "${XBB_BOOTSTRAP_SUFFIX}"
+      build_mingw_gcc_final --triplet="${triplet}" # "${XBB_BOOTSTRAP_SUFFIX}"
     )
 
   done
@@ -147,6 +148,8 @@ function build_application_versioned_components()
   XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" "i686-w64-mingw32" )
   # XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" ) # Use it temporarily during tests.
   # XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" ) # Use it temporarily during tests.
+
+  XBB_SHOW_DLLS="y"
 
   # ---------------------------------------------------------------------------
 
