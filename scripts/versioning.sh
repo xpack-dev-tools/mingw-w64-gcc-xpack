@@ -42,7 +42,7 @@ function build_mingw_gcc_dependencies()
   build_zstd "${XBB_ZSTD_VERSION}"
 }
 
-function build_mingw_gcc()
+function build_mingw_gcc_all_triplets()
 {
   for triplet in "${XBB_MINGW_TRIPLETS[@]}"
   do
@@ -102,7 +102,7 @@ function build_common()
       # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
       build_mingw_gcc_dependencies
 
-      build_mingw_gcc
+      build_mingw_gcc_all_triplets
     )
 
     xbb_set_target "mingw-w64-cross"
@@ -118,7 +118,7 @@ function build_common()
   xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
   xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-  build_mingw_gcc
+  build_mingw_gcc_all_triplets
 
   # Save a few MB.
   rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
