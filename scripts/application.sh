@@ -23,7 +23,7 @@ XBB_APPLICATION_DISTRO_TOP_FOLDER=${XBB_APPLICATION_DISTRO_TOP_FOLDER:-"xPacks"}
 XBB_APPLICATION_DESCRIPTION="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME}"
 
 declare -a XBB_APPLICATION_DEPENDENCIES=( )
-declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( binutils-mingw mingw gcc-mingw libiconv zlib gmp mpfr mpc isl xz zstd )
+declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( binutils mingw gcc-mingw libiconv zlib gmp mpfr mpc isl xz zstd )
 
 # -----------------------------------------------------------------------------
 
