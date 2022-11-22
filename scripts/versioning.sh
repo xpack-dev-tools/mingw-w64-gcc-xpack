@@ -47,6 +47,9 @@ function build_mingw_gcc_all_triplets()
   for triplet in "${XBB_MINGW_TRIPLETS[@]}"
   do
 
+    # Set XBB_TARGET_STRIP, _RANLIB & _OBJDUMP
+    xbb_set_extra_target_env "${triplet}"
+
     build_binutils "${XBB_BINUTILS_VERSION}" --triplet="${triplet}"
 
     # Deploy the headers, they are needed by the compiler.
