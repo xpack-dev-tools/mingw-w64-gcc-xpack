@@ -320,7 +320,7 @@ Clean the build folder and prepare the docker container:
 xpm run deep-clean --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-link-deps --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
-xpm run docker-build-develop --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run docker-build-develop --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
 About 13 minutes later, the output of the build script is a compressed
