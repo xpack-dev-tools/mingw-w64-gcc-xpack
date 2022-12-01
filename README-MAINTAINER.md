@@ -159,6 +159,7 @@ Before the real build, run test builds on all platforms.
 All actions are defined as **xPack actions** and can be conveniently
 triggered via the VS Code graphical interface, using the
 [xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
+
 #### Intel macOS
 
 For Intel macOS, first run the build on the development machine
@@ -347,9 +348,9 @@ Update the build scripts (or clone them at the first use) and run the following:
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
 xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm run deep-clean --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm run docker-link-deps --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
@@ -378,9 +379,9 @@ Update the build scripts (or clone them at the first use) and run the following:
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
 xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm run deep-clean --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm run docker-link-deps --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-build-develop --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
 ```
