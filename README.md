@@ -58,6 +58,13 @@ For C++ programs, since the toolchain is configured to use POSIX threads,
 instead of `-static-libstdc++`, use the more explicit variant
 `-Wl,-Bstatic,-lstdc++,-lpthread,-Bdynamic` when invoking the linker.
 
+### libwinpthread-1.dll
+
+Due to the specifics of the MinGW-w64 build, the threading library is
+not very well integrated into the build, and invoking the compiler
+with `-static-libgcc -static-libstdc++` does not apply to this DLL,
+so the resulting binaries might still have a reference to it.
+
 ### Compiler DLLs
 
 For projects that create multiple executables, using static libraries
