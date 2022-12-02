@@ -28,6 +28,7 @@ function build_common()
   # -------------------------------------------------------------------------
   # Build the target dependencies.
 
+  xbb_reset_env
   xbb_set_target "mingw-w64-native"
 
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
@@ -41,6 +42,7 @@ function build_common()
       build_mingw_gcc_all_triplets
     )
 
+    xbb_reset_env
     xbb_set_target "mingw-w64-cross"
 
     xbb_activate_installed_bin
