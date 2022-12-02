@@ -25,6 +25,9 @@ XBB_APPLICATION_DESCRIPTION="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NA
 declare -a XBB_APPLICATION_DEPENDENCIES=( )
 declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( binutils mingw gcc-mingw libiconv zlib gmp mpfr mpc isl xz zstd compiler-tests )
 
+# List the DLLs in the results section, at the end.
+XBB_APPLICATION_SHOW_DLLS="y"
+
 # -----------------------------------------------------------------------------
 
 XBB_GITHUB_ORG="${XBB_GITHUB_ORG:-"xpack-dev-tools"}"

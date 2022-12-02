@@ -152,8 +152,6 @@ function build_application_versioned_components()
   # XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" ) # Use it temporarily during tests.
   # XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" ) # Use it temporarily during tests.
 
-  XBB_SHOW_DLLS="y"
-
   # ---------------------------------------------------------------------------
 
   # Keep the versions in sync with gcc-xpack.
