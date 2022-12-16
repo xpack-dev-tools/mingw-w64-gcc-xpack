@@ -33,7 +33,6 @@ function build_common()
 
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
   then
-
     (
       # Build the bootstrap (a native Linux application).
       # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
@@ -82,7 +81,8 @@ function build_application_versioned_components()
   # There is no GDB, since this is strictly a cross toolchain, and the
   # binaries run only on Windows.
 
-  XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" "i686-w64-mingw32" )
+  # 32-bit first, since it is more probable to fail.
+  XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
   # XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" ) # Use it temporarily during tests.
   # XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" ) # Use it temporarily during tests.
 

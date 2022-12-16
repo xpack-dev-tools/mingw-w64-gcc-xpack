@@ -22,7 +22,8 @@ function tests_run_all()
     xbb_set_target "mingw-w64-native"
   fi
 
-  XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" "i686-w64-mingw32" )
+  # 32-bit first, since it is more probable to fail.
+  XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
   for triplet in "${XBB_MINGW_TRIPLETS[@]}"
   do
 
