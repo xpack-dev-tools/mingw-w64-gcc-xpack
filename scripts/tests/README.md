@@ -14,8 +14,7 @@ mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git  \
-  ~/Work/mingw-w64-gcc-xpack.git && \
-git -C ~/Work/mingw-w64-gcc-xpack.git submodule update --init --recursive
+  ~/Work/mingw-w64-gcc-xpack.git
 ```
 
 ## Start a local test
