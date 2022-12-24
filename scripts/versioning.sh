@@ -23,6 +23,9 @@ function gcc_mingw_build_common()
   # -------------------------------------------------------------------------
   # Build the native dependencies.
 
+  # xbb_set_executables_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+  # xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+
   # None.
 
   # -------------------------------------------------------------------------
@@ -30,6 +33,9 @@ function gcc_mingw_build_common()
 
   xbb_reset_env
   xbb_set_target "mingw-w64-native"
+
+  xbb_set_executables_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+  xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
   then
@@ -43,6 +49,9 @@ function gcc_mingw_build_common()
 
     xbb_reset_env
     xbb_set_target "mingw-w64-cross"
+
+    xbb_set_executables_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
     xbb_activate_installed_bin
   fi
