@@ -28,9 +28,9 @@ function tests_run_all()
   do
 
     # Call the functions defined in the build code.
-    test_binutils "${test_bin_path}" "${triplet}-"
+    binutils_test "${test_bin_path}" "${triplet}-"
 
-    test_mingw_gcc "${test_bin_path}" "${triplet}"
+    gcc_mingw_test "${test_bin_path}" "${triplet}"
 
   done
 }

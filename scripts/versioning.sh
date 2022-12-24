@@ -16,9 +16,9 @@
 
 # -----------------------------------------------------------------------------
 
-function build_common()
+function gcc_mingw_build_common()
 {
-  download_mingw "${XBB_MINGW_VERSION}"
+  mingw_download "${XBB_MINGW_VERSION}"
 
   # -------------------------------------------------------------------------
   # Build the native dependencies.
@@ -36,9 +36,9 @@ function build_common()
     (
       # Build the bootstrap (a native Linux application).
       # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
-      build_mingw_gcc_dependencies
+      gcc_mingw_build_dependencies
 
-      build_mingw_gcc_all_triplets
+      gcc_mingw_build_all_triplets
     )
 
     xbb_reset_env
@@ -47,7 +47,7 @@ function build_common()
     xbb_activate_installed_bin
   fi
 
-  build_mingw_gcc_dependencies
+  gcc_mingw_build_dependencies
 
   # -------------------------------------------------------------------------
   # Build the application binaries.
@@ -55,7 +55,7 @@ function build_common()
   xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
   xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-  build_mingw_gcc_all_triplets
+  gcc_mingw_build_all_triplets
 
   # Save a few MB.
   rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
@@ -63,7 +63,7 @@ function build_common()
 
 # -----------------------------------------------------------------------------
 
-function build_application_versioned_components()
+function application_build_versioned_components()
 {
   export XBB_GCC_BRANDING="${XBB_APPLICATION_DISTRO_NAME} MinGW-w64 GCC ${XBB_REQUESTED_TARGET_MACHINE}"
   export XBB_BINUTILS_BRANDING="${XBB_APPLICATION_DISTRO_NAME} MinGW-w64 binutils ${XBB_REQUESTED_TARGET_MACHINE}"
@@ -135,7 +135,7 @@ function build_application_versioned_components()
 
     # -------------------------------------------------------------------------
 
-    build_common
+    gcc_mingw_build_common
 
   # ---------------------------------------------------------------------------
   elif [[ "${XBB_RELEASE_VERSION}" =~ 11\.3\.0-[1] ]]
@@ -179,7 +179,7 @@ function build_application_versioned_components()
 
     # -------------------------------------------------------------------------
 
-    build_common
+    gcc_mingw_build_common
 
   # ---------------------------------------------------------------------------
   else
