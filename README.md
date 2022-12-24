@@ -160,11 +160,129 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/7.1.0-1.1/.content
-/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/7.1.0-1.1/.content
+$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.3/.content/
+/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.3/.content/
 ├── README.md
 ├── bin
-...
+│   ├── i686-w64-mingw32-addr2line
+│   ├── i686-w64-mingw32-ar
+│   ├── i686-w64-mingw32-as
+│   ├── i686-w64-mingw32-c++
+│   ├── i686-w64-mingw32-c++filt
+│   ├── i686-w64-mingw32-cpp
+│   ├── i686-w64-mingw32-dlltool
+│   ├── i686-w64-mingw32-dllwrap
+│   ├── i686-w64-mingw32-elfedit
+│   ├── i686-w64-mingw32-g++
+│   ├── i686-w64-mingw32-gcc
+│   ├── i686-w64-mingw32-gcc-12.2.0
+│   ├── i686-w64-mingw32-gcc-ar
+│   ├── i686-w64-mingw32-gcc-nm
+│   ├── i686-w64-mingw32-gcc-ranlib
+│   ├── i686-w64-mingw32-gcov
+│   ├── i686-w64-mingw32-gcov-dump
+│   ├── i686-w64-mingw32-gcov-tool
+│   ├── i686-w64-mingw32-gendef
+│   ├── i686-w64-mingw32-gfortran
+│   ├── i686-w64-mingw32-gprof
+│   ├── i686-w64-mingw32-ld
+│   ├── i686-w64-mingw32-ld.bfd
+│   ├── i686-w64-mingw32-lto-dump
+│   ├── i686-w64-mingw32-nm
+│   ├── i686-w64-mingw32-objcopy
+│   ├── i686-w64-mingw32-objdump
+│   ├── i686-w64-mingw32-ranlib
+│   ├── i686-w64-mingw32-readelf
+│   ├── i686-w64-mingw32-size
+│   ├── i686-w64-mingw32-strings
+│   ├── i686-w64-mingw32-strip
+│   ├── i686-w64-mingw32-widl
+│   ├── i686-w64-mingw32-windmc
+│   ├── i686-w64-mingw32-windres
+│   ├── x86_64-w64-mingw32-addr2line
+│   ├── x86_64-w64-mingw32-ar
+│   ├── x86_64-w64-mingw32-as
+│   ├── x86_64-w64-mingw32-c++
+│   ├── x86_64-w64-mingw32-c++filt
+│   ├── x86_64-w64-mingw32-cpp
+│   ├── x86_64-w64-mingw32-dlltool
+│   ├── x86_64-w64-mingw32-dllwrap
+│   ├── x86_64-w64-mingw32-elfedit
+│   ├── x86_64-w64-mingw32-g++
+│   ├── x86_64-w64-mingw32-gcc
+│   ├── x86_64-w64-mingw32-gcc-12.2.0
+│   ├── x86_64-w64-mingw32-gcc-ar
+│   ├── x86_64-w64-mingw32-gcc-nm
+│   ├── x86_64-w64-mingw32-gcc-ranlib
+│   ├── x86_64-w64-mingw32-gcov
+│   ├── x86_64-w64-mingw32-gcov-dump
+│   ├── x86_64-w64-mingw32-gcov-tool
+│   ├── x86_64-w64-mingw32-gendef
+│   ├── x86_64-w64-mingw32-gfortran
+│   ├── x86_64-w64-mingw32-gprof
+│   ├── x86_64-w64-mingw32-ld
+│   ├── x86_64-w64-mingw32-ld.bfd
+│   ├── x86_64-w64-mingw32-lto-dump
+│   ├── x86_64-w64-mingw32-nm
+│   ├── x86_64-w64-mingw32-objcopy
+│   ├── x86_64-w64-mingw32-objdump
+│   ├── x86_64-w64-mingw32-ranlib
+│   ├── x86_64-w64-mingw32-readelf
+│   ├── x86_64-w64-mingw32-size
+│   ├── x86_64-w64-mingw32-strings
+│   ├── x86_64-w64-mingw32-strip
+│   ├── x86_64-w64-mingw32-widl
+│   ├── x86_64-w64-mingw32-windmc
+│   └── x86_64-w64-mingw32-windres
+├── distro-info
+│   ├── CHANGELOG.md
+│   ├── licenses
+│   ├── patches
+│   └── scripts
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
+├── include
+│   ├── ctf-api.h
+│   ├── ctf.h
+│   └── libiberty
+├── lib
+│   ├── bfd-plugins
+│   ├── gcc
+│   ├── libcc1.0.so
+│   ├── libcc1.a
+│   ├── libcc1.la
+│   ├── libcc1.so -> libcc1.0.so
+│   ├── libctf-nobfd.0.dylib
+│   ├── libctf-nobfd.a
+│   ├── libctf-nobfd.dylib -> libctf-nobfd.0.dylib
+│   ├── libctf-nobfd.la
+│   ├── libctf.0.dylib
+│   ├── libctf.a
+│   ├── libctf.dylib -> libctf.0.dylib
+│   ├── libctf.la
+│   └── libiberty.a
+├── libexec
+│   ├── libgmp.10.dylib
+│   ├── libiconv.2.dylib
+│   ├── libisl.23.dylib
+│   ├── libmpc.3.dylib
+│   ├── libmpfr.6.dylib
+│   ├── libz.1.2.11.dylib
+│   ├── libz.1.dylib -> libz.1.2.11.dylib
+│   └── libzstd.1.5.2.dylib
+├── share
+│   └── gcc-12.2.0
+├── x86_64-apple-darwin21.6.0
+│   ├── i686-w64-mingw32
+│   └── x86_64-w64-mingw32
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
+
+24 directories, 95 files
 ```
 
 No other files are installed in any system folders or other locations.
