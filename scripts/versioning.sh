@@ -69,7 +69,7 @@ function application_build_versioned_components()
   export XBB_BINUTILS_BRANDING="${XBB_APPLICATION_DISTRO_NAME} MinGW-w64 binutils ${XBB_REQUESTED_TARGET_MACHINE}"
 
   export XBB_GCC_VERSION="$(echo "${XBB_RELEASE_VERSION}" | sed -e 's|-.*||')"
-  export XBB_GCC_VERSION_MAJOR=$(echo ${XBB_GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+  export XBB_GCC_VERSION_MAJOR=$(echo ${XBB_GCC_VERSION} | sed -e 's|\([0-9][0-9]*\)[.].*|\1|')
 
 # ---------------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ function application_build_versioned_components()
   # Keep the versions in sync with gcc-xpack.
   # https://ftp.gnu.org/gnu/gcc/
   # ---------------------------------------------------------------------------
-  if [[ "${XBB_RELEASE_VERSION}" =~ 12\.[12]\.0-[1] ]]
+  if [[ "${XBB_RELEASE_VERSION}" =~ 12[.][12][.]0-[1] ]]
   then
     # Keep these in sync with gcc-xpack.
 
@@ -126,7 +126,7 @@ function application_build_versioned_components()
     XBB_ZSTD_VERSION="1.5.2"
 
     # Number
-    XBB_MINGW_VERSION_MAJOR=$(echo ${XBB_MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+    XBB_MINGW_VERSION_MAJOR=$(echo ${XBB_MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)[.].*|\1|')
 
     XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.git.patch"
 
@@ -138,7 +138,7 @@ function application_build_versioned_components()
     gcc_mingw_build_common
 
   # ---------------------------------------------------------------------------
-  elif [[ "${XBB_RELEASE_VERSION}" =~ 11\.3\.0-[1] ]]
+  elif [[ "${XBB_RELEASE_VERSION}" =~ 11[.]3[.]0-[1] ]]
   then
     # Keep these in sync with gcc-xpack.
 
@@ -170,7 +170,7 @@ function application_build_versioned_components()
     XBB_ZSTD_VERSION="1.5.2"
 
     # Number
-    XBB_MINGW_VERSION_MAJOR=$(echo ${XBB_MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)\..*|\1|')
+    XBB_MINGW_VERSION_MAJOR=$(echo ${XBB_MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)[.].*|\1|')
 
     XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}-cross.git.patch"
 
