@@ -233,7 +233,6 @@ Repeat the same steps as before.
 
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
-xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xbb-helper-xpack.git && \
@@ -267,7 +266,6 @@ Update the build scripts (or clone them at the first use) and run the following:
 
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
-xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xbb-helper-xpack.git && \
@@ -302,7 +300,8 @@ Update the build scripts (or clone them at the first use) and run the following:
 
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
-xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
@@ -325,8 +324,12 @@ total 34664
 Clean the build folder and prepare the docker container:
 
 ```sh
+git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git && \
+git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm run docker-link-deps --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
@@ -354,7 +357,8 @@ Update the build scripts (or clone them at the first use) and run the following:
 
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
-xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
@@ -385,7 +389,8 @@ Update the build scripts (or clone them at the first use) and run the following:
 
 ```sh
 git -C ~/Work/mingw-w64-gcc-xpack.git pull && \
-xpm run deep-clean -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run install -C ~/Work/mingw-w64-gcc-xpack.git && \
+xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
