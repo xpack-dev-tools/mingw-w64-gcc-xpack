@@ -96,7 +96,7 @@ function application_build_versioned_components()
     # Keep these in sync with gcc-xpack.
 
     # https://ftp.gnu.org/gnu/binutils/
-    XBB_BINUTILS_VERSION="2.38"
+    XBB_BINUTILS_VERSION="2.39"
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
     XBB_MINGW_VERSION="10.0.0"
 
