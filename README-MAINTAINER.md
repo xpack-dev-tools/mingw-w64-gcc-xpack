@@ -217,7 +217,7 @@ Run the native build:
 caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-The build takes about 60 minutes.
+The build takes about 55 minutes.
 
 When functional, push the `xpack-develop` branch to GitHub.
 
@@ -309,7 +309,7 @@ xpm run docker-link-deps --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 30 minutes later, the output of the build script is a compressed
+About 40 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -334,7 +334,7 @@ xpm run docker-link-deps --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config win32-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 13 minutes later, the output of the build script is a compressed
+About 1h10 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -366,7 +366,7 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 2h53 later, the output of the build script is a compressed
+About 2h55 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -398,7 +398,7 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 2h43 later, the output of the build script is a compressed
+About 2h45 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
