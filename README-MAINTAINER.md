@@ -242,7 +242,7 @@ xpm install --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 26 minutes later, the output of the build script is a compressed
+About 60 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -309,7 +309,7 @@ xpm run docker-link-deps --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config linux-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 40 minutes later, the output of the build script is a compressed
+About 30 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -398,7 +398,7 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
 xpm run docker-build-develop --config linux-arm -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
-About 2h45 later, the output of the build script is a compressed
+About 2h50 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
