@@ -42,9 +42,10 @@ function gcc_mingw_build_common()
     )
 
     xbb_reset_env
+    xbb_activate_installed_bin
+    
     xbb_set_target "mingw-w64-cross"
 
-    xbb_activate_installed_bin
   fi
 
   gcc_mingw_build_dependencies
