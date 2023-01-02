@@ -30,12 +30,12 @@ on:
         required: false
         type: string
         default: 'current'
-      xpm-version:
+      xpm_version:
         description: 'The version of xpm to install'
         required: false
         type: string
         default: 'latest'
-      xpm-install-loglevel:
+      xpm_install_loglevel:
         description: 'Optional loglevel for xpm install'
         required: false
         default: 'info'
@@ -47,7 +47,7 @@ on:
         - verbose
         - debug
         - trace
-      xpm-install-options:
+      xpm_install_options:
         description: 'Optional switches to pass to xpm install'
         required: false
         type: string
@@ -87,16 +87,16 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@${{ github.event.inputs.xpm-version }}
+        run: npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install --loglevel ${{ github.event.inputs.xpm-install-loglevel }} ${{ github.event.inputs.xpm-install-options }}
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build Linux arm64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-arm64 --loglevel ${{ github.event.inputs.xpm-install-loglevel }} ${{ github.event.inputs.xpm-install-options }}
+          xpm install --config linux-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config linux-arm64
 
       - name: 'Publish pre-release'
