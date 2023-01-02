@@ -4,7 +4,12 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-01-03
 
-* 43873bb versioning.sh: reorder XPM_*_VERSION definitions
+* fcccab9 re-generate workflows
+* a6b0323 package.json: bump deps
+* e2061ee package.json: loglevel trace
+* 66e41b7 .vscode/settings.json: ignoreWords
+* 9cf4ae5 re-generate workflows
+* 8b0dd49 CHANGELOG update* 43873bb versioning.sh: reorder XPM_*_VERSION definitions
 * 7a8143f versioning.sh: reorder *_installed_bin
 * b122d7d package.json: bump deps
 
