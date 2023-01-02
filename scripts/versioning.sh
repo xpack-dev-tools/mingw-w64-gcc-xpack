@@ -116,15 +116,16 @@ function application_build_versioned_components()
     # https://sourceforge.net/projects/libisl/files/
     XBB_ISL_VERSION="0.24"
 
-    # https://ftp.gnu.org/gnu/ncurses/
-    # XBB_NCURSES_VERSION="6.3"
+    # https://github.com/facebook/zstd/releases
+    XBB_ZSTD_VERSION="1.5.2"
+
     # https://sourceforge.net/projects/lzmautils/files/
     XBB_XZ_VERSION="5.2.5"
+
+    # https://ftp.gnu.org/gnu/ncurses/
+    # XBB_NCURSES_VERSION="6.3"
     # https://github.com/libexpat/libexpat/releases
     # XBB_EXPAT_VERSION="2.4.8"
-
-     # https://github.com/facebook/zstd/releases
-    XBB_ZSTD_VERSION="1.5.2"
 
     # Number
     XBB_MINGW_VERSION_MAJOR=$(echo ${XBB_MINGW_VERSION} | sed -e 's|\([0-9][0-9]*\)[.].*|\1|')
