@@ -4,6 +4,13 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-01-03
 
+* v12.2.0-1.1 published on npmjs.com
+* 6c0f967 package.json: update urls for 12.2.0-1.1 release
+* 8f84270 README updates
+* df06efc README update
+* 5aeeaf8 body-jekyll: update
+* 6dda30e CHANGELOG update
+* 5381a8f package.json: temporarily use xpm@next
 * v12.2.0-1 released
 * fcccab9 re-generate workflows
 * a6b0323 package.json: bump deps
