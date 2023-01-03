@@ -4,6 +4,7 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-01-03
 
+* v12.2.0-1 released
 * fcccab9 re-generate workflows
 * a6b0323 package.json: bump deps
 * e2061ee package.json: loglevel trace
