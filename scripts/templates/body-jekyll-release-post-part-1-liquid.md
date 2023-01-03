@@ -10,13 +10,13 @@ summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: 1
-gcc_version: "11.3.0"
-gcc_version_major: "11"
-gcc_release_date: "Aug 19, 2022"
-binutils_version: "2.38"
-binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2022-02/msg00009.html"
-binutils_date: "Feb 9, 2022"
-mingw_release: "9.0.0"
+gcc_version: "12.2.0"
+gcc_version_major: "12"
+gcc_release_date: "August 19, 2022"
+binutils_version: "2.39"
+binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2022-08/msg00002.html"
+binutils_date: "Aug 5, 2022"
+mingw_release: "10.0.0"
 
 download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
 
