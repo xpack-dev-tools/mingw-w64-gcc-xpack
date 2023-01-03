@@ -42,8 +42,9 @@ function gcc_mingw_build_common()
     )
 
     xbb_reset_env
+    # Before set target (to possibly update CC & co variables).
     xbb_activate_installed_bin
-    
+
     xbb_set_target "mingw-w64-cross"
 
   fi
