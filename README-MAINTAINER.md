@@ -606,6 +606,9 @@ with all binaries attached.
 ## Prepare a new blog post
 
 - check and possibly update the `templates/body-jekyll-release-*-liquid.md`
+  (use <https://gcc.gnu.org/releases.html> for the GCC release details,
+  and <https://lists.gnu.org/archive/cgi-bin/namazu.cgi?query=binutils&submit=Search%21&idxname=info-gnu&max=20&result=normal&sort=score>
+  for the binutils announcement)
 - run the xPack action `generate-jekyll-post`; this will leave a file
 on the Desktop.
 
