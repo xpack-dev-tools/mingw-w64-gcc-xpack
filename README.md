@@ -160,8 +160,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.3/.content/
-/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.3/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/.content/
+/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/.content/
 ├── README.md
 ├── bin
 │   ├── i686-w64-mingw32-addr2line
@@ -323,11 +323,11 @@ like `12.2.0`; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
 like `12.2.0-1`. When published as a npm package, the version gets
-a fifth number, like `12.2.0-1.2`.
+a fifth number, like `12.2.0-1.1`.
 
 Since adherence of third party packages to semver is not guaranteed,
 it is recommended to use semver expressions like `^12.2.0` and `~12.2.0`
-with caution, and prefer exact matches, like `12.2.0-1.2`.
+with caution, and prefer exact matches, like `12.2.0-1.1`.
 
 ## Maintainer info
 
