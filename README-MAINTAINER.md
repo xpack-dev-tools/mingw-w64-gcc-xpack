@@ -214,7 +214,7 @@ xpm install --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 Run the native build:
 
 ```sh
-caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
 The build takes about 55 minutes.
@@ -239,7 +239,7 @@ xpm link -C ~/Work/xbb-helper-xpack.git && \
 xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config darwin-x64  -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
-caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
+xpm run build-develop --config darwin-x64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
 About 60 minutes later, the output of the build script is a compressed
@@ -272,7 +272,7 @@ xpm link -C ~/Work/xbb-helper-xpack.git && \
 xpm run link-deps -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config darwin-arm64  -C ~/Work/mingw-w64-gcc-xpack.git && \
 xpm install --config darwin-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
-caffeinate xpm run build-develop --config darwin-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
+xpm run build-develop --config darwin-arm64 -C ~/Work/mingw-w64-gcc-xpack.git
 ```
 
 About 25 minutes later, the output of the build script is a compressed
