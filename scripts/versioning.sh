@@ -105,12 +105,12 @@ function application_build_versioned_components()
     # https://ftp.gnu.org/pub/gnu/libiconv/
     XBB_LIBICONV_VERSION="1.17"
 
-    # http://zlib.net/fossils/
+    # https://zlib.net/fossils/
     XBB_ZLIB_VERSION="1.2.11"
 
     # https://gmplib.org/download/gmp/
     XBB_GMP_VERSION="6.2.1"
-    # http://www.mpfr.org/history.html
+    # https://www.mpfr.org/history.html
     XBB_MPFR_VERSION="4.1.0"
     # https://www.multiprecision.org/mpc/download.html
     XBB_MPC_VERSION="1.2.1"
@@ -154,12 +154,12 @@ function application_build_versioned_components()
     # https://ftp.gnu.org/pub/gnu/libiconv/
     XBB_LIBICONV_VERSION="1.16"
 
-    # http://zlib.net/fossils/
+    # https://zlib.net/fossils/
     XBB_ZLIB_VERSION="1.2.11"
 
     # https://gmplib.org/download/gmp/
     XBB_GMP_VERSION="6.2.1"
-    # http://www.mpfr.org/history.html
+    # https://www.mpfr.org/history.html
     XBB_MPFR_VERSION="4.1.0"
     # https://www.multiprecision.org/mpc/download.html
     XBB_MPC_VERSION="1.2.1"
