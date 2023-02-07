@@ -130,7 +130,7 @@ a dependency for a project is quite easy:
 cd my-project
 xpm init # Only at first use.
 
-xpm install @xpack-dev-tools/mingw-w64-gcc@latest
+xpm install @xpack-dev-tools/mingw-w64-gcc@latest --verbose
 
 ls -l xpacks/.bin
 ```
@@ -153,7 +153,7 @@ This location is configurable via the environment variable
 It is also possible to install GCC globally, in the user home folder:
 
 ```sh
-xpm install --global @xpack-dev-tools/mingw-w64-gcc@latest
+xpm install --global @xpack-dev-tools/mingw-w64-gcc@latest --verbose
 ```
 
 After install, the package should create a structure like this (macOS files;
