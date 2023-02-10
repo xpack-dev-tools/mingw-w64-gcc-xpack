@@ -38,7 +38,7 @@ tags:
 [The xPack MinGW-w64 GCC](https://xpack.github.io/mingw-w64-gcc/)
 is a standalone cross-platform binary distribution of
 [Mingw-w64](https://www.mingw-w64.org)
-[GCC](https://gcc.org).
+[GCC](https://gcc.gnu.org).
 
 There are separate binaries for **Windows** (Intel 64-bit),
 **macOS** (Intel 64-bit, Apple Silicon 64-bit)
@@ -126,7 +126,7 @@ xpm uninstall --global @xpack-dev-tools/mingw-w64-gcc
 ## Compliance
 
 The xPack MinGW-w64 GCC generally follows the official
-[GCC](https://gcc.org) releases.
+[GCC](https://gcc.gnu.org/releases.html) releases.
 
 The current version is based on:
 
