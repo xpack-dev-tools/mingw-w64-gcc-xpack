@@ -52,7 +52,6 @@ bash ~/Work/xpacks/mingw-w64-gcc-xpack.git/scripts/tests/trigger-workflow-test-d
 bash ~/Work/xpacks/mingw-w64-gcc-xpack.git/scripts/tests/trigger-workflow-test-docker-linux-arm.sh \
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
-
 ```
 
 The results are available at the project
