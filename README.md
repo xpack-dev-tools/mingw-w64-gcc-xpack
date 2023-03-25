@@ -332,7 +332,7 @@ with caution, and prefer exact matches, like `12.2.0-1.1`.
 ## Maintainer info
 
 For maintainer info, please see the
-[README-MAINTAINER](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/blob/xpack/README-MAINTAINER.md)
+[README-MAINTAINER](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/blob/xpack/README-MAINTAINER.md).
 
 ## Support
 
