@@ -247,6 +247,12 @@ Run the native build:
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
+For a debug build:
+
+```sh
+xpm run build-develop-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+```
+
 The build takes about 55 minutes.
 
 When functional, push the `xpack-develop` branch to GitHub.
