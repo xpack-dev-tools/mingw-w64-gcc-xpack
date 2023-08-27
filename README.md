@@ -76,28 +76,28 @@ compiled .exe files will be installed (like `/bin`).
 
 ```console
 $ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x 1 ilg ilg   38296 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x 1 ilg ilg  535781 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
--rwxr-xr-x 1 ilg ilg 2981114 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x 1 ilg ilg  247187 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x 1 ilg ilg  383320 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x 1 ilg ilg   22227 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x 1 ilg ilg 1940952 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
--rwxr-xr-x 1 ilg ilg  106093 Sep 20 12:58 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x 1 ilg ilg   38296 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x 1 ilg ilg  535781 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
+-rwxr-xr-x 1 ilg ilg 2981114 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x 1 ilg ilg  247187 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x 1 ilg ilg  383320 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x 1 ilg ilg   22227 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x 1 ilg ilg 1940952 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rwxr-xr-x 1 ilg ilg  106093 Sep 20 12:58 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/12.3.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 and
 
 ```console
 $ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x 1 ilg ilg   37356 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x 1 ilg ilg  652335 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
--rwxr-xr-x 1 ilg ilg 2753320 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x 1 ilg ilg  266392 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x 1 ilg ilg  570355 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x 1 ilg ilg   22328 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x 1 ilg ilg 2081167 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
--rwxr-xr-x 1 ilg ilg  112374 Sep 20 13:06 /home/ilg/Work/mingw-w64-gcc-12.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x 1 ilg ilg   37356 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x 1 ilg ilg  652335 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
+-rwxr-xr-x 1 ilg ilg 2753320 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x 1 ilg ilg  266392 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x 1 ilg ilg  570355 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x 1 ilg ilg   22328 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x 1 ilg ilg 2081167 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rwxr-xr-x 1 ilg ilg  112374 Sep 20 13:06 /home/ilg/Work/mingw-w64-gcc-12.3.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/12.3.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 ### Easy install
@@ -164,8 +164,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/.content/
-/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.3.0-1.1/.content/
+/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.3.0-1.1/.content/
 ├── README.md
 ├── bin
 │   ├── i686-w64-mingw32-addr2line
@@ -179,7 +179,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/
 │   ├── i686-w64-mingw32-elfedit
 │   ├── i686-w64-mingw32-g++
 │   ├── i686-w64-mingw32-gcc
-│   ├── i686-w64-mingw32-gcc-12.2.0
+│   ├── i686-w64-mingw32-gcc-12.3.0
 │   ├── i686-w64-mingw32-gcc-ar
 │   ├── i686-w64-mingw32-gcc-nm
 │   ├── i686-w64-mingw32-gcc-ranlib
@@ -214,7 +214,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/
 │   ├── x86_64-w64-mingw32-elfedit
 │   ├── x86_64-w64-mingw32-g++
 │   ├── x86_64-w64-mingw32-gcc
-│   ├── x86_64-w64-mingw32-gcc-12.2.0
+│   ├── x86_64-w64-mingw32-gcc-12.3.0
 │   ├── x86_64-w64-mingw32-gcc-ar
 │   ├── x86_64-w64-mingw32-gcc-nm
 │   ├── x86_64-w64-mingw32-gcc-ranlib
@@ -277,7 +277,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.2.0-1.1/
 │   ├── libz.1.dylib -> libz.1.2.11.dylib
 │   └── libzstd.1.5.2.dylib
 ├── share
-│   └── gcc-12.2.0
+│   └── gcc-12.3.0
 ├── x86_64-apple-darwin21.6.0
 │   ├── i686-w64-mingw32
 │   └── x86_64-w64-mingw32
@@ -323,15 +323,15 @@ For more details please read the
 ### Versioning
 
 The version strings used by the GCC project are three number strings
-like `12.2.0`; to this string the xPack distribution adds a four number,
+like `12.3.0`; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like `12.2.0-1`. When published as a npm package, the version gets
-a fifth number, like `12.2.0-1.1`.
+like `12.3.0-1`. When published as a npm package, the version gets
+a fifth number, like `12.3.0-1.1`.
 
 Since adherence of third party packages to semver is not guaranteed,
-it is recommended to use semver expressions like `^12.2.0` and `~12.2.0`
-with caution, and prefer exact matches, like `12.2.0-1.1`.
+it is recommended to use semver expressions like `^12.3.0` and `~12.3.0`
+with caution, and prefer exact matches, like `12.3.0-1.1`.
 
 ## Maintainer info
 

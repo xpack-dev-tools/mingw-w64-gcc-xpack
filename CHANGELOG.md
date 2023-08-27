@@ -2,9 +2,132 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-08-27
+
+* v12.3.0-1 prepared
+* 71f2703 README updates
+
+## 2023-08-25
+
+* 5c243dc package.json: rm xpack-dev-tools-build/*
+* 4bbb4df package.json: bump deps
+
+## 2023-08-21
+
+* 88dd427 READMEs update
+2023-08-21 * f9a1c35 package.json: bump deps
+
+## 2023-08-19
+
+* e6b4bf0 READMEs update
+* ea77bdd package.json: bump deps
+
+## 2023-08-15
+
+* 886d2f7 re-generate workflows
+* e9b9b7f README-MAINTAINER rename xbbla
+* 1020cbd package.json: rename xbbla
+* af46db3 package.json: bump deps
+* 641e0b8 READMEs update
+* f8eb963 package.json: bump deps
+
+## 2023-08-05
+
+* 545b6f0 READMEs update
+
+## 2023-08-04
+
+* 62eeab7 READMEs update
+* 91ae6bd READMEs update
+* 3133f32 package.json: add build-develop-debug
+* 440c916 READMEs update
+
+## 2023-08-03
+
+* 9baaf17 package.json: reorder build actions
+* f6e510d READMEs update
+* 11d4f5e package.json: bump deps
+
+## 2023-07-28
+
+* ffb6623 READMEs update
+* e3a4eed READMEs update
+* 7638190 package.json: bump deps
+* a2c35f4 package.json: liquidjs --context --template
+* 7192ce0 scripts cosmetics
+* 0296dba re-generate workflows
+* 2a3bf4f READMEs update
+* 36399ce package.json: minXpm 0.16.3 & @xpack-dev-tools/xbb-helper
+* 08756ac READMEs update
+* 1318473 package.json: bump deps
+
+## 2023-07-26
+
+* f698616 tests/README update xpack-dev-tools path
+* df8ad94 package.json: move scripts to actions
+* bb6d878 package.json: update xpack-dev-tools path
+* d3c497a READMEs update xpack-dev-tools path
+* b8aace1 body-jekyll update
+* d7d68ed READMEs update
+
+## 2023-07-17
+
+* e45cad1 package.json: bump deps
+
+## 2023-03-25
+
+* ccb8869 READMEs update
+* a9044d6 READMEs update prerequisites
+* 1e01238 package.json: mkdir -pv cache
+
+## 2023-02-22
+
+* 056ea96 tests/README update
+2023-02-22 * 98803a9 READMEs update
+
+## 2023-02-14
+
+* 9e9d7ce body-jekyll update
+
+## 2023-02-10
+
+* fbdae13 package.json: update Work/xpacks
+* 56e552f READMEs update
+* 18bd412 body-jekyll update
+
+## 2023-02-07
+
+* 5356681 READMEs update
+* f3e2976 versioning.sh: update for https
+* 8609e07 body-jekyll update
+
+## 2023-01-28
+
+* 9137ad0 versioning.sh: use versioning functions
+* dee287e README-MAINTAINER remove caffeinate xpm
+
+## 2023-01-27
+
+* 67922a0 package.json: reorder scripts
+
+## 2023-01-24
+
+* 19a0ad8 README updates
+
+## 2023-01-22
+
+* be64059 README update
+
+## 2023-01-09
+
+* fa23e2a package.json: bump deps
+
 ## 2023-01-03
 
-* v12.2.0-1.1 published on npmjs.com
+* c359b6f versioning.sh: comments
+* 9fd3dad package.json: bump deps
+* d03d1a5 12.2.0-1.1
+* 1c0ed9b CHANGELOG: publish npm v12.2.0-1.1
 * 6c0f967 package.json: update urls for 12.2.0-1.1 release
 * 8f84270 README updates
 * df06efc README update
