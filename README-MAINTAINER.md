@@ -222,10 +222,7 @@ xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 
 xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 
-# For backup overhead reasons, on the development machine
-# the builds happen on a separate Work folder.
-rm -rf ~/Work/xpack-dev-tools-build/mingw-w64-gcc-[0-9]*-*
-
+xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
