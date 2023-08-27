@@ -23,7 +23,21 @@ function gcc_mingw_build_common()
   # -------------------------------------------------------------------------
   # Build the native dependencies.
 
-  # None.
+  libiconv_build "${XBB_LIBICONV_VERSION}"
+
+  (
+    XBB_NCURSES_DISABLE_WIDEC="y"
+
+    ncurses_build "${XBB_NCURSES_VERSION}"
+  )
+
+  # new makeinfo needed by binutils 2.41 and up
+  # checking for suffix of object files...   MAKEINFO doc/bfd.info
+  # /Users/ilg/Work/xpack-dev-tools-build/riscv-none-elf-gcc-13.2.0-1/darwin-x64/sources/binutils-2.41/bfd/doc/bfd.texi:245: Node `Sections' requires a sectioning command (e.g., @unnumberedsubsec).
+  # Note: binutils_build needs xbb_activate_installed_bin.
+
+  # Requires libiconf & ncurses.
+  texinfo_build "${XBB_TEXINFO_VERSION}"
 
   # -------------------------------------------------------------------------
   # Build the target dependencies.
