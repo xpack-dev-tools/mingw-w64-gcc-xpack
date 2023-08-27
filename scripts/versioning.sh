@@ -71,8 +71,13 @@ function gcc_mingw_build_common()
   xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
   xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-  gcc_mingw_build_all_triplets
+  (
+    # To access makeinfo, needed by binutils.
+    xbb_activate_installed_bin "${XBB_NATIVE_DEPENDENCIES_INSTALL_FOLDER_PATH}/bin"
 
+    gcc_mingw_build_all_triplets
+  )
+  
   # Save a few MB.
   rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
 }
