@@ -92,6 +92,9 @@ xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 
 The xPack MinGW-w64 GCC release schedule generally follows the original GNU
 [releases](https://gcc.gnu.org/releases.html).
+Initial X.[01].0 releases are skipped, and the first is X.2.0, around
+September. At the same time updates for the previous 3 versions (like
+(X-1).3.0, (X-2).4.0, (X-3).5.0) are released.
 
 ## How to make new releases
 
@@ -209,45 +212,21 @@ For Intel macOS, first run the build on the development machine
 Update the build scripts (or clone them at the first use):
 
 ```sh
+# Update the build scripts.
 git -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git pull
 
-xpm run deep-clean -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
-```
-
-If the helper is also under development and needs changes,
-update it too:
-
-```sh
-git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
-```
-
-Install project dependencies:
-
-```sh
 xpm run install -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
-```
 
-If the writable helper is used,
-link it in the place of the read-only package:
-
-```sh
+git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 
 xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
-```
 
-For repeated builds, clean the build folder and install de
-build configuration dependencies:
-
-```sh
-xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+# For backup overhead reasons, on the development machine
+# the builds happen on a separate Work folder.
+rm -rf ~/Work/xpack-dev-tools-build/mingw-w64-gcc-[0-9]*-*
 
 xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
-```
-
-Run the native build:
-
-```sh
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 

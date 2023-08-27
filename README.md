@@ -40,9 +40,9 @@ The xPack MinGW-w64 GCC binaries include support for:
 
 - C
 - C++
-- Fortran
 - Obj-C
 - Obj-C++
+- Fortran
 
 Note: Obj-C support is minimalistic.
 
