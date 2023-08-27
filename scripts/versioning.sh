@@ -97,7 +97,7 @@ function application_build_versioned_components()
   export XBB_GCC_VERSION="$(xbb_strip_version_pre_release "${XBB_RELEASE_VERSION}")"
   export XBB_GCC_VERSION_MAJOR=$(xbb_get_version_major "${XBB_GCC_VERSION}")
 
-# ---------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
 
   export XBB_GCC_BOOTSTRAP_BRANDING="${XBB_APPLICATION_DISTRO_NAME} MinGW-w64 GCC${XBB_BOOTSTRAP_SUFFIX} ${XBB_TARGET_MACHINE}"
   export XBB_BINUTILS_BOOTSTRAP_BRANDING="${XBB_APPLICATION_DISTRO_NAME} MinGW-w64 binutils${XBB_BOOTSTRAP_SUFFIX} ${XBB_TARGET_MACHINE}"
@@ -117,7 +117,63 @@ function application_build_versioned_components()
   # Keep the versions in sync with gcc-xpack.
   # https://ftp.gnu.org/gnu/gcc/
   # ---------------------------------------------------------------------------
-  if [[ "${XBB_RELEASE_VERSION}" =~ 12[.][12][.]0-[1] ]]
+  if [[ "${XBB_RELEASE_VERSION}" =~ 12[.][3][.].*-.* ]] ||
+     [[ "${XBB_RELEASE_VERSION}" =~ 13[.][2][.].*-.* ]]
+  then
+    # Keep these in sync with gcc-xpack.
+
+    # https://ftp.gnu.org/gnu/binutils/
+    XBB_BINUTILS_VERSION="2.41" # "2.39"
+
+    # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
+    XBB_MINGW_VERSION="11.0.1" # "10.0.0"
+
+    # https://gmplib.org/download/gmp/
+    XBB_GMP_VERSION="6.3.0" # "6.2.1"
+    # https://www.mpfr.org/history.html
+    XBB_MPFR_VERSION="4.2.1" # "4.1.0"
+    # https://www.multiprecision.org/mpc/download.html
+    XBB_MPC_VERSION="1.2.1"
+    # https://sourceforge.net/projects/libisl/files/
+    XBB_ISL_VERSION="0.26" # "0.24"
+
+    # https://github.com/facebook/zstd/releases
+    XBB_ZSTD_VERSION="1.5.5" # "1.5.2"
+
+    # https://zlib.net/fossils/
+    XBB_ZLIB_VERSION="1.2.13" # "1.2.11"
+
+    # https://ftp.gnu.org/pub/gnu/libiconv/
+    XBB_LIBICONV_VERSION="1.17"
+
+    # https://ftp.gnu.org/gnu/ncurses/
+    XBB_NCURSES_VERSION="6.4" # "6.3"
+
+    # https://github.com/westes/texinfo/releases
+    XBB_TEXINFO_VERSION="7.0.3"
+
+    # https://sourceforge.net/projects/lzmautils/files/
+    XBB_XZ_VERSION="5.4.4" # "5.2.5"
+
+    # https://github.com/libexpat/libexpat/releases
+    # XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
+    # https://ftp.gnu.org/gnu/gdb/
+    XBB_GDB_VERSION="13.2" # "12.1"
+
+    # Number
+    XBB_MINGW_VERSION_MAJOR=$(xbb_get_version_major "${XBB_MINGW_VERSION}")
+
+    XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.git.patch"
+
+    # The original SourceForge location.
+    XBB_MINGW_SRC_FOLDER_NAME="mingw-w64-v${XBB_MINGW_VERSION}"
+
+    # -------------------------------------------------------------------------
+
+    gcc_mingw_build_common
+
+  # ---------------------------------------------------------------------------
+  elif [[ "${XBB_RELEASE_VERSION}" =~ 12[.][12][.]0-[1] ]]
   then
     # Keep these in sync with gcc-xpack.
 
