@@ -28,6 +28,8 @@ declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( ncurses texinfo binutils mingw 
 # List the DLLs in the results section, at the end.
 XBB_APPLICATION_SHOW_DLLS="y"
 
+# XBB_APPLICATION_BOOTSTRAP_ONLY="y"
+
 # -----------------------------------------------------------------------------
 
 XBB_GITHUB_ORG="${XBB_GITHUB_ORG:-"xpack-dev-tools"}"

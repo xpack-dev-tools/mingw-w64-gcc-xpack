@@ -68,21 +68,27 @@ function gcc_mingw_build_common()
     xbb_set_flex_package_paths
   fi
 
-  gcc_mingw_build_dependencies
+  # Switch used during development to test bootstrap.
+  if [ -z ${XBB_APPLICATION_BOOTSTRAP_ONLY+x} ]
+  then
 
-  # -------------------------------------------------------------------------
-  # Build the application binaries.
+    gcc_mingw_build_dependencies
 
-  xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
-  xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    # -------------------------------------------------------------------------
+    # Build the application binaries.
 
-  (
-    # To access makeinfo, needed by binutils.
-    xbb_activate_installed_bin "${XBB_NATIVE_DEPENDENCIES_INSTALL_FOLDER_PATH}/bin"
+    xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-    gcc_mingw_build_all_triplets
-  )
-  
+    (
+      # To access makeinfo, needed by binutils.
+      xbb_activate_installed_bin "${XBB_NATIVE_DEPENDENCIES_INSTALL_FOLDER_PATH}/bin"
+
+      gcc_mingw_build_all_triplets
+    )
+
+  fi
+
   # Save a few MB.
   rm -rf "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/info"
 }
