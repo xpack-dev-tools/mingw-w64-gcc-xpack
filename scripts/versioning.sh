@@ -44,12 +44,17 @@ function gcc_mingw_build_common()
 
   xbb_reset_env
   xbb_set_target "mingw-w64-native"
+  xbb_set_flex_package_paths
 
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
   then
     (
       # Build the bootstrap (a native Linux application).
-      # The result is in x86_64-pc-linux-gnu/x86_64-w64-mingw32.
+      # The results are in:
+      # - x86_64-pc-linux-gnu/install/bin (executables)
+      # - x86_64-pc-linux-gnu/x86_64-w64-mingw32/build
+      # - x86_64-pc-linux-gnu/x86_64-w64-mingw32/install/include
+      # - x86_64-pc-linux-gnu/x86_64-w64-mingw32/install/lib
       gcc_mingw_build_dependencies
 
       gcc_mingw_build_all_triplets
@@ -60,7 +65,7 @@ function gcc_mingw_build_common()
     xbb_activate_installed_bin
 
     xbb_set_target "mingw-w64-cross"
-
+    xbb_set_flex_package_paths
   fi
 
   gcc_mingw_build_dependencies
