@@ -223,7 +223,7 @@ xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 
 xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
