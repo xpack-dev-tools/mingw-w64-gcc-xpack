@@ -259,14 +259,14 @@ xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.gi
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 60 minutes later, the output of the build script is a compressed
+About 48 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/darwin-x64/deploy
-total 65392
--rw-r--r--  1 ilg  staff  32955568 Nov  2 08:47 xpack-mingw-w64-gcc-12.3.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff       107 Nov  2 08:47 xpack-mingw-w64-gcc-12.3.0-1-darwin-x64.tar.gz.sha
+total 460776
+-rw-r--r--  1 ilg  staff  222573247 Aug 29 03:34 xpack-mingw-w64-gcc-12.3.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff        113 Aug 29 03:34 xpack-mingw-w64-gcc-12.3.0-1-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -329,14 +329,14 @@ xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 30 minutes later, the output of the build script is a compressed
+About 32 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-x64/deploy
-total 34664
--rw-r--r-- 1 ilg ilg 35491744 Nov  2 07:02 xpack-mingw-w64-gcc-12.3.0-1-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg      106 Nov  2 07:02 xpack-mingw-w64-gcc-12.3.0-1-linux-x64.tar.gz.sha
+total 247860
+-rw-r--r-- 1 ilg ilg 253797965 Aug 29 00:13 xpack-mingw-w64-gcc-12.3.0-1-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg       112 Aug 29 00:13 xpack-mingw-w64-gcc-12.3.0-1-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Windows binaries
@@ -356,14 +356,14 @@ xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 1h10 later, the output of the build script is a compressed
+About 58 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/win32-x64/deploy
-total 41300
--rw-r--r-- 1 ilg ilg 42284069 Nov  2 07:24 xpack-mingw-w64-gcc-12.3.0-1-win32-x64.zip
--rw-r--r-- 1 ilg ilg      103 Nov  2 07:24 xpack-mingw-w64-gcc-12.3.0-1-win32-x64.zip.sha
+total 306052
+-rw-r--r-- 1 ilg ilg 313386161 Aug 29 00:32 xpack-mingw-w64-gcc-12.3.0-1-win32-x64.zip
+-rw-r--r-- 1 ilg ilg       109 Aug 29 00:32 xpack-mingw-w64-gcc-12.3.0-1-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -390,14 +390,14 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w6
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 2h55 later, the output of the build script is a compressed
+About 3h08 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm64/deploy
-total 33940
--rw-r--r-- 1 ilg ilg 34746510 Nov  2 16:10 xpack-mingw-w64-gcc-12.3.0-1-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg      108 Nov  2 16:10 xpack-mingw-w64-gcc-12.3.0-1-linux-arm64.tar.gz.sha
+total 240944
+-rw-r--r-- 1 ilg ilg 246718500 Aug 29 02:40 xpack-mingw-w64-gcc-12.3.0-1-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg       114 Aug 29 02:40 xpack-mingw-w64-gcc-12.3.0-1-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -424,14 +424,14 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 2h50 later, the output of the build script is a compressed
+About 2h41 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm/deploy
-total 32688
--rw-r--r-- 1 ilg ilg 33466799 Nov  2 17:21 xpack-mingw-w64-gcc-12.3.0-1-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg      106 Nov  2 17:21 xpack-mingw-w64-gcc-12.3.0-1-linux-arm.tar.gz.sha
+total 225116
+-rw-r--r-- 1 ilg ilg 230507657 Aug 29 03:05 xpack-mingw-w64-gcc-12.3.0-1-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg       112 Aug 29 03:05 xpack-mingw-w64-gcc-12.3.0-1-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
