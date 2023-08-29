@@ -44,7 +44,6 @@ function gcc_mingw_build_common()
 
   xbb_reset_env
   xbb_set_target "mingw-w64-native"
-  xbb_set_flex_package_paths
 
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
   then
@@ -65,7 +64,6 @@ function gcc_mingw_build_common()
     xbb_activate_installed_bin
 
     xbb_set_target "mingw-w64-cross"
-    xbb_set_flex_package_paths
   fi
 
   # Switch used during development to test bootstrap.
