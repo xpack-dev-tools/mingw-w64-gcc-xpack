@@ -2,9 +2,44 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-08-31
+
+* 9280f14 README update
+* 287ef28 package.json: bump deps
+* 2a25826 VERSION 12.3.0-1
+
+## 2023-08-30
+
+* 07d6bc4 VERSION 13.2.0-1
+
+## 2023-08-29
+
+* c9796ba README duration updates
+* d6724b1 versioning.sh: remove xbb_set_flex_package_paths
+
+## 2023-08-28
+
+* 7ee3c2d README update
+* 2f76723 README updates
+* fea52b1 README updates
+
 ## 2023-08-27
 
-* v12.3.0-1 prepared
+* d0ed0b6 add XBB_APPLICATION_BOOTSTRAP_ONLY
+* 2568b74 package.json: fix gcc version
+* b225cf5 package.json: fix gcc version
+* 47a5ec5 README run deep-clean
+* 3016c47 package-lock.json update
+* 65b282e .vscode/settings.json
+* 9fcb94a versioning.sh: add 12.3 & 13.2
+* e2573e6 versioning.sh: xbb_set_flex_package_paths
+* 1f16595 versioning.sh: activate_installed_bin DEPENDENCIES_INSTALL
+* f75eec8 versioning.sh: texinfo_build & deps
+* 88a4ea7 application.sh: add ncurses & texinfo deps
+* 4db337c package.json add bison, flex
+* 5179b9f dot.*ignore update
+* 59d6a36 re-generate workflows
+* 7441655 prepare v12.3.0-1
 * 71f2703 README updates
 
 ## 2023-08-25
