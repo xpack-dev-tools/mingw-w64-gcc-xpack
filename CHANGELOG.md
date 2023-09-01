@@ -4,7 +4,9 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-09-01
 
-* v12.3.0-1.1 published on npmjs.com
+* v13.2.0-1 prepared
+* f82827d 12.3.0-1.1
+* dd1804c CHANGELOG: publish npm v12.3.0-1.1
 * 81403c1 package.json: update urls for 12.3.0-1.1 release
 * 05153e8 README update
 * d527a92 templates/jekyll update
