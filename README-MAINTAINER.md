@@ -233,7 +233,7 @@ For a debug build:
 xpm run build-develop-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-The build takes about 50 minutes.
+The build takes about 51 minutes.
 
 When functional, push the `xpack-develop` branch to GitHub.
 
@@ -259,14 +259,14 @@ xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.gi
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 47 minutes later, the output of the build script is a compressed
+About 48 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/darwin-x64/deploy
-total 492904
--rw-r--r--  1 ilg  staff  241674075 Aug 31 22:02 xpack-mingw-w64-gcc-13.2.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff        113 Aug 31 22:02 xpack-mingw-w64-gcc-13.2.0-1-darwin-x64.tar.gz.sha
+total 493224
+-rw-r--r--  1 ilg  staff  245329754 Sep  1 12:22 xpack-mingw-w64-gcc-13.2.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff        113 Sep  1 12:22 xpack-mingw-w64-gcc-13.2.0-1-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -293,14 +293,14 @@ xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.
 xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 24 minutes later, the output of the build script is a compressed
+About 25 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/darwin-arm64/deploy
-total 459536
--rw-r--r--  1 ilg  staff  231975960 Aug 31 21:42 xpack-mingw-w64-gcc-13.2.0-1-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff        115 Aug 31 21:42 xpack-mingw-w64-gcc-13.2.0-1-darwin-arm64.tar.gz.sha
+total 459656
+-rw-r--r--  1 ilg  staff  235223655 Sep  1 12:03 xpack-mingw-w64-gcc-13.2.0-1-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff        115 Sep  1 12:03 xpack-mingw-w64-gcc-13.2.0-1-darwin-arm64.tar.gz.sha
 ```
 
 #### Intel GNU/Linux
@@ -329,14 +329,14 @@ xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 31 minutes later, the output of the build script is a compressed
+About 33 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-x64/deploy
-total 267556
--rw-r--r-- 1 ilg ilg 273969076 Aug 31 18:47 xpack-mingw-w64-gcc-13.2.0-1-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg       112 Aug 31 18:47 xpack-mingw-w64-gcc-13.2.0-1-linux-x64.tar.gz.sha
+total 273280
+-rw-r--r-- 1 ilg ilg 279829973 Sep  1 09:08 xpack-mingw-w64-gcc-13.2.0-1-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg       112 Sep  1 09:08 xpack-mingw-w64-gcc-13.2.0-1-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Windows binaries
@@ -356,14 +356,14 @@ xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 57 minutes later, the output of the build script is a compressed
+About 59 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/win32-x64/deploy
-total 305336
--rw-r--r-- 1 ilg ilg 312652835 Aug 31 19:06 xpack-mingw-w64-gcc-13.2.0-1-win32-x64.zip
--rw-r--r-- 1 ilg ilg       109 Aug 31 19:06 xpack-mingw-w64-gcc-13.2.0-1-win32-x64.zip.sha
+total 313576
+-rw-r--r-- 1 ilg ilg 321092904 Sep  1 09:28 xpack-mingw-w64-gcc-13.2.0-1-win32-x64.zip
+-rw-r--r-- 1 ilg ilg       109 Sep  1 09:28 xpack-mingw-w64-gcc-13.2.0-1-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -390,14 +390,14 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w6
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 3h05 later, the output of the build script is a compressed
+About 3h14 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm64/deploy
-total 260256
--rw-r--r-- 1 ilg ilg 266490552 Aug 31 21:11 xpack-mingw-w64-gcc-13.2.0-1-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg       114 Aug 31 21:11 xpack-mingw-w64-gcc-13.2.0-1-linux-arm64.tar.gz.sha
+total 265852
+-rw-r--r-- 1 ilg ilg 272222617 Sep  1 11:42 xpack-mingw-w64-gcc-13.2.0-1-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg       114 Sep  1 11:42 xpack-mingw-w64-gcc-13.2.0-1-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -424,14 +424,14 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-
 xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 2h39 later, the output of the build script is a compressed
+About 2h47 later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm/deploy
-total 243084
--rw-r--r-- 1 ilg ilg 248909743 Aug 31 20:47 xpack-mingw-w64-gcc-13.2.0-1-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg       112 Aug 31 20:47 xpack-mingw-w64-gcc-13.2.0-1-linux-arm.tar.gz.sha
+total 247888
+-rw-r--r-- 1 ilg ilg 253827378 Sep  1 11:15 xpack-mingw-w64-gcc-13.2.0-1-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg       112 Sep  1 11:15 xpack-mingw-w64-gcc-13.2.0-1-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
