@@ -8,13 +8,13 @@ the latest upstream master."
 
 summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the official GNU GCC release."
 
-gcc_version: "12.2.0"
+gcc_version: "12.3.0"
 gcc_version_major: "12"
-gcc_release_date: "August 19, 2022"
-binutils_version: "2.39"
-binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2022-08/msg00002.html"
-binutils_date: "Aug 5, 2022"
-mingw_release: "10.0.0"
+gcc_release_date: "May 8, 2022"
+binutils_version: "2.41"
+binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2023-07/msg00009.html"
+binutils_date: "July 30, 2022"
+mingw_release: "11.0.1"
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
@@ -147,6 +147,7 @@ The supported languages are:
 - Fortran
 - Obj-C
 - Obj-C++
+- Fortran
 
 Note: Obj-C/C++ support is minimalistic.
 
