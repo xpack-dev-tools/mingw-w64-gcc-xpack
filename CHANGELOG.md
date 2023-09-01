@@ -4,7 +4,9 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-08-31
 
-* v12.3.0-1 prepared
+* v12.3.0-1 released
+* 39e1ab2 prepare v12.3.0-1
+* 70646f3 CHANGELOG update
 * 9280f14 README update
 * 287ef28 package.json: bump deps
 * 2a25826 VERSION 12.3.0-1
