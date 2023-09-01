@@ -4,7 +4,9 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-09-01
 
-* ef786f5 README update
+* v13.2.0-1 released
+* 60f4f88 README update durations
+* 91e4657 CHANGELOG update* ef786f5 README update
 * efb3ca1 prepare v13.2.0-1
 * f82827d 12.3.0-1.1
 * dd1804c CHANGELOG: publish npm v12.3.0-1.1
