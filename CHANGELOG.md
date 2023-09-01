@@ -4,7 +4,11 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-09-01
 
-* v13.2.0-1 released
+* v13.2.0-1.1 published on npmjs.com
+* 5349d47 package.json: update urls for 13.2.0-1.1 release
+* 4a17d89 README update
+* 7f1d49d templates/jekyll update
+* afdf5d7 CHANGELOG update
 * 60f4f88 README update durations
 * 91e4657 CHANGELOG update* ef786f5 README update
 * efb3ca1 prepare v13.2.0-1
