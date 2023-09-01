@@ -76,28 +76,28 @@ compiled .exe files will be installed (like `/bin`).
 
 ```console
 $ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x 1 ilg ilg   38296 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x 1 ilg ilg  535781 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
--rwxr-xr-x 1 ilg ilg 2981114 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x 1 ilg ilg  247187 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x 1 ilg ilg  383320 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x 1 ilg ilg   22227 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x 1 ilg ilg 1940952 Sep 20 13:00 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
--rwxr-xr-x 1 ilg ilg  106093 Sep 20 12:58 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x  1 ilg  staff    38326 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x  1 ilg  staff   821363 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
+-rwxr-xr-x  1 ilg  staff  3159825 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x  1 ilg  staff   282552 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x  1 ilg  staff   375291 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x  1 ilg  staff    23251 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x  1 ilg  staff  2222331 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rw-r--r--  1 ilg  staff    61838 Sep  1 09:40 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 and
 
 ```console
 $ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x 1 ilg ilg   37356 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x 1 ilg ilg  652335 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
--rwxr-xr-x 1 ilg ilg 2753320 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x 1 ilg ilg  266392 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x 1 ilg ilg  570355 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x 1 ilg ilg   22328 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x 1 ilg ilg 2081167 Sep 20 13:08 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
--rwxr-xr-x 1 ilg ilg  112374 Sep 20 13:06 /home/ilg/Work/mingw-w64-gcc-13.2.0-1-static/linux-x64/install/mingw-w64-gcc/bin/../lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x  1 ilg  staff    37899 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x  1 ilg  staff   923876 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
+-rwxr-xr-x  1 ilg  staff  2907410 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x  1 ilg  staff   301246 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x  1 ilg  staff   557685 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x  1 ilg  staff    23352 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x  1 ilg  staff  2377884 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rw-r--r--  1 ilg  staff    72722 Sep  1 09:23 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-13.2.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/13.2.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 ### Easy install
