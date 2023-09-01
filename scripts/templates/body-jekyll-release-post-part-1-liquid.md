@@ -8,9 +8,9 @@ the latest upstream master."
 
 summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the official GNU GCC release."
 
-gcc_version: "12.3.0"
-gcc_version_major: "12"
-gcc_release_date: "May 8, 2022"
+gcc_version: "13.2.0"
+gcc_version_major: "13"
+gcc_release_date: "July 27, 2023"
 binutils_version: "2.41"
 binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2023-07/msg00009.html"
 binutils_date: "July 30, 2022"
