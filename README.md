@@ -248,45 +248,29 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.3.0-1.1/
 │   ├── include
 │   └── lib
 ├── include
-│   ├── ctf-api.h
-│   ├── ctf.h
-│   └── libiberty
 ├── lib
-│   ├── bfd-plugins
 │   ├── gcc
 │   ├── libcc1.0.so
 │   ├── libcc1.a
 │   ├── libcc1.la
-│   ├── libcc1.so -> libcc1.0.so
-│   ├── libctf-nobfd.0.dylib
-│   ├── libctf-nobfd.a
-│   ├── libctf-nobfd.dylib -> libctf-nobfd.0.dylib
-│   ├── libctf-nobfd.la
-│   ├── libctf.0.dylib
-│   ├── libctf.a
-│   ├── libctf.dylib -> libctf.0.dylib
-│   ├── libctf.la
-│   └── libiberty.a
+│   └── libcc1.so -> libcc1.0.so
 ├── libexec
 │   ├── libgmp.10.dylib
 │   ├── libiconv.2.dylib
 │   ├── libisl.23.dylib
 │   ├── libmpc.3.dylib
 │   ├── libmpfr.6.dylib
-│   ├── libz.1.2.11.dylib
-│   ├── libz.1.dylib -> libz.1.2.11.dylib
-│   └── libzstd.1.5.2.dylib
+│   ├── libz.1.2.13.dylib
+│   ├── libz.1.dylib -> libz.1.2.13.dylib
+│   └── libzstd.1.5.5.dylib
 ├── share
 │   └── gcc-12.3.0
-├── x86_64-apple-darwin21.6.0
-│   ├── i686-w64-mingw32
-│   └── x86_64-w64-mingw32
 └── x86_64-w64-mingw32
     ├── bin
     ├── include
     └── lib
 
-24 directories, 95 files
+20 directories, 84 files
 ```
 
 No other files are installed in any system folders or other locations.
