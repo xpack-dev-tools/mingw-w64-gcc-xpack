@@ -2,9 +2,17 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-09-01
+
+* v12.3.0-1.1 published on npmjs.com
+* 81403c1 package.json: update urls for 12.3.0-1.1 release
+* 05153e8 README update
+* d527a92 templates/jekyll update
+* d10c30c CHANGELOG update
+* 3e5122f README update durations
+
 ## 2023-08-31
 
-* v12.3.0-1 released
 * 39e1ab2 prepare v12.3.0-1
 * 70646f3 CHANGELOG update
 * 9280f14 README update
