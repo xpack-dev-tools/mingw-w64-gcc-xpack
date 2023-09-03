@@ -135,7 +135,7 @@
       "x86_64-w64-mingw32-windres": "./.content/bin/x86_64-w64-mingw32-windres"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^1.10.7"
+      "@xpack-dev-tools/xbb-helper": "^1.10.8"
     },
     "properties": {
       "appName": "MinGW-w64 GCC",
@@ -221,7 +221,7 @@
           "@xpack-dev-tools/cmake": "3.23.5-1.1",
           "@xpack-dev-tools/flex": "2.6.4-1.1",
           "@xpack-dev-tools/m4": "1.4.19-2.1",
-          "@xpack-dev-tools/mingw-w64-gcc": "12.2.0-1.1",
+          "@xpack-dev-tools/mingw-w64-gcc": "13.2.0-1.1",
           "@xpack-dev-tools/ninja-build": "1.11.1-2.1",
           "@xpack-dev-tools/pkg-config": "0.29.2-2.1"
         }
@@ -319,7 +319,7 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "12.2.0-2.1",
+          "@xpack-dev-tools/gcc": "13.2.0-1.1",
           "@xpack-dev-tools/patchelf": "0.17.2-1.1"
         },
         "properties": {
@@ -349,7 +349,7 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "12.2.0-2.1",
+          "@xpack-dev-tools/gcc": "13.2.0-1.1",
           "@xpack-dev-tools/wine": "7.22.0-1.1"
         },
         "properties": {
