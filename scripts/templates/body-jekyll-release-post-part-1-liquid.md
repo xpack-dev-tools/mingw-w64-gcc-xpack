@@ -10,10 +10,10 @@ summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the
 
 gcc_version: "13.2.0"
 gcc_version_major: "13"
-gcc_release_date: "July 27, 2023"
+gcc_release_date: "27 Jul 2023"
 binutils_version: "2.41"
 binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2023-07/msg00009.html"
-binutils_date: "July 30, 2022"
+binutils_date: "30 Jul 2022"
 mingw_release: "11.0.1"
 
 version: "{{ XBB_RELEASE_VERSION }}"
@@ -25,10 +25,12 @@ comments: true
 
 date:   {{ RELEASE_DATE }}
 
+# For Jekyll releases selection.
 categories:
   - releases
   - mingw-w64-gcc
 
+# For navigation; use scripts/createtag.sh in Jekyll.
 tags:
   - releases
   - gcc
