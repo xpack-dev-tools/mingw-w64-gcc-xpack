@@ -135,7 +135,7 @@
       "x86_64-w64-mingw32-windres": "./.content/bin/x86_64-w64-mingw32-windres"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^2.0.1"
+      "@xpack-dev-tools/xbb-helper": "^2.0.2"
     },
     "properties": {
       "appName": "MinGW-w64 GCC",
