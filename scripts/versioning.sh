@@ -63,7 +63,7 @@ function gcc_mingw_build_common()
   fi
 
   # Switch used during development to test bootstrap.
-  if [ -z ${XBB_APPLICATION_BOOTSTRAP_ONLY+x} ]
+  if [ "${XBB_APPLICATION_BOOTSTRAP_ONLY:-""}" != "y" ]
   then
 
     gcc_mingw_build_dependencies
@@ -117,8 +117,81 @@ function application_build_versioned_components()
   # Keep the versions in sync with gcc-xpack.
   # https://ftp.gnu.org/gnu/gcc/
   # ---------------------------------------------------------------------------
-  if [[ "${XBB_RELEASE_VERSION}" =~ 12[.][3][.].*-.* ]] ||
-     [[ "${XBB_RELEASE_VERSION}" =~ 13[.][2][.].*-.* ]]
+  if [[ "${XBB_RELEASE_VERSION}" =~ 11[.][5][.].*-.* ]] || \
+     [[ "${XBB_RELEASE_VERSION}" =~ 12[.][4][.].*-.* ]] || \
+     [[ "${XBB_RELEASE_VERSION}" =~ 13[.][3][.].*-.* ]] || \
+     [[ "${XBB_RELEASE_VERSION}" =~ 14[.][012][.].*-.* ]]
+  then
+    # Keep these in sync with gcc-xpack.
+
+    # https://github.com/gcc-mirror/gcc
+    if [[ "${XBB_RELEASE_VERSION}" =~ 14[.][012][.].*-.* ]]
+    then
+      # XBB_GCC_GIT_URL="git://gcc.gnu.org/git/gcc.git"
+      XBB_GCC_GIT_URL="https://github.com/gcc-mirror/gcc.git"
+      XBB_GCC_GIT_BRANCH="master"
+      XBB_GCC_GIT_COMMIT="fe99ab1f5e9920fd46ef8148fcffde6729d68523"
+    elif [[ "${XBB_RELEASE_VERSION}" =~ 13[.][3][.].*-.* ]]
+    then
+      XBB_GCC_GIT_URL="https://github.com/gcc-mirror/gcc.git"
+      XBB_GCC_GIT_BRANCH="releases/gcc-13"
+    fi
+
+    # https://ftp.gnu.org/gnu/binutils/
+    XBB_BINUTILS_VERSION="2.41" # "2.41"
+
+    # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
+    XBB_MINGW_VERSION="11.0.1"
+
+    # https://gmplib.org/download/gmp/
+    XBB_GMP_VERSION="6.3.0"
+    # https://www.mpfr.org/history.html
+    XBB_MPFR_VERSION="4.2.1"
+    # https://www.multiprecision.org/mpc/download.html
+    XBB_MPC_VERSION="1.2.1"
+    # https://sourceforge.net/projects/libisl/files/
+    XBB_ISL_VERSION="0.26"
+
+    # https://github.com/facebook/zstd/releases
+    XBB_ZSTD_VERSION="1.5.5"
+
+    # https://zlib.net/fossils/
+    XBB_ZLIB_VERSION="1.3.1" # "1.2.13"
+
+    # https://ftp.gnu.org/pub/gnu/libiconv/
+    XBB_LIBICONV_VERSION="1.17"
+
+    # https://ftp.gnu.org/gnu/ncurses/
+    XBB_NCURSES_VERSION="6.4"
+
+    # https://github.com/westes/texinfo/releases
+    XBB_TEXINFO_VERSION="7.0.3"
+
+    # https://sourceforge.net/projects/lzmautils/files/
+    # Avoid 5.6.[01]!
+    XBB_XZ_VERSION="5.4.6" # "5.4.4"
+
+    # https://github.com/libexpat/libexpat/releases
+    # XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
+    # https://ftp.gnu.org/gnu/gdb/
+    XBB_GDB_VERSION="14.2" # "13.2"
+
+    # Number
+    XBB_MINGW_VERSION_MAJOR=$(xbb_get_version_major "${XBB_MINGW_VERSION}")
+
+    XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.git.patch"
+
+    # The original SourceForge location.
+    XBB_MINGW_SRC_FOLDER_NAME="mingw-w64-v${XBB_MINGW_VERSION}"
+
+    # -------------------------------------------------------------------------
+
+    gcc_mingw_build_common
+
+  # ---------------------------------------------------------------------------
+  elif [[ "${XBB_RELEASE_VERSION}" =~ 11[.][4][.].*-.* ]] || \
+       [[ "${XBB_RELEASE_VERSION}" =~ 12[.][3][.].*-.* ]] || \
+       [[ "${XBB_RELEASE_VERSION}" =~ 13[.][2][.].*-.* ]]
   then
     # Keep these in sync with gcc-xpack.
 
