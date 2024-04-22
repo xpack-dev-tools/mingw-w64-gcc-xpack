@@ -25,11 +25,7 @@ function gcc_mingw_build_common()
 
   libiconv_build "${XBB_LIBICONV_VERSION}"
 
-  (
-    XBB_NCURSES_DISABLE_WIDEC="y"
-
-    ncurses_build "${XBB_NCURSES_VERSION}"
-  )
+  ncurses_build "${XBB_NCURSES_VERSION}"
 
   # new makeinfo needed by binutils 2.41 and up
   # checking for suffix of object files...   MAKEINFO doc/bfd.info
