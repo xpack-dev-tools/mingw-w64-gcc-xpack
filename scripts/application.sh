@@ -30,6 +30,8 @@ XBB_APPLICATION_SHOW_DLLS="y"
 
 # XBB_APPLICATION_BOOTSTRAP_ONLY="y"
 
+XBB_APPLICATION_TEST_PRERELEASE="y"
+
 # -----------------------------------------------------------------------------
 
 XBB_GITHUB_ORG="${XBB_GITHUB_ORG:-"xpack-dev-tools"}"
