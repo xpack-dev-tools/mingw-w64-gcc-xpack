@@ -157,6 +157,7 @@ function application_build_versioned_components()
     XBB_TEXINFO_VERSION="7.0.3"
 
     # https://sourceforge.net/projects/lzmautils/files/
+    # Avoid 5.6.[01]!
     XBB_XZ_VERSION="5.4.4" # "5.2.5"
 
     # https://github.com/libexpat/libexpat/releases
