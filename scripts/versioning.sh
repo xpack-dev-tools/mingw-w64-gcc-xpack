@@ -116,6 +116,13 @@ function application_build_versioned_components()
 
   # Keep the versions in sync with gcc-xpack.
   # https://ftp.gnu.org/gnu/gcc/
+  # The release date for XX.1.0 seems to be May, and for XX.2.0 August.
+
+  # https://github.com/iains/gcc-darwin-arm64
+  # XBB_GCC_GIT_URL="https://github.com/iains/gcc-darwin-arm64.git"
+  # XBB_GCC_GIT_BRANCH="master-wip-apple-si"
+  # XBB_GCC_GIT_COMMIT="b5cb04a00d2e35d3b68a18019bd9f0f226d85827"
+
   # ---------------------------------------------------------------------------
   if [[ "${XBB_RELEASE_VERSION}" =~ 11[.][5][.].*-.* ]] || \
      [[ "${XBB_RELEASE_VERSION}" =~ 12[.][4][.].*-.* ]] || \
@@ -130,7 +137,7 @@ function application_build_versioned_components()
       # XBB_GCC_GIT_URL="git://gcc.gnu.org/git/gcc.git"
       XBB_GCC_GIT_URL="https://github.com/gcc-mirror/gcc.git"
       XBB_GCC_GIT_BRANCH="master"
-      XBB_GCC_GIT_COMMIT="fe99ab1f5e9920fd46ef8148fcffde6729d68523"
+      # XBB_GCC_GIT_COMMIT="fe99ab1f5e9920fd46ef8148fcffde6729d68523"
     elif [[ "${XBB_RELEASE_VERSION}" =~ 13[.][3][.].*-.* ]]
     then
       XBB_GCC_GIT_URL="https://github.com/gcc-mirror/gcc.git"
