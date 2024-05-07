@@ -248,7 +248,7 @@ function application_build_versioned_components()
     gcc_mingw_build_common
 
   # ---------------------------------------------------------------------------
-  elif [[ "${XBB_RELEASE_VERSION}" =~ 12[.][12][.]0-[1] ]]
+  elif [[ "${XBB_RELEASE_VERSION}" =~ 12[.][12][.].*-.* ]]
   then
     # Keep these in sync with gcc-xpack.
 
@@ -296,7 +296,7 @@ function application_build_versioned_components()
     gcc_mingw_build_common
 
   # ---------------------------------------------------------------------------
-  elif [[ "${XBB_RELEASE_VERSION}" =~ 11[.]3[.]0-[1] ]]
+  elif [[ "${XBB_RELEASE_VERSION}" =~ 11[.]3[.].*-.* ]]
   then
     # Keep these in sync with gcc-xpack.
 
