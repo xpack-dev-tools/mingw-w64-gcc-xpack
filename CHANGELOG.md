@@ -2,9 +2,151 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-06-26
+
+* v14.1.0-1 prepared
+* 8cce1f9 .npmignore update
+* 5fd1136 versioning.sh: bump deps
+* 9a63809 application.sh: add expat
+* 5a8bd48 run.sh update
+* 8c4249c test.sh update
+* 1c01100 package.json: loglevel info
+* 352bf67 package.json: bump deps
+* 1ee2dbd re-generate workflows
+
+## 2024-06-18
+
+* c886170 scripts/tests/update.sh: simplify
+* 5416df4 READMEs update
+
+## 2024-06-17
+
+* c37db6d package.json: rework generate workflows
+* 3111f53 package.json: bump deps
+* 1122cd2 application.sh: update
+
+## 2024-05-23
+
+* 1b51c59 package.json: clang 16.0.6-1.1
+
+## 2024-05-18
+
+* f46aa7a READMEs update
+* f70c58b package.json: XBB_ENVIRONMENT_SKIP_CHECKS
+
+## 2024-05-16
+
+* 16820a7 READMEs update
+
+## 2024-05-08
+
+* 525004f README update
+
+## 2024-05-07
+
+* 96712eb application.sh: 14.1 no longer pre-release
+* dff8d33 VERSION 14.1.0
+* 8955b7f versioning.sh: more regex
+* a2ec310 versioning.sh: generic pre-release branch
+* f6a39a1 versioning.sh: update texinfo url
+
+## 2024-05-03
+
+* 9bb3cfe versioning.sh: update for gcc-14 branch
+* 0589013 versioning.sh: comment out git commit, use head
+
+## 2024-05-02
+
+* 0f834ff package.json: clang 17.0.6-1.1
+
+## 2024-04-27
+
+* 7c14fa5 application.sh: remove compiler-tests
+* 8228511 README update
+
+## 2024-04-22
+
+* 6cd7d6c README update
+* 7ab1a58 VERSION: 14.0.1-1
+* 9ba6acd application.sh: TEST_PRERELEASE="y"
+* e950a78 versioning.sh: add support for 14.x
+* f0e9803 versioning.sh: remove XBB_NCURSES_DISABLE_WIDEC
+* 706a490 package.json: bump deps
+* d867abd versioning.sh: avoid XZ 5.6
+
+## 2024-03-22
+
+* 9b82251 package.json: xpm-version 0.18.0
+
+## 2024-03-08
+
+* 65a1b2f package.json: xpm-version 0.18.0
+
+## 2024-03-07
+
+* 8dddfa7 package.json: xpm-version 0.18.0
+* 403bf51 package.json: bump deps
+
+## 2024-03-06
+
+* ffedf91 body-jekyll update
+* 82468e6 package.json: bump deps
+
+## 2024-02-07
+
+* 80047f6 READMEs update
+* cc16c36 package.json: bump deps
+
+## 2023-12-03
+
+* 1142f8f package.json: bump deps
+* 8a1dd2b re-generate workflows
+
+## 2023-11-12
+
+* f6b3287 package.json: bump deps
+
+## 2023-09-25
+
+* d97b9a5 body-jekyll update
+
+## 2023-09-20
+
+* 7975d81 package.json: bump deps
+
+## 2023-09-16
+
+* ec169b3 package.json: add linux32
+* d6e9e7e body-jekyll update
+
+## 2023-09-11
+
+* b8d4db9 package.json: bump deps
+
+## 2023-09-08
+
+* bbeb779 package.json: bump deps
+
+## 2023-09-06
+
+* 10a1c9e package.json: bump deps
+* 4a3b7e7 READMEs update
+* 19fa961 body-jekyll update
+
+## 2023-09-05
+
+* b4a8013 re-generate workflows
+* b00d0fc READMEs update
+* 537fedb package.json: bump deps
+
+## 2023-09-03
+
+* 812944b package.json: bump deps
+
 ## 2023-09-01
 
-* v13.2.0-1.1 published on npmjs.com
+* 1e97e07 13.2.0-1.1
+* 4f1e3fb CHANGELOG: publish npm v13.2.0-1.1
 * 5349d47 package.json: update urls for 13.2.0-1.1 release
 * 4a17d89 README update
 * 7f1d49d templates/jekyll update
