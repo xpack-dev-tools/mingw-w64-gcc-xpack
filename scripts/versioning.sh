@@ -68,6 +68,8 @@ function gcc_mingw_build_common()
 
     gcc_mingw_build_dependencies
 
+    expat_build "${XBB_EXPAT_VERSION}"
+
     # -------------------------------------------------------------------------
     # Build the application binaries.
 
@@ -139,22 +141,22 @@ function application_build_versioned_components()
     fi
 
     # https://ftp.gnu.org/gnu/binutils/
-    XBB_BINUTILS_VERSION="2.41" # "2.41"
+    XBB_BINUTILS_VERSION="2.42" # "2.41"
 
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
-    XBB_MINGW_VERSION="11.0.1"
+    XBB_MINGW_VERSION="12.0.0" # "11.0.1"
 
     # https://gmplib.org/download/gmp/
     XBB_GMP_VERSION="6.3.0"
     # https://www.mpfr.org/history.html
     XBB_MPFR_VERSION="4.2.1"
     # https://www.multiprecision.org/mpc/download.html
-    XBB_MPC_VERSION="1.2.1"
+    XBB_MPC_VERSION="1.3.1" # "1.2.1"
     # https://sourceforge.net/projects/libisl/files/
     XBB_ISL_VERSION="0.26"
 
     # https://github.com/facebook/zstd/releases
-    XBB_ZSTD_VERSION="1.5.5"
+    XBB_ZSTD_VERSION="1.5.6" # "1.5.5"
 
     # https://zlib.net/fossils/
     XBB_ZLIB_VERSION="1.3.1" # "1.2.13"
@@ -173,7 +175,8 @@ function application_build_versioned_components()
     XBB_XZ_VERSION="5.4.6" # "5.4.4"
 
     # https://github.com/libexpat/libexpat/releases
-    # XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
+    XBB_EXPAT_VERSION="2.6.2" # "2.5.0"
+
     # https://ftp.gnu.org/gnu/gdb/
     XBB_GDB_VERSION="14.2" # "13.2"
 
@@ -231,7 +234,8 @@ function application_build_versioned_components()
     XBB_XZ_VERSION="5.4.4" # "5.2.5"
 
     # https://github.com/libexpat/libexpat/releases
-    # XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
+    XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
+
     # https://ftp.gnu.org/gnu/gdb/
     XBB_GDB_VERSION="13.2" # "12.1"
 
@@ -280,8 +284,9 @@ function application_build_versioned_components()
 
     # https://ftp.gnu.org/gnu/ncurses/
     # XBB_NCURSES_VERSION="6.3"
+
     # https://github.com/libexpat/libexpat/releases
-    # XBB_EXPAT_VERSION="2.4.8"
+    XBB_EXPAT_VERSION="2.4.8"
 
     # Number
     XBB_MINGW_VERSION_MAJOR=$(xbb_get_version_major "${XBB_MINGW_VERSION}")
