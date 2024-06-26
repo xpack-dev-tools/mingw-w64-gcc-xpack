@@ -175,3 +175,191 @@ not very well integrated into the build, and invoking the compiler
 with `-static-libgcc -static-libstdc++` does not apply to this DLL,
 so the resulting binaries might still have a reference to it.
 
+## Tests reports
+
+### Manjaro 24.0
+
+```txt
+Tests summary for mingw-w64-gcc on linux-x64 (ManjaroLinux 24.0.2)
+
+776 test cases passed, 120 skipped, 12 failed:
+
+- xfail: static-lib-throwcatch-main-32
+- xfail: static-lib-gc-throwcatch-main-32
+- xfail: static-lib-lto-throwcatch-main-32
+- xfail: static-lib-gc-lto-throwcatch-main-32
+- xfail: lto-throwcatch-main-64
+- xfail: lto-autoimport-main-64
+- xfail: gc-lto-throwcatch-main-64
+- xfail: gc-lto-autoimport-main-64
+- xfail: static-lib-lto-throwcatch-main-64
+- xfail: static-lib-lto-autoimport-main-64
+- xfail: static-lib-gc-lto-throwcatch-main-64
+- xfail: static-lib-gc-lto-autoimport-main-64
+
+Verdict: tests reluctantly accepted
+```
+
+### Successful tests
+
+- adder ✓
+- adder-shared ✓
+- atomic ✓
+- bufferoverflow ✓
+- cnrt-test ✓
+- concurrent-f ✓
+- exception-locale ✓
+- exception-reduced ✓
+- global-terminate ✓
+- hello1-c ✓
+- hello2-cpp ✓
+- hello-exception ✓
+- hello-f ✓
+- hello-tls ✓
+- idltest ✓
+- longjmp-cleanup ✓
+- normal ✓
+- overload-new-cpp ✓
+- setjmp ✓
+- simple-exception ✓
+- simple-hello-cout-one ✓
+- simple-hello-cout-two ✓
+- simple-hello-printf-one ✓
+- simple-hello-printf-two ✓
+- simple-int-exception ✓
+- simple-objc ✓
+- simple-str-exception ✓
+- sleepy-threads-cv ✓
+- tlstest-main ✓
+- unwind-strong-cpp ✓
+- weak-common ✓
+- weak-defined-c ✓
+- weak-override-c ✓
+- weak-undef-c ✓
+
+### Skipped test cases
+
+- hello-weak1-c-32
+- gc-hello-weak1-c-32
+- lto-hello-weak1-c-32
+- gc-lto-hello-weak1-c-32
+- static-lib-hello-weak1-c-32
+- static-lib-gc-hello-weak1-c-32
+- static-lib-lto-hello-weak1-c-32
+- static-lib-gc-lto-hello-weak1-c-32
+- static-hello-weak1-c-32
+- static-gc-hello-weak1-c-32
+- static-lto-hello-weak1-c-32
+- static-gc-lto-hello-weak1-c-32
+- hello-weak1-c-64
+- gc-hello-weak1-c-64
+- lto-hello-weak1-c-64
+- gc-lto-hello-weak1-c-64
+- static-lib-hello-weak1-c-64
+- static-lib-gc-hello-weak1-c-64
+- static-lib-lto-hello-weak1-c-64
+- static-lib-gc-lto-hello-weak1-c-64
+- static-hello-weak1-c-64
+- static-gc-hello-weak1-c-64
+- static-lto-hello-weak1-c-64
+- static-gc-lto-hello-weak1-c-64
+- hello-weak2-cpp-32
+- gc-hello-weak2-cpp-32
+- lto-hello-weak2-cpp-32
+- gc-lto-hello-weak2-cpp-32
+- static-lib-hello-weak2-cpp-32
+- static-lib-gc-hello-weak2-cpp-32
+- static-lib-lto-hello-weak2-cpp-32
+- static-lib-gc-lto-hello-weak2-cpp-32
+- static-hello-weak2-cpp-32
+- static-gc-hello-weak2-cpp-32
+- static-lto-hello-weak2-cpp-32
+- static-gc-lto-hello-weak2-cpp-32
+- hello-weak2-cpp-64
+- gc-hello-weak2-cpp-64
+- lto-hello-weak2-cpp-64
+- gc-lto-hello-weak2-cpp-64
+- static-lib-hello-weak2-cpp-64
+- static-lib-gc-hello-weak2-cpp-64
+- static-lib-lto-hello-weak2-cpp-64
+- static-lib-gc-lto-hello-weak2-cpp-64
+- static-hello-weak2-cpp-64
+- static-gc-hello-weak2-cpp-64
+- static-lto-hello-weak2-cpp-64
+- static-gc-lto-hello-weak2-cpp-64
+- unwind-weak-cpp-32
+- gc-unwind-weak-cpp-32
+- lto-unwind-weak-cpp-32
+- gc-lto-unwind-weak-cpp-32
+- static-lib-unwind-weak-cpp-32
+- static-lib-gc-unwind-weak-cpp-32
+- static-lib-lto-unwind-weak-cpp-32
+- static-lib-gc-lto-unwind-weak-cpp-32
+- static-unwind-weak-cpp-32
+- static-gc-unwind-weak-cpp-32
+- static-lto-unwind-weak-cpp-32
+- static-gc-lto-unwind-weak-cpp-32
+- unwind-weak-cpp-64
+- gc-unwind-weak-cpp-64
+- lto-unwind-weak-cpp-64
+- gc-lto-unwind-weak-cpp-64
+- static-lib-unwind-weak-cpp-64
+- static-lib-gc-unwind-weak-cpp-64
+- static-lib-lto-unwind-weak-cpp-64
+- static-lib-gc-lto-unwind-weak-cpp-64
+- static-unwind-weak-cpp-64
+- static-gc-unwind-weak-cpp-64
+- static-lto-unwind-weak-cpp-64
+- static-gc-lto-unwind-weak-cpp-64
+- weak-duplicate-c-32
+- gc-weak-duplicate-c-32
+- lto-weak-duplicate-c-32
+- gc-lto-weak-duplicate-c-32
+- static-lib-weak-duplicate-c-32
+- static-lib-gc-weak-duplicate-c-32
+- static-lib-lto-weak-duplicate-c-32
+- static-lib-gc-lto-weak-duplicate-c-32
+- static-weak-duplicate-c-32
+- static-gc-weak-duplicate-c-32
+- static-lto-weak-duplicate-c-32
+- static-gc-lto-weak-duplicate-c-32
+- weak-duplicate-c-64
+- gc-weak-duplicate-c-64
+- lto-weak-duplicate-c-64
+- gc-lto-weak-duplicate-c-64
+- static-lib-weak-duplicate-c-64
+- static-lib-gc-weak-duplicate-c-64
+- static-lib-lto-weak-duplicate-c-64
+- static-lib-gc-lto-weak-duplicate-c-64
+- static-weak-duplicate-c-64
+- static-gc-weak-duplicate-c-64
+- static-lto-weak-duplicate-c-64
+- static-gc-lto-weak-duplicate-c-64
+- weak-use-c-32
+- gc-weak-use-c-32
+- lto-weak-use-c-32
+- gc-lto-weak-use-c-32
+- static-lib-weak-use-c-32
+- static-lib-gc-weak-use-c-32
+- static-lib-lto-weak-use-c-32
+- static-lib-gc-lto-weak-use-c-32
+- static-weak-use-c-32
+- static-gc-weak-use-c-32
+- static-lto-weak-use-c-32
+- static-gc-lto-weak-use-c-32
+- weak-use-c-64
+- gc-weak-use-c-64
+- lto-weak-use-c-64
+- gc-lto-weak-use-c-64
+- static-lib-weak-use-c-64
+- static-lib-gc-weak-use-c-64
+- static-lib-lto-weak-use-c-64
+- static-lib-gc-lto-weak-use-c-64
+- static-weak-use-c-64
+- static-gc-weak-use-c-64
+- static-lto-weak-use-c-64
+- static-gc-lto-weak-use-c-64
+
+...
+```
+

@@ -244,9 +244,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/darwin-x64/deploy
-total 493224
--rw-r--r--  1 ilg  staff  245329754 Sep  1 12:22 xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff        113 Sep  1 12:22 xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz.sha
+total 557080
+-rw-r--r--  1 ilg  staff  271965952 Jun 26 14:42 xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff        113 Jun 26 14:42 xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -279,9 +279,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/darwin-arm64/deploy
-total 459656
--rw-r--r--  1 ilg  staff  235223655 Sep  1 12:03 xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff        115 Sep  1 12:03 xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz.sha
+total 524312
+-rw-r--r--  1 ilg  staff  259834172 Jun 26 14:37 xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff        115 Jun 26 14:37 xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz.sha
 ```
 
 #### Intel GNU/Linux
@@ -316,9 +316,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-x64/deploy
-total 273280
--rw-r--r-- 1 ilg ilg 279829973 Sep  1 09:08 xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg       112 Sep  1 09:08 xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz.sha
+total 302124
+-rw-rw-rw- 1 ilg ilg 309364799 Jun 26 11:52 xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg       112 Jun 26 11:52 xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Intel Windows binaries
@@ -344,9 +344,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/win32-x64/deploy
-total 313576
--rw-r--r-- 1 ilg ilg 321092904 Sep  1 09:28 xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip
--rw-r--r-- 1 ilg ilg       109 Sep  1 09:28 xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip.sha
+total 343356
+-rw-rw-rw- 1 ilg ilg 351586013 Jun 26 11:53 xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg       109 Jun 26 11:53 xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -379,9 +379,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm64/deploy
-total 265852
--rw-r--r-- 1 ilg ilg 272222617 Sep  1 11:42 xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg       114 Sep  1 11:42 xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz.sha
+total 293644
+-rw-r--r-- 1 ilg ilg 300680800 Jun 26 14:59 xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg       114 Jun 26 14:59 xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -414,9 +414,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/build/linux-arm/deploy
-total 247888
--rw-r--r-- 1 ilg ilg 253827378 Sep  1 11:15 xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg       112 Sep  1 11:15 xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz.sha
+total 273600
+-rw-r--r-- 1 ilg ilg 280157809 Jun 26 14:13 xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg       112 Jun 26 14:13 xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
@@ -648,6 +648,38 @@ On Windows use:
 ```dos
 ...\xpack-mingw-w64-gcc-14.1.0-1\bin\gcc --version
 gcc (xPack MinGW-w64 GCC x86_64) 14.1.0
+```
+
+### Running the tests with the external binaries
+
+It is possible to run the tests on a regular machine, using the system binaries.
+
+Clone the project and the helper, and link them:
+
+```sh
+rm -rf ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks
+mkdir -pv ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks/@xpack-dev-tools
+ln -sv ~/Work/xpack-dev-tools/xbb-helper-xpack.git ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks/@xpack-dev-tools/xbb-helper
+```
+
+To calibrate the tests with the system tools:
+
+```sh
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/test.sh --system --develop
+```
+
+On Ubuntu, to install mingw-gcc, libraries and wine, use:
+
+```sh
+sudo apt-get install --yes g++-mingw-w64 mingw-w64-tools wine64
+```
+
+On Manjaro, install `mingw-w64-gcc mingw-w64-tools wine`.
+
+If the 32-bit libraries are not available, skip the tests:
+
+```sh
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/test.sh --system --skip-32
 ```
 
 ## Create a new GitHub pre-release draft
