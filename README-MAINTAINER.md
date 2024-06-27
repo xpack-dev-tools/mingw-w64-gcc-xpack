@@ -374,7 +374,7 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w6
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
-About 275 minutes later (65 minutes on ampere), the output of the build script is a compressed
+About 260 minutes later (4h20), 65 minutes on ampere, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
