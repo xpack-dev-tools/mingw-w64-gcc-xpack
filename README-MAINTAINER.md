@@ -675,7 +675,11 @@ On Ubuntu, to install mingw-gcc, libraries and wine, use:
 sudo apt-get install --yes g++-mingw-w64 mingw-w64-tools wine64
 ```
 
-On Manjaro, install `mingw-w64-gcc mingw-w64-tools wine`.
+On Manjaro, install
+
+```sh
+sudo pacman --sync mingw-w64-gcc mingw-w64-tools wine
+```
 
 If the 32-bit libraries are not available, skip the tests:
 
