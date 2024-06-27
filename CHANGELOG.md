@@ -4,6 +4,8 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-06-27
 
+* 04beefd package.json: bump deps
+* 551e57e CHANGELOG update
 * 6accd6d package.json: bump deps
 * ab3690e package.json: bump deps
 
