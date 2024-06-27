@@ -4,7 +4,14 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-06-27
 
-* v14.1.0-1 released
+* v14.1.0-1.1 published on npmjs.com
+* ea312b6 package.json: update urls for 14.1.0-1.1 release
+* 8068ae5 README update
+* ad7b165 body-jekyll update
+* 23014f0 README update
+* 3e49232 CHANGELOG update
+* 8eab076 CHANGELOG update
+* e580024 README update
 * 04beefd package.json: bump deps
 * 551e57e CHANGELOG update
 * 6accd6d package.json: bump deps
