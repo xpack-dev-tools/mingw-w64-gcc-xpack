@@ -35,32 +35,32 @@
     "minimumXpmRequired": "0.16.3",
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v13.2.0-1",
+      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v14.1.0-1",
       "skip": 1,
       "platforms": {
         "darwin-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-darwin-arm64.tar.gz",
-          "sha256": "2c1915c0f5f93978f56101a5405d1403f628af42526a43954f06326451da4065"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz",
+          "sha256": "600f3279ad9d2c7a10060400095a92af5eb74fdfc97e42a274fe5bda91ea2cb2"
         },
         "darwin-x64": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-darwin-x64.tar.gz",
-          "sha256": "9c2bb3841b991dc07481507f76304397fd1b61ec8cfea973a9fb96dc12c038ae"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz",
+          "sha256": "3dd54a7b4374e9985de22ff95014a59c5b22418190254d787212d75f59ca5289"
         },
         "linux-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-linux-arm64.tar.gz",
-          "sha256": "548aeccf268cbd132557970311d955816fd0d959d8e8371b9d304b38774d9fbb"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz",
+          "sha256": "351260defe0943cf9496e7d162db78a5e8167f0f0f6b0b9104c45f65f66f4914"
         },
         "linux-arm": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-linux-arm.tar.gz",
-          "sha256": "b45f99b7f2a27a9d9f09825f9caea4860673da07223555b522610daa51f4c39b"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz",
+          "sha256": "647f6f5e654c70a6c9481bfeaa4e6ad6c3f1afe7e3e579f1169960168f2438c1"
         },
         "linux-x64": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-linux-x64.tar.gz",
-          "sha256": "cad2e6a734f6c6e8098b7100f98c3e3c8d86785e6640ece4d090359750483a75"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz",
+          "sha256": "926854820488a3cc00e5815c8345389d4867f060e2ac75abd3d40a0d64865a9c"
         },
         "win32-x64": {
-          "fileName": "xpack-mingw-w64-gcc-13.2.0-1-win32-x64.zip",
-          "sha256": "59651e3ccbbd3d7520cb1b72059f15f1f72d73ac4c31289cebd59d44cb9c7d07"
+          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip",
+          "sha256": "39fe0703c38ffd126368ce670965015ae01f5b2d6594a259d5f0b608071186d9"
         }
       }
     },
@@ -340,7 +340,7 @@
         "inherit": [
           "linux-x64"
         ],
-          "properties": {
+        "properties": {
           "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1",
           "force32": "linux32"
         }
