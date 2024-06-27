@@ -2,8 +2,16 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-06-27
+
+* 6accd6d package.json: bump deps
+* ab3690e package.json: bump deps
+
 ## 2024-06-26
 
+* 43f193b package.json: bump deps
+* f9e15ae body-jekyll update
+* 2a8c2e3 CHANGELOG update
 * 33e1733 README updates
 * b78419a prepare v14.1.0-1
 * 8cce1f9 .npmignore update
