@@ -798,6 +798,18 @@ will install the package via `xpm install` on all supported platforms.
 The tests results are available from the
 [Actions](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/actions/) page.
 
+## Prepare the test results page
+
+Download the `tests-report` artefact, unpack it and copy
+the `14.1.0-1.md` file to the web site `pages/dev-tools/mingw-w64-gcc/tests` folder.
+
+Generating the tests results for a specific version can be done with the
+command:
+
+```bash
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-xpm.sh --package-version 14.1.0-1.1
+```
+
 ## Update the repo
 
 - merge `xpack-develop` into `xpack`
