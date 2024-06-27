@@ -8,13 +8,13 @@ the latest upstream master."
 
 summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the official GNU GCC release."
 
-gcc_version: "13.2.0"
-gcc_version_major: "13"
-gcc_release_date: "27 Jul 2023"
-binutils_version: "2.41"
-binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2023-07/msg00009.html"
-binutils_date: "30 Jul 2022"
-mingw_release: "11.0.1"
+gcc_version: "14.1.0"
+gcc_version_major: "14"
+gcc_release_date: "20 Jun 2024"
+binutils_version: "2.42"
+binutils_release_url: "https://lists.gnu.org/archive/html/info-gnu/2024-01/msg00016.html"
+binutils_date: "29 Jan 2024"
+mingw_release: "12.0.0"
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
@@ -167,7 +167,8 @@ Compared to the upstream, there are no functional changes.
 
 ## Known problems
 
-- none
+Please see the separate
+[tests results page]({{ site.baseurl }}/dev-tools/mingw-w64-gcc/tests/{{ XBB_RELEASE_VERSION }}/).
 
 ## Shared libraries
 
