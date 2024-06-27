@@ -239,10 +239,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/14.1.0-1.1/
 │   ├── x86_64-w64-mingw32-windmc
 │   └── x86_64-w64-mingw32-windres
 ├── distro-info
-│   ├── CHANGELOG.md
-│   ├── licenses
-│   ├── patches
-│   └── scripts
+│   └── licenses
 ├── i686-w64-mingw32
 │   ├── bin
 │   ├── include
@@ -255,14 +252,18 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/14.1.0-1.1/
 │   ├── libcc1.la
 │   └── libcc1.so -> libcc1.0.so
 ├── libexec
+│   ├── libc++.1.0.dylib
+│   ├── libc++abi.1.0.dylib
 │   ├── libgmp.10.dylib
 │   ├── libiconv.2.dylib
 │   ├── libisl.23.dylib
 │   ├── libmpc.3.dylib
 │   ├── libmpfr.6.dylib
-│   ├── libz.1.2.13.dylib
-│   ├── libz.1.dylib -> libz.1.2.13.dylib
-│   └── libzstd.1.5.5.dylib
+│   ├── libunwind.1.0.dylib
+│   ├── libz.1.3.1.dylib
+│   ├── libz.1.dylib -> libz.1.3.1.dylib
+│   ├── libzstd.1.5.6.dylib
+│   └── libzstd.1.dylib -> libzstd.1.5.6.dylib
 ├── share
 │   └── gcc-14.1.0
 └── x86_64-w64-mingw32
@@ -270,7 +271,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/14.1.0-1.1/
     ├── include
     └── lib
 
-20 directories, 84 files
+18 directories, 87 files
 ```
 
 No other files are installed in any system folders or other locations.
