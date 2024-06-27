@@ -4,7 +4,10 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-06-27
 
-* v14.1.0-1.1 published on npmjs.com
+* v13.3.0-1 prepared
+* e834851 README update
+* 3608336 14.1.0-1.1
+* eb6a784 CHANGELOG: publish npm v14.1.0-1.1
 * ea312b6 package.json: update urls for 14.1.0-1.1 release
 * 8068ae5 README update
 * ad7b165 body-jekyll update
