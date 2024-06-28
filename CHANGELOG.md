@@ -2,9 +2,15 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-06-29
+
+* v12.4.0-1 released
+
 ## 2024-06-28
 
-* v12.4.0-1 prepared
+* 9c77ea7 package.json: bump deps
+* e3bb13e package.json: bump deps
+* 37ba60f prepare v12.4.0-1
 * 8c9dc08 13.3.0-1.1
 * dca8504 CHANGELOG: publish npm v13.3.0-1.1
 * 1b561ca package.json: update urls for 13.3.0-1.1 release
