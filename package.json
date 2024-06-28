@@ -35,32 +35,32 @@
     "minimumXpmRequired": "0.16.3",
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v14.1.0-1",
+      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v13.3.0-1",
       "skip": 1,
       "platforms": {
         "darwin-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-darwin-arm64.tar.gz",
-          "sha256": "600f3279ad9d2c7a10060400095a92af5eb74fdfc97e42a274fe5bda91ea2cb2"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-darwin-arm64.tar.gz",
+          "sha256": "15fb6a99d5a1bff7bc7efd42fd0c84440e599b83dfcd2f318bfe699ca01928c6"
         },
         "darwin-x64": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-darwin-x64.tar.gz",
-          "sha256": "3dd54a7b4374e9985de22ff95014a59c5b22418190254d787212d75f59ca5289"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-darwin-x64.tar.gz",
+          "sha256": "e2b8628de25144a263daee5175b712769d3f23455872e5aa98c7dbe2094f3d0e"
         },
         "linux-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-arm64.tar.gz",
-          "sha256": "351260defe0943cf9496e7d162db78a5e8167f0f0f6b0b9104c45f65f66f4914"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-linux-arm64.tar.gz",
+          "sha256": "8d631d755b4ea228040ebbe6b0ca29090cb830ebcde0ec7dde4ab2ec22f1d602"
         },
         "linux-arm": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-arm.tar.gz",
-          "sha256": "647f6f5e654c70a6c9481bfeaa4e6ad6c3f1afe7e3e579f1169960168f2438c1"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-linux-arm.tar.gz",
+          "sha256": "36cd38b731238aafbda6112065153724c8a8190c8e86ded9a49abb5fe1f18fd8"
         },
         "linux-x64": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-linux-x64.tar.gz",
-          "sha256": "926854820488a3cc00e5815c8345389d4867f060e2ac75abd3d40a0d64865a9c"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-linux-x64.tar.gz",
+          "sha256": "ecc36da54f05d49d939bb29a2847674a6cb9722afeb422892e6224b96e63e7dd"
         },
         "win32-x64": {
-          "fileName": "xpack-mingw-w64-gcc-14.1.0-1-win32-x64.zip",
-          "sha256": "39fe0703c38ffd126368ce670965015ae01f5b2d6594a259d5f0b608071186d9"
+          "fileName": "xpack-mingw-w64-gcc-13.3.0-1-win32-x64.zip",
+          "sha256": "472df36af812441015e6ebd3277659ac62be8a1d4396d1363dfeef806046f9ec"
         }
       }
     },
