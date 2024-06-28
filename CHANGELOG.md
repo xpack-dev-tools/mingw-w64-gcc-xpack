@@ -2,9 +2,18 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-06-28
+
+* v13.3.0-1.1 published on npmjs.com
+* 1b561ca package.json: update urls for 13.3.0-1.1 release
+* fb6e258 CHANGELOG update
+* 9141120 README update
+* 53c7da6 package.json: bump deps
+* 9a3bc77 README update
+
 ## 2024-06-27
 
-* v13.3.0-1 released
+* v13.3.0-1 prepared
 * e834851 README update
 * 3608336 14.1.0-1.1
 * eb6a784 CHANGELOG: publish npm v14.1.0-1.1
