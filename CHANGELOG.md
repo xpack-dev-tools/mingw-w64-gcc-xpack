@@ -4,7 +4,9 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-06-29
 
-* v12.4.0-1 released
+* v12.4.0-1.1 published on npmjs.com
+* c91af30 package.json: update urls for 12.4.0-1.1 release
+* 44fea66 CHANGELOG update
 
 ## 2024-06-28
 
