@@ -76,28 +76,28 @@ compiled .exe files will be installed (like `/bin`).
 
 ```console
 $ ls -l $(dirname $(bin/x86_64-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x  1 ilg  staff    38326 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x  1 ilg  staff   821363 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
--rwxr-xr-x  1 ilg  staff  3159825 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x  1 ilg  staff   282552 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x  1 ilg  staff   375291 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x  1 ilg  staff    23251 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x  1 ilg  staff  2222331 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
--rw-r--r--  1 ilg  staff    61838 Sep  1 09:40 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/12.4.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x  1 ilg  staff    38326 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x  1 ilg  staff   821363 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libgcc_s_seh-1.dll
+-rwxr-xr-x  1 ilg  staff  3159825 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x  1 ilg  staff   282552 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x  1 ilg  staff   375291 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x  1 ilg  staff    23251 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x  1 ilg  staff  2222331 Sep  1 09:43 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rw-r--r--  1 ilg  staff    61838 Sep  1 09:40 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/x86_64-w64-mingw32/11.5.0/../../../../x86_64-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 and
 
 ```console
 $ ls -l $(dirname $(bin/i686-w64-mingw32-g++ -print-file-name=libstdc++-6.dll))/*.dll
--rwxr-xr-x  1 ilg  staff    37899 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
--rwxr-xr-x  1 ilg  staff   923876 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
--rwxr-xr-x  1 ilg  staff  2907410 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
--rwxr-xr-x  1 ilg  staff   301246 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
--rwxr-xr-x  1 ilg  staff   557685 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
--rwxr-xr-x  1 ilg  staff    23352 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
--rwxr-xr-x  1 ilg  staff  2377884 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
--rw-r--r--  1 ilg  staff    72722 Sep  1 09:23 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-12.4.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/12.4.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
+-rwxr-xr-x  1 ilg  staff    37899 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libatomic-1.dll
+-rwxr-xr-x  1 ilg  staff   923876 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libgcc_s_dw2-1.dll
+-rwxr-xr-x  1 ilg  staff  2907410 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libgfortran-5.dll
+-rwxr-xr-x  1 ilg  staff   301246 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libgomp-1.dll
+-rwxr-xr-x  1 ilg  staff   557685 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libquadmath-0.dll
+-rwxr-xr-x  1 ilg  staff    23352 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libssp-0.dll
+-rwxr-xr-x  1 ilg  staff  2377884 Sep  1 09:26 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libstdc++-6.dll
+-rw-r--r--  1 ilg  staff    72722 Sep  1 09:23 /Users/ilg/Work/xpack-dev-tools-build/mingw-w64-gcc-11.5.0-1/darwin-x64/application/lib/gcc/i686-w64-mingw32/11.5.0/../../../../i686-w64-mingw32/lib/../lib/libwinpthread-1.dll
 ```
 
 ### Easy install
@@ -164,8 +164,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.4.0-1.1/.content/
-/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.4.0-1.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/11.5.0-1.1/.content/
+/Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/11.5.0-1.1/.content/
 ├── README.md
 ├── bin
 │   ├── i686-w64-mingw32-addr2line
@@ -179,7 +179,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.4.0-1.1/
 │   ├── i686-w64-mingw32-elfedit
 │   ├── i686-w64-mingw32-g++
 │   ├── i686-w64-mingw32-gcc
-│   ├── i686-w64-mingw32-gcc-12.4.0
+│   ├── i686-w64-mingw32-gcc-11.5.0
 │   ├── i686-w64-mingw32-gcc-ar
 │   ├── i686-w64-mingw32-gcc-nm
 │   ├── i686-w64-mingw32-gcc-ranlib
@@ -214,7 +214,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.4.0-1.1/
 │   ├── x86_64-w64-mingw32-elfedit
 │   ├── x86_64-w64-mingw32-g++
 │   ├── x86_64-w64-mingw32-gcc
-│   ├── x86_64-w64-mingw32-gcc-12.4.0
+│   ├── x86_64-w64-mingw32-gcc-11.5.0
 │   ├── x86_64-w64-mingw32-gcc-ar
 │   ├── x86_64-w64-mingw32-gcc-nm
 │   ├── x86_64-w64-mingw32-gcc-ranlib
@@ -265,7 +265,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/@xpack-dev-tools/mingw-w64-gcc/12.4.0-1.1/
 │   ├── libzstd.1.5.6.dylib
 │   └── libzstd.1.dylib -> libzstd.1.5.6.dylib
 ├── share
-│   └── gcc-12.4.0
+│   └── gcc-11.5.0
 └── x86_64-w64-mingw32
     ├── bin
     ├── include
@@ -308,15 +308,15 @@ For more details please read the
 ### Versioning
 
 The version strings used by the GCC project are three number strings
-like `12.4.0`; to this string the xPack distribution adds a four number,
+like `11.5.0`; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like `12.4.0-1`. When published as a npm package, the version gets
-a fifth number, like `12.4.0-1.1`.
+like `11.5.0-1`. When published as a npm package, the version gets
+a fifth number, like `11.5.0-1.1`.
 
 Since adherence of third party packages to semver is not guaranteed,
-it is recommended to use semver expressions like `^12.4.0` and `~12.4.0`
-with caution, and prefer exact matches, like `12.4.0-1.1`.
+it is recommended to use semver expressions like `^11.5.0` and `~11.5.0`
+with caution, and prefer exact matches, like `11.5.0-1.1`.
 
 ## Maintainer info
 

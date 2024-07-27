@@ -2,9 +2,23 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-07-27
+
+* v11.5.0-1 prepared
+* 4eebac8 package.json: add actions, bump deps
+* 6fb0aaf templates/jekyll update
+
+## 2024-07-23
+
+* 0ed0087 READMEs update
+* 006f302 re-generate workflows
+* 28d6c83 package.json: rework generate workflows
+* 8278cb2 package.json: bump deps
+
 ## 2024-06-29
 
-* v12.4.0-1.1 published on npmjs.com
+* bd35f02 12.4.0-1.1
+* fc63bb1 CHANGELOG: publish npm v12.4.0-1.1
 * c91af30 package.json: update urls for 12.4.0-1.1 release
 * 44fea66 CHANGELOG update
 
