@@ -23,7 +23,7 @@ download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/ta
 
 comments: true
 
-date:   {{ RELEASE_DATE }}
+date: {{ RELEASE_DATE }}
 
 # For Jekyll releases selection.
 categories:
