@@ -2,9 +2,16 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-07-28
+
+* 0ba9d15 package.json: rename build-development*
+* 716d3ad re-generate workflows
+* b1ed201 versioning.sh: use the gcc-*-darwin.git.patch
+
 ## 2024-07-27
 
-* v11.5.0-1 prepared
+* v11.5.0-1 released
+* ea420c8 prepare v11.5.0-1
 * 4eebac8 package.json: add actions, bump deps
 * 6fb0aaf templates/jekyll update
 
