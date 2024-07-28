@@ -183,7 +183,12 @@ function application_build_versioned_components()
     # Number
     XBB_MINGW_VERSION_MAJOR=$(xbb_get_version_major "${XBB_MINGW_VERSION}")
 
-    XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.git.patch"
+    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "darwin" ]
+    then
+      XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}-darwin.git.patch"
+    else
+      XBB_MINGW_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.git.patch"
+    fi
 
     # The original SourceForge location.
     XBB_MINGW_SRC_FOLDER_NAME="mingw-w64-v${XBB_MINGW_VERSION}"
