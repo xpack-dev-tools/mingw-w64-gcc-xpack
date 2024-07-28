@@ -203,13 +203,13 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 
 xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 For a debug build:
 
 ```sh
-xpm run build-develop-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 The build takes about 80 minutes.
@@ -236,7 +236,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 \
 xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 65 minutes later, the output of the build script is a compressed
@@ -271,7 +271,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 \
 xpm run deep-clean --config darwin-arm64  -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run build-development --config darwin-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 33 minutes later, the output of the build script is a compressed
@@ -308,7 +308,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run docker-build-development --config linux-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 45 minutes later, the output of the build script is a compressed
@@ -336,7 +336,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run docker-build-development --config win32-x64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 140 minutes later (2h20), the output of the build script is a compressed
@@ -371,7 +371,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run docker-build-development --config linux-arm64 -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 260 minutes later (4h20), 65 minutes on ampere, the output of the build script is a compressed
@@ -406,7 +406,7 @@ xpm run link-deps -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
 xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git && \
-xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
+xpm run docker-build-development --config linux-arm -C ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git
 ```
 
 About 220 minutes later (3h40), the output of the build script is a compressed
@@ -438,8 +438,8 @@ or even in the libraries functions.
 
 For these cases, the build script accepts the `--debug` options.
 
-There are also xPack actions that use this option (`build-develop-debug`
-and `docker-build-develop-debug`).
+There are also xPack actions that use this option (`build-development-debug`
+and `docker-build-development-debug`).
 
 ### Files cache
 
