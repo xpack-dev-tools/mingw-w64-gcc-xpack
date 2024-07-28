@@ -4,6 +4,9 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-07-28
 
+* v11.5.0-1.1 published on npmjs.com
+* d0fd480 package.json: update urls for 11.5.0-1.1 release
+* 652faa9 CHANGELOG update
 * 0ba9d15 package.json: rename build-development*
 * 716d3ad re-generate workflows
 * b1ed201 versioning.sh: use the gcc-*-darwin.git.patch
