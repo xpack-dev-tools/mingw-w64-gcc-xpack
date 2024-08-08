@@ -43,7 +43,7 @@
 
 # -----------------------------------------------------------------------------
 
-name: 'Test xPack MinGW-w64 GCC on Intel Docker platforms'
+name: 'Test xPack MinGW-w64 GCC on x64 Docker platforms'
 
 on:
   workflow_dispatch:
