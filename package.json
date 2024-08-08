@@ -4,13 +4,11 @@
   "description": "A binary xPack with the MinGW-w64 GNU Compiler Collection executables",
   "main": "",
   "scripts": {
-    "postversion": "git push origin --all && git push origin --tags",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "liquidjs": "liquidjs"
+    "postversion": "git push origin --all && git push origin --tags"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git/"
+    "url": "git+https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack.git/"
   },
   "bugs": {
     "url": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/issues/"

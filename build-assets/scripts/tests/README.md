@@ -45,7 +45,7 @@ bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/tests/trigger-workfl
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
-bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/tests/trigger-workflow-test-docker-linux-intel.sh \
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/tests/trigger-workflow-test-docker-linux-x64.sh \
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
