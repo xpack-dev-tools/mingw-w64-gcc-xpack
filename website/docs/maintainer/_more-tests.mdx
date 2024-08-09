@@ -1,0 +1,38 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+### Running the tests with the external binaries
+
+It is possible to run the tests on a regular machine, using the system binaries.
+
+Clone the project and the helper, and link them:
+
+```sh
+rm -rf ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks
+mkdir -pv ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks/@xpack-dev-tools
+ln -sv ~/Work/xpack-dev-tools/xbb-helper-xpack.git ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/xpacks/@xpack-dev-tools/xbb-helper
+```
+
+To calibrate the tests with the system tools:
+
+```sh
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/test.sh --system --develop
+```
+
+On Ubuntu, to install mingw-gcc, libraries and wine, use:
+
+```sh
+sudo apt-get install --yes g++-mingw-w64 mingw-w64-tools wine64
+```
+
+On Manjaro, install
+
+```sh
+sudo pacman --sync mingw-w64-gcc mingw-w64-tools wine
+```
+
+If the 32-bit libraries are not available, skip the tests:
+
+```sh
+bash ~/Work/xpack-dev-tools/mingw-w64-gcc-xpack.git/scripts/test.sh --system --skip-32
+```
