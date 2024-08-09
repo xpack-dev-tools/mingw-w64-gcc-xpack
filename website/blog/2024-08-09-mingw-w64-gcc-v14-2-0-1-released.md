@@ -11,7 +11,6 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-
 gcc_version: "14.2.0"
 gcc_version_major: "14"
 binutils_version: "2.42"
@@ -23,11 +22,6 @@ npm_subversion: "1"
 download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v14.2.0-1/
 
 ---
-
-TODO: select one summary
-
-Version **14.2.0-1** is a maintenance release; it updates to
-the latest upstream master.
 
 Version **14.2.0-1** is a new release; it follows the official GNU GCC release.
 
