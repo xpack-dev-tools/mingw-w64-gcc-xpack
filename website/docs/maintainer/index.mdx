@@ -505,8 +505,11 @@ These commands use the `xpack-development` branch of this repo.
 
 <GitHubActionsDurations/>
 
-The workflow result and logs are available from the
+The workflow results and logs are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/actions/) page.
+
+Update the values in `website/docs/maintainer/_github-actions-durations.mdx`
+with those shown by GitHub Actions.
 
 The resulting binaries are available for testing from
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/).
@@ -518,8 +521,6 @@ The resulting binaries are available for testing from
 The automation is provided by GitHub Actions.
 
 To trigger the GitHub Actions tests, run the xPack actions:
-
-use the xPack actions:
 
 - **trigger-workflow-test-prime**
 - **trigger-workflow-test-docker-linux-x64**
@@ -540,6 +541,11 @@ binaries.
 
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
+
+After running the prime tests, download the test results and compare
+with previous runs.
+
+#### More macOS tests
 
 Since GitHub Actions provides a limited range of versions for the macOS
 runner, the multi-version macOS tests run on Travis.
