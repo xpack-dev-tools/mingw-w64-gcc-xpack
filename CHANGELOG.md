@@ -2,9 +2,17 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-08-09
+
+* v14.2.0-1 released
+* 7aa341e build-assets/package.json: bump deps
+* a89eae1 website updates
+* 6aeb3f6 build-assets/package.json: bump deps
+* 7f240ce re-generate workflows
+
 ## 2024-08-08
 
-* v14.2.0-1 prepared
+* 8c5e297 prepare v14.2.0-1
 * 99c7321 website: preliminary content
 * 4bdcf7d build-assets updates
 
