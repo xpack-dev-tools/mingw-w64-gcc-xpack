@@ -741,6 +741,14 @@ In case the previous version is not functional and needs to be unpublished:
 `npm unpublish @xpack-dev-tools/mingw-w64-gcc@${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }`
 } </CodeBlock>
 
+### Build the static website locally
+
+Validate the web site content in a local build via the npm `build` script:
+
+```sh
+npm --prefix website run build
+```
+
 ### Update the repo & publish the website
 
 - merge `xpack-development` into `xpack`
