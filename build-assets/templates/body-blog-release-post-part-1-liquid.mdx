@@ -1,7 +1,7 @@
 ---
-title:  xPack MinGW-w64 GCC v{{ XBB_RELEASE_VERSION }} released
+title:  xPack MinGW-w64 GCC v{{releaseVersion}} released
 
-date: {{ RELEASE_DATE }}
+date: {{releaseDate}}
 
 authors: ilg-ul
 
@@ -12,24 +12,23 @@ tags:
 # ----- Custom properties -----------------------------------------------------
 
 
-gcc_version: "14.2.0"
-gcc_version_major: "14"
-binutils_version: "2.42"
-mingw_version: "12.0.0"
+gcc_version: "{{upstreamVersion}}"
+binutils_version: "{{customFields.binutilsVersionMajor}}.{{customFields.binutilsVersionMinor}}"
+mingw_version: "{{customFields.mingwVersion}}"
 
-version: "{{ XBB_RELEASE_VERSION }}"
+version: "{{releaseVersion}}"
 npm_subversion: "1"
 
-download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
+download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v{{releaseVersion}}/
 
 ---
 
 TODO: select one summary
 
-Version **{{ XBB_RELEASE_VERSION }}** is a maintenance release; it updates to
+Version **{{releaseVersion}}** is a maintenance release; it updates to
 the latest upstream master.
 
-Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the official GNU GCC release.
+Version **{{releaseVersion}}** is a new release; it follows the official GNU GCC release.
 
 <!-- truncate -->
 
@@ -60,7 +59,7 @@ armv6 is not supported).
 ## Download
 
 The binary files can be downloaded automatically with **xpm** or manually
-from <a href={ frontMatter.download_url }>GitHub Releases</a>.
+from <a href={frontMatter.download_url}>GitHub Releases</a>.
 
 <Prerequisites/>
 
@@ -74,9 +73,9 @@ on various platforms are presented in the [Install Guide](/docs/install/).
 The xPack MinGW-w64 GCC uses the official sources,
 with no functional changes:
 
-- GCC { frontMatter.gcc_version }
-- binutils { frontMatter.binutils_version }
-- mingw-w64 { frontMatter.mingw_version }
+- GCC {frontMatter.gcc_version}
+- binutils {frontMatter.binutils_version}
+- mingw-w64 {frontMatter.mingw_version}
 
 ## Supported languages
 
@@ -106,7 +105,7 @@ Compared to the upstream, there are no functional changes.
 ## Known problems
 
 Please see the separate
-[tests results page](/docs/tests/{{ XBB_RELEASE_VERSION }}/).
+[tests results page](/docs/tests/{{releaseVersion}}/).
 
 ## Documentation
 
