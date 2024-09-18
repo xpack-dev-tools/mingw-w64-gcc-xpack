@@ -1,0 +1,394 @@
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+## Folder hierarchy
+
+After install, the package creates a folder hierarchy like the following
+(only the first two depth levels are shown):
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows" default>
+
+<CodeBlock language="console"> {
+`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\mingw-w64-gcc\\${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }\\.content
+Folder PATH listing
+Volume serial number is B02D-925C
+├── README.md
+├── bin
+│   ├── i686-w64-mingw32-addr2line.exe
+│   ├── i686-w64-mingw32-ar.exe
+│   ├── i686-w64-mingw32-as.exe
+│   ├── i686-w64-mingw32-c++.exe
+│   ├── i686-w64-mingw32-c++filt.exe
+│   ├── i686-w64-mingw32-cpp.exe
+│   ├── i686-w64-mingw32-dlltool.exe
+│   ├── i686-w64-mingw32-dllwrap.exe
+│   ├── i686-w64-mingw32-elfedit.exe
+│   ├── i686-w64-mingw32-g++.exe
+│   ├── i686-w64-mingw32-gcc-${ customField('upstreamVersion') }.exe
+│   ├── i686-w64-mingw32-gcc-ar.exe
+│   ├── i686-w64-mingw32-gcc-nm.exe
+│   ├── i686-w64-mingw32-gcc-ranlib.exe
+│   ├── i686-w64-mingw32-gcc.exe
+│   ├── i686-w64-mingw32-gcov-dump.exe
+│   ├── i686-w64-mingw32-gcov-tool.exe
+│   ├── i686-w64-mingw32-gcov.exe
+│   ├── i686-w64-mingw32-gendef.exe
+│   ├── i686-w64-mingw32-gfortran.exe
+│   ├── i686-w64-mingw32-gprof.exe
+│   ├── i686-w64-mingw32-ld.bfd.exe
+│   ├── i686-w64-mingw32-ld.exe
+│   ├── i686-w64-mingw32-lto-dump.exe
+│   ├── i686-w64-mingw32-nm.exe
+│   ├── i686-w64-mingw32-objcopy.exe
+│   ├── i686-w64-mingw32-objdump.exe
+│   ├── i686-w64-mingw32-ranlib.exe
+│   ├── i686-w64-mingw32-readelf.exe
+│   ├── i686-w64-mingw32-size.exe
+│   ├── i686-w64-mingw32-strings.exe
+│   ├── i686-w64-mingw32-strip.exe
+│   ├── i686-w64-mingw32-widl.exe
+│   ├── i686-w64-mingw32-windmc.exe
+│   ├── i686-w64-mingw32-windres.exe
+│   ├── libatomic-1.dll
+│   ├── libgcc_s_seh-1.dll
+│   ├── libgfortran-5.dll
+│   ├── libgmp-10.dll
+│   ├── libgomp-1.dll
+│   ├── libmpc-3.dll
+│   ├── libmpfr-6.dll
+│   ├── libquadmath-0.dll
+│   ├── libssp-0.dll
+│   ├── libstdc++-6.dll
+│   ├── libzstd.dll
+│   ├── x86_64-w64-mingw32-addr2line.exe
+│   ├── x86_64-w64-mingw32-ar.exe
+│   ├── x86_64-w64-mingw32-as.exe
+│   ├── x86_64-w64-mingw32-c++.exe
+│   ├── x86_64-w64-mingw32-c++filt.exe
+│   ├── x86_64-w64-mingw32-cpp.exe
+│   ├── x86_64-w64-mingw32-dlltool.exe
+│   ├── x86_64-w64-mingw32-dllwrap.exe
+│   ├── x86_64-w64-mingw32-elfedit.exe
+│   ├── x86_64-w64-mingw32-g++.exe
+│   ├── x86_64-w64-mingw32-gcc-${ customField('upstreamVersion') }.exe
+│   ├── x86_64-w64-mingw32-gcc-ar.exe
+│   ├── x86_64-w64-mingw32-gcc-nm.exe
+│   ├── x86_64-w64-mingw32-gcc-ranlib.exe
+│   ├── x86_64-w64-mingw32-gcc.exe
+│   ├── x86_64-w64-mingw32-gcov-dump.exe
+│   ├── x86_64-w64-mingw32-gcov-tool.exe
+│   ├── x86_64-w64-mingw32-gcov.exe
+│   ├── x86_64-w64-mingw32-gendef.exe
+│   ├── x86_64-w64-mingw32-gfortran.exe
+│   ├── x86_64-w64-mingw32-gprof.exe
+│   ├── x86_64-w64-mingw32-ld.bfd.exe
+│   ├── x86_64-w64-mingw32-ld.exe
+│   ├── x86_64-w64-mingw32-lto-dump.exe
+│   ├── x86_64-w64-mingw32-nm.exe
+│   ├── x86_64-w64-mingw32-objcopy.exe
+│   ├── x86_64-w64-mingw32-objdump.exe
+│   ├── x86_64-w64-mingw32-ranlib.exe
+│   ├── x86_64-w64-mingw32-readelf.exe
+│   ├── x86_64-w64-mingw32-size.exe
+│   ├── x86_64-w64-mingw32-strings.exe
+│   ├── x86_64-w64-mingw32-strip.exe
+│   ├── x86_64-w64-mingw32-widl.exe
+│   ├── x86_64-w64-mingw32-windmc.exe
+│   └── x86_64-w64-mingw32-windres.exe
+├── distro-info
+│   └── licenses
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
+├── include
+│   └── c++
+├── lib
+│   ├── gcc
+│   ├── libatomic.a
+│   ├── libatomic.dll.a
+│   ├── libatomic.la
+│   ├── libgcc_s.a
+│   ├── libgcc_s_seh-1.dll
+│   ├── libgfortran.a
+│   ├── libgfortran.dll.a
+│   ├── libgfortran.la
+│   ├── libgfortran.spec
+│   ├── libgomp.a
+│   ├── libgomp.dll.a
+│   ├── libgomp.la
+│   ├── libgomp.spec
+│   ├── libquadmath.a
+│   ├── libquadmath.dll.a
+│   ├── libquadmath.la
+│   ├── libssp.a
+│   ├── libssp.dll.a
+│   ├── libssp.la
+│   ├── libssp_nonshared.a
+│   ├── libssp_nonshared.la
+│   ├── libstdc++.a
+│   ├── libstdc++.dll.a
+│   ├── libstdc++.dll.a-gdb.py
+│   ├── libstdc++.la
+│   ├── libstdc++exp.a
+│   ├── libstdc++exp.la
+│   ├── libstdc++fs.a
+│   ├── libstdc++fs.la
+│   ├── libsupc++.a
+│   └── libsupc++.la
+├── share
+│   └── gcc-${ customField('upstreamVersion') }
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
+
+17 directories, 113 files
+`} </CodeBlock>
+
+</TabItem>
+<TabItem value="macos" label="macOS">
+
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+├── README.md
+├── bin
+│   ├── i686-w64-mingw32-addr2line
+│   ├── i686-w64-mingw32-ar
+│   ├── i686-w64-mingw32-as
+│   ├── i686-w64-mingw32-c++
+│   ├── i686-w64-mingw32-c++filt
+│   ├── i686-w64-mingw32-cpp
+│   ├── i686-w64-mingw32-dlltool
+│   ├── i686-w64-mingw32-dllwrap
+│   ├── i686-w64-mingw32-elfedit
+│   ├── i686-w64-mingw32-g++
+│   ├── i686-w64-mingw32-gcc
+│   ├── i686-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── i686-w64-mingw32-gcc-ar
+│   ├── i686-w64-mingw32-gcc-nm
+│   ├── i686-w64-mingw32-gcc-ranlib
+│   ├── i686-w64-mingw32-gcov
+│   ├── i686-w64-mingw32-gcov-dump
+│   ├── i686-w64-mingw32-gcov-tool
+│   ├── i686-w64-mingw32-gendef
+│   ├── i686-w64-mingw32-gfortran
+│   ├── i686-w64-mingw32-gprof
+│   ├── i686-w64-mingw32-ld
+│   ├── i686-w64-mingw32-ld.bfd
+│   ├── i686-w64-mingw32-lto-dump
+│   ├── i686-w64-mingw32-nm
+│   ├── i686-w64-mingw32-objcopy
+│   ├── i686-w64-mingw32-objdump
+│   ├── i686-w64-mingw32-ranlib
+│   ├── i686-w64-mingw32-readelf
+│   ├── i686-w64-mingw32-size
+│   ├── i686-w64-mingw32-strings
+│   ├── i686-w64-mingw32-strip
+│   ├── i686-w64-mingw32-widl
+│   ├── i686-w64-mingw32-windmc
+│   ├── i686-w64-mingw32-windres
+│   ├── x86_64-w64-mingw32-addr2line
+│   ├── x86_64-w64-mingw32-ar
+│   ├── x86_64-w64-mingw32-as
+│   ├── x86_64-w64-mingw32-c++
+│   ├── x86_64-w64-mingw32-c++filt
+│   ├── x86_64-w64-mingw32-cpp
+│   ├── x86_64-w64-mingw32-dlltool
+│   ├── x86_64-w64-mingw32-dllwrap
+│   ├── x86_64-w64-mingw32-elfedit
+│   ├── x86_64-w64-mingw32-g++
+│   ├── x86_64-w64-mingw32-gcc
+│   ├── x86_64-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── x86_64-w64-mingw32-gcc-ar
+│   ├── x86_64-w64-mingw32-gcc-nm
+│   ├── x86_64-w64-mingw32-gcc-ranlib
+│   ├── x86_64-w64-mingw32-gcov
+│   ├── x86_64-w64-mingw32-gcov-dump
+│   ├── x86_64-w64-mingw32-gcov-tool
+│   ├── x86_64-w64-mingw32-gendef
+│   ├── x86_64-w64-mingw32-gfortran
+│   ├── x86_64-w64-mingw32-gprof
+│   ├── x86_64-w64-mingw32-ld
+│   ├── x86_64-w64-mingw32-ld.bfd
+│   ├── x86_64-w64-mingw32-lto-dump
+│   ├── x86_64-w64-mingw32-nm
+│   ├── x86_64-w64-mingw32-objcopy
+│   ├── x86_64-w64-mingw32-objdump
+│   ├── x86_64-w64-mingw32-ranlib
+│   ├── x86_64-w64-mingw32-readelf
+│   ├── x86_64-w64-mingw32-size
+│   ├── x86_64-w64-mingw32-strings
+│   ├── x86_64-w64-mingw32-strip
+│   ├── x86_64-w64-mingw32-widl
+│   ├── x86_64-w64-mingw32-windmc
+│   └── x86_64-w64-mingw32-windres
+├── distro-info
+│   └── licenses
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
+├── include
+├── lib
+│   ├── gcc
+│   ├── libcc1.0.so
+│   ├── libcc1.a
+│   ├── libcc1.la
+│   └── libcc1.so -> libcc1.0.so
+├── libexec
+│   ├── libc++.1.0.dylib
+│   ├── libc++abi.1.0.dylib
+│   ├── libgmp.10.dylib
+│   ├── libiconv.2.dylib
+│   ├── libisl.23.dylib
+│   ├── libmpc.3.dylib
+│   ├── libmpfr.6.dylib
+│   ├── libunwind.1.0.dylib
+│   ├── libz.1.3.1.dylib
+│   ├── libz.1.dylib -> libz.1.3.1.dylib
+│   ├── libzstd.1.5.6.dylib
+│   └── libzstd.1.dylib -> libzstd.1.5.6.dylib
+├── share
+│   └── gcc-${ customField('upstreamVersion') }
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
+
+18 directories, 87 files
+`} </CodeBlock>
+
+</TabItem>
+<TabItem value="linux" label="GNU/Linux">
+
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+/home/ilg/.local/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+├── README.md
+├── bin
+│   ├── i686-w64-mingw32-addr2line
+│   ├── i686-w64-mingw32-ar
+│   ├── i686-w64-mingw32-as
+│   ├── i686-w64-mingw32-c++
+│   ├── i686-w64-mingw32-c++filt
+│   ├── i686-w64-mingw32-cpp
+│   ├── i686-w64-mingw32-dlltool
+│   ├── i686-w64-mingw32-dllwrap
+│   ├── i686-w64-mingw32-elfedit
+│   ├── i686-w64-mingw32-g++
+│   ├── i686-w64-mingw32-gcc
+│   ├── i686-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── i686-w64-mingw32-gcc-ar
+│   ├── i686-w64-mingw32-gcc-nm
+│   ├── i686-w64-mingw32-gcc-ranlib
+│   ├── i686-w64-mingw32-gcov
+│   ├── i686-w64-mingw32-gcov-dump
+│   ├── i686-w64-mingw32-gcov-tool
+│   ├── i686-w64-mingw32-gendef
+│   ├── i686-w64-mingw32-gfortran
+│   ├── i686-w64-mingw32-gprof
+│   ├── i686-w64-mingw32-ld
+│   ├── i686-w64-mingw32-ld.bfd
+│   ├── i686-w64-mingw32-lto-dump
+│   ├── i686-w64-mingw32-nm
+│   ├── i686-w64-mingw32-objcopy
+│   ├── i686-w64-mingw32-objdump
+│   ├── i686-w64-mingw32-ranlib
+│   ├── i686-w64-mingw32-readelf
+│   ├── i686-w64-mingw32-size
+│   ├── i686-w64-mingw32-strings
+│   ├── i686-w64-mingw32-strip
+│   ├── i686-w64-mingw32-widl
+│   ├── i686-w64-mingw32-windmc
+│   ├── i686-w64-mingw32-windres
+│   ├── x86_64-w64-mingw32-addr2line
+│   ├── x86_64-w64-mingw32-ar
+│   ├── x86_64-w64-mingw32-as
+│   ├── x86_64-w64-mingw32-c++
+│   ├── x86_64-w64-mingw32-c++filt
+│   ├── x86_64-w64-mingw32-cpp
+│   ├── x86_64-w64-mingw32-dlltool
+│   ├── x86_64-w64-mingw32-dllwrap
+│   ├── x86_64-w64-mingw32-elfedit
+│   ├── x86_64-w64-mingw32-g++
+│   ├── x86_64-w64-mingw32-gcc
+│   ├── x86_64-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── x86_64-w64-mingw32-gcc-ar
+│   ├── x86_64-w64-mingw32-gcc-nm
+│   ├── x86_64-w64-mingw32-gcc-ranlib
+│   ├── x86_64-w64-mingw32-gcov
+│   ├── x86_64-w64-mingw32-gcov-dump
+│   ├── x86_64-w64-mingw32-gcov-tool
+│   ├── x86_64-w64-mingw32-gendef
+│   ├── x86_64-w64-mingw32-gfortran
+│   ├── x86_64-w64-mingw32-gprof
+│   ├── x86_64-w64-mingw32-ld
+│   ├── x86_64-w64-mingw32-ld.bfd
+│   ├── x86_64-w64-mingw32-lto-dump
+│   ├── x86_64-w64-mingw32-nm
+│   ├── x86_64-w64-mingw32-objcopy
+│   ├── x86_64-w64-mingw32-objdump
+│   ├── x86_64-w64-mingw32-ranlib
+│   ├── x86_64-w64-mingw32-readelf
+│   ├── x86_64-w64-mingw32-size
+│   ├── x86_64-w64-mingw32-strings
+│   ├── x86_64-w64-mingw32-strip
+│   ├── x86_64-w64-mingw32-widl
+│   ├── x86_64-w64-mingw32-windmc
+│   └── x86_64-w64-mingw32-windres
+├── distro-info
+│   └── licenses
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
+├── include
+├── lib
+│   └── gcc
+├── lib64
+│   ├── libcc1.a
+│   ├── libcc1.la
+│   ├── libcc1.so -> libcc1.so.0.0.0
+│   ├── libcc1.so.0 -> libcc1.so.0.0.0
+│   └── libcc1.so.0.0.0
+├── libexec
+│   ├── libfl.so.2 -> libfl.so.2.0.0
+│   ├── libfl.so.2.0.0
+│   ├── libgcc_s.so.1
+│   ├── libgmp.so.10 -> libgmp.so.10.5.0
+│   ├── libgmp.so.10.5.0
+│   ├── libiconv.so.2 -> libiconv.so.2.6.1
+│   ├── libiconv.so.2.6.1
+│   ├── libisl.so.23 -> libisl.so.23.3.0
+│   ├── libisl.so.23.3.0
+│   ├── libmpc.so.3 -> libmpc.so.3.3.1
+│   ├── libmpc.so.3.3.1
+│   ├── libmpfr.so.6 -> libmpfr.so.6.2.1
+│   ├── libmpfr.so.6.2.1
+│   ├── libstdc++.so.6 -> libstdc++.so.6.0.32
+│   ├── libstdc++.so.6.0.32
+│   ├── libz.so.1 -> libz.so.1.3.1
+│   ├── libz.so.1.3.1
+│   ├── libzstd.so.1 -> libzstd.so.1.5.6
+│   └── libzstd.so.1.5.6
+├── share
+│   └── gcc-${ customField('upstreamVersion') }
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
+
+18 directories, 95 files
+`} </CodeBlock>
+
+</TabItem>
+</Tabs>
+

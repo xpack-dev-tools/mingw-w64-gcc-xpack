@@ -116,7 +116,7 @@ of build environments based on slightly older distributions, that should be
 compatible with most recent systems.
 
 For the prerequisites and more details on the build procedure, please see the
-[How to build](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/blob/xpack/README-BUILD.md) page.
+[Maintainer Info](/docs/maintainer/) page.
 
 ## CI tests
 
