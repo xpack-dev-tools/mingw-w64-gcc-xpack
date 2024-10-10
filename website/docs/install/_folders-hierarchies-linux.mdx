@@ -1,0 +1,125 @@
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+/home/ilg/.local/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+├── README.md
+├── bin
+│   ├── i686-w64-mingw32-addr2line
+│   ├── i686-w64-mingw32-ar
+│   ├── i686-w64-mingw32-as
+│   ├── i686-w64-mingw32-c++
+│   ├── i686-w64-mingw32-c++filt
+│   ├── i686-w64-mingw32-cpp
+│   ├── i686-w64-mingw32-dlltool
+│   ├── i686-w64-mingw32-dllwrap
+│   ├── i686-w64-mingw32-elfedit
+│   ├── i686-w64-mingw32-g++
+│   ├── i686-w64-mingw32-gcc
+│   ├── i686-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── i686-w64-mingw32-gcc-ar
+│   ├── i686-w64-mingw32-gcc-nm
+│   ├── i686-w64-mingw32-gcc-ranlib
+│   ├── i686-w64-mingw32-gcov
+│   ├── i686-w64-mingw32-gcov-dump
+│   ├── i686-w64-mingw32-gcov-tool
+│   ├── i686-w64-mingw32-gendef
+│   ├── i686-w64-mingw32-gfortran
+│   ├── i686-w64-mingw32-gprof
+│   ├── i686-w64-mingw32-ld
+│   ├── i686-w64-mingw32-ld.bfd
+│   ├── i686-w64-mingw32-lto-dump
+│   ├── i686-w64-mingw32-nm
+│   ├── i686-w64-mingw32-objcopy
+│   ├── i686-w64-mingw32-objdump
+│   ├── i686-w64-mingw32-ranlib
+│   ├── i686-w64-mingw32-readelf
+│   ├── i686-w64-mingw32-size
+│   ├── i686-w64-mingw32-strings
+│   ├── i686-w64-mingw32-strip
+│   ├── i686-w64-mingw32-widl
+│   ├── i686-w64-mingw32-windmc
+│   ├── i686-w64-mingw32-windres
+│   ├── x86_64-w64-mingw32-addr2line
+│   ├── x86_64-w64-mingw32-ar
+│   ├── x86_64-w64-mingw32-as
+│   ├── x86_64-w64-mingw32-c++
+│   ├── x86_64-w64-mingw32-c++filt
+│   ├── x86_64-w64-mingw32-cpp
+│   ├── x86_64-w64-mingw32-dlltool
+│   ├── x86_64-w64-mingw32-dllwrap
+│   ├── x86_64-w64-mingw32-elfedit
+│   ├── x86_64-w64-mingw32-g++
+│   ├── x86_64-w64-mingw32-gcc
+│   ├── x86_64-w64-mingw32-gcc-${ customField('upstreamVersion') }
+│   ├── x86_64-w64-mingw32-gcc-ar
+│   ├── x86_64-w64-mingw32-gcc-nm
+│   ├── x86_64-w64-mingw32-gcc-ranlib
+│   ├── x86_64-w64-mingw32-gcov
+│   ├── x86_64-w64-mingw32-gcov-dump
+│   ├── x86_64-w64-mingw32-gcov-tool
+│   ├── x86_64-w64-mingw32-gendef
+│   ├── x86_64-w64-mingw32-gfortran
+│   ├── x86_64-w64-mingw32-gprof
+│   ├── x86_64-w64-mingw32-ld
+│   ├── x86_64-w64-mingw32-ld.bfd
+│   ├── x86_64-w64-mingw32-lto-dump
+│   ├── x86_64-w64-mingw32-nm
+│   ├── x86_64-w64-mingw32-objcopy
+│   ├── x86_64-w64-mingw32-objdump
+│   ├── x86_64-w64-mingw32-ranlib
+│   ├── x86_64-w64-mingw32-readelf
+│   ├── x86_64-w64-mingw32-size
+│   ├── x86_64-w64-mingw32-strings
+│   ├── x86_64-w64-mingw32-strip
+│   ├── x86_64-w64-mingw32-widl
+│   ├── x86_64-w64-mingw32-windmc
+│   └── x86_64-w64-mingw32-windres
+├── distro-info
+│   └── licenses
+├── i686-w64-mingw32
+│   ├── bin
+│   ├── include
+│   └── lib
+├── include
+├── lib
+│   └── gcc
+├── lib64
+│   ├── libcc1.a
+│   ├── libcc1.la
+│   ├── libcc1.so -> libcc1.so.0.0.0
+│   ├── libcc1.so.0 -> libcc1.so.0.0.0
+│   └── libcc1.so.0.0.0
+├── libexec
+│   ├── libfl.so.2 -> libfl.so.2.0.0
+│   ├── libfl.so.2.0.0
+│   ├── libgcc_s.so.1
+│   ├── libgmp.so.10 -> libgmp.so.10.5.0
+│   ├── libgmp.so.10.5.0
+│   ├── libiconv.so.2 -> libiconv.so.2.6.1
+│   ├── libiconv.so.2.6.1
+│   ├── libisl.so.23 -> libisl.so.23.3.0
+│   ├── libisl.so.23.3.0
+│   ├── libmpc.so.3 -> libmpc.so.3.3.1
+│   ├── libmpc.so.3.3.1
+│   ├── libmpfr.so.6 -> libmpfr.so.6.2.1
+│   ├── libmpfr.so.6.2.1
+│   ├── libstdc++.so.6 -> libstdc++.so.6.0.32
+│   ├── libstdc++.so.6.0.32
+│   ├── libz.so.1 -> libz.so.1.3.1
+│   ├── libz.so.1.3.1
+│   ├── libzstd.so.1 -> libzstd.so.1.5.6
+│   └── libzstd.so.1.5.6
+├── share
+│   └── gcc-${ customField('upstreamVersion') }
+└── x86_64-w64-mingw32
+    ├── bin
+    ├── include
+    └── lib
+
+18 directories, 95 files
+`} </CodeBlock>
