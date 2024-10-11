@@ -1,5 +1,10 @@
 ---
-title:  xPack MinGW-w64 GCC v14.2.0-1 released
+title: xPack MinGW-w64 GCC v14.2.0-1 released
+description: Version 14.2.0-1 is a new release of xPack MinGW-w64 GCC.
+keywords:
+  - xpack
+  - mingw-w64-gcc
+  - release
 
 date: 2024-08-09 10:59:56 +0300
 
@@ -22,6 +27,8 @@ npm_subversion: "1"
 download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v14.2.0-1/
 
 ---
+
+<head><title>{frontMatter.title}</title></head>
 
 Version **14.2.0-1** is a new release; it follows the official GNU GCC release.
 
