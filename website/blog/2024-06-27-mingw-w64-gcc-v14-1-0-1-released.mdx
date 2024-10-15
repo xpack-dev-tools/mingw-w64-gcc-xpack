@@ -1,5 +1,6 @@
 ---
 title: xPack MinGW-w64 GCC v14.1.0-1 released
+seo_title: Version 14.1.0-1 released
 description: Version 14.1.0-1 is a new release of xPack MinGW-w64 GCC.
 keywords:
   - xpack
@@ -31,17 +32,15 @@ download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/ta
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 Version **14.1.0-1** is a new release; it follows the official GNU GCC release.
 
 <!-- truncate -->
 
-import Image from '@theme/IdealImage';
-import CodeBlock from '@theme/CodeBlock';
+<PageMetadata title={frontMatter.seo_title} />
 
 The [xPack MinGW-w64 GCC](https://xpack-dev-tools.github.io/mingw-w64-gcc-xpack/)
 is a standalone cross-platform binary distribution of
