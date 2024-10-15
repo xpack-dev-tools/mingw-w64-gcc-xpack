@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout 
-      title={`Welcome to mingw-w64-gcc`}
+      title="Welcome!"
       description="A binary package with the mingw-w64-gcc executables">
       <HomepageHeader />
       <main>
