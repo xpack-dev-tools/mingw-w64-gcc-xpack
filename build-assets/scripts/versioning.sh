@@ -133,6 +133,8 @@ function application_build_versioned_components()
   then
     # Keep these in sync with gcc-xpack.
 
+    XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+
     # if [[ "${XBB_RELEASE_VERSION}" =~ 11[.][5][.].*-1 ]] || \
     #     [[ "${XBB_RELEASE_VERSION}" =~ 12[.][4][.].*-1 ]] || \
     #     [[ "${XBB_RELEASE_VERSION}" =~ 13[.][3][.].*-1 ]] || \
