@@ -110,7 +110,7 @@ function application_build_versioned_components()
   # binaries run only on Windows.
 
   # 32-bit first, since it is more probable to fail.
-  XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+  # XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
   # XBB_MINGW_TRIPLETS=( "x86_64-w64-mingw32" ) # Use it temporarily during tests.
   # XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" ) # Use it temporarily during tests.
 
@@ -132,6 +132,19 @@ function application_build_versioned_components()
      [[ "${XBB_RELEASE_VERSION}" =~ 14[.][012][.].*-.* ]]
   then
     # Keep these in sync with gcc-xpack.
+
+    XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+
+    # if [[ "${XBB_RELEASE_VERSION}" =~ 11[.][5][.].*-1 ]] || \
+    #     [[ "${XBB_RELEASE_VERSION}" =~ 12[.][4][.].*-1 ]] || \
+    #     [[ "${XBB_RELEASE_VERSION}" =~ 13[.][3][.].*-1 ]] || \
+    #     [[ "${XBB_RELEASE_VERSION}" =~ 14[.][012][.].*-1 ]]
+    # then
+    #   XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+    # else
+    #   XBB_MINGW_TRIPLETS=( "aarch64-w64-mingw32" "i686-w64-mingw32" "x86_64-w64-mingw32")
+    #   # XBB_MINGW_TRIPLETS=( "aarch64-w64-mingw32" )
+    # fi
 
     if [ "${XBB_APPLICATION_TEST_PRERELEASE:-""}" == "y" ]
     then
@@ -204,6 +217,8 @@ function application_build_versioned_components()
   then
     # Keep these in sync with gcc-xpack.
 
+    XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+
     # https://ftp.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.41" # "2.39"
 
@@ -261,6 +276,8 @@ function application_build_versioned_components()
   then
     # Keep these in sync with gcc-xpack.
 
+    XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
+
     # https://ftp.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.39"
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
@@ -309,6 +326,8 @@ function application_build_versioned_components()
   elif [[ "${XBB_RELEASE_VERSION}" =~ 11[.]3[.].*-.* ]]
   then
     # Keep these in sync with gcc-xpack.
+
+    XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
 
     # https://ftp.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.38"
