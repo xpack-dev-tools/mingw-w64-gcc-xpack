@@ -142,9 +142,10 @@
     "liquidjs": "^10.19.1"
   },
   "topConfig": {
-    "longName": "MinGW-w64 GCC",
-    "shortName": "mingw-w64-gcc",
-    "showTestsResults": "true"
+    "descriptiveName": "MinGW-w64 GCC",
+    "permalinkName": "mingw-w64-gcc",
+    "showTestsResults": "true",
+    "useSelfHostedRunners": "true"
   },
   "engines": {
     "node": " >=18.0.0"
