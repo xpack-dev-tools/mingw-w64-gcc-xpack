@@ -2,8 +2,324 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2025-10-14
+
+* v15.2.0-1 prepared
+* 9a0caec website update
+* 977597f re-generate website commons
+* 2990c5a re-generate top commons
+* 7458694 website updates
+* 7e61654 package.json updates
+* 83a02ac versioning.sh update ftpmirror
+
+## 2025-04-09
+
+* 1fe70a5 test-sourceforge*: on every Saturday
+
+## 2025-04-06
+
+* e3d05ac test-sourceforge-downloads.yml update
+
+## 2025-04-05
+
+* 5c85cd4 test-sourceforge-downloads.yml update
+* f04f11b test-sourceforge-downloads.yml update
+* e0dfd21 add test-sourceforge-downloads.yml
+
+## 2025-03-23
+
+* 0bde20e update /licenses/MIT
+* 6843046 website: re-generate commons
+* 811674d re-generate commons
+* 7c09b9c website package.json shareOnTwitter update
+* fa002a0 website package.json author update
+* fdb360d website generate-website-commons update
+
+## 2025-02-24
+
+* c01b280 website: re-generate descriptive & permalink names
+* 44a58dc re-generate descriptive & permalink names
+
+## 2025-02-23
+
+* 3deab8a website: re-generate commons
+* 70ddb87 re-generate commons
+
+## 2025-02-18
+
+* 71cd45e package.json: bump minimumXpmRequired 0.20.5
+* e63a3f1 package.json: bump xpm 0.20.5
+
+## 2025-02-14
+
+* 7cedc2d re-generate commons
+* dd5c2c4 re-generate commons
+
+## 2025-02-13
+
+* 30d4d02 Merge branch 'xpack-development' of https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack into xpack-development
+* d8ae7cb versioning.sh: ncurses --hack-link
+* e4e680a Merge branch 'xpack-development' of https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack into xpack-development
+* ee26d67 re-generate commons
+* c85dce3 versioning.sh: re-enable i686 & x86_64
+* e2b1cba 14.2.0-2
+
+## 2025-02-12
+
+* 629eb09 try aarch64, fails
+
+## 2025-02-07
+
+* 6ebf823 website: re-generate commons
+
+## 2025-02-04
+
+* 2141c01 website: re-generate commons
+* 4d6dc00 build-assets: update generate-website-blog-post
+
+## 2025-02-03
+
+* 52e15db build-assets: bump deps
+* a2c6c2b website: re-generate commons
+* 024355a website: re-generate commons
+
+## 2025-02-02
+
+* 1d3a0ca website: re-generate commons
+
+## 2025-01-31
+
+* f49ae62 website: updates and final common rework
+
+## 2025-01-30
+
+* 0ad7abf website: rework getting-started
+* b2f6d00 website: more rework with commons
+
+## 2025-01-29
+
+* eb0432e website: more rework with commons
+
+## 2025-01-27
+
+* b13590e website: cosmetise imports
+
+## 2025-01-26
+
+* d9a4dc5 website: rework with _project
+
+## 2025-01-23
+
+* 3ac3d04 website: re-generate commons
+
+## 2025-01-22
+
+* 9fdd21c website: re-generate commons
+
+## 2025-01-21
+
+* 6af939d build-assets: cleanup actions
+* 5ce6a06 website: re-generate commons
+* 0472b58 website: re-generate commons
+* 87657db website: re-generate commons
+
+## 2025-01-20
+
+* d67d2ce re-generate commons
+* d214164 website: re-generate commons
+
+## 2025-01-19
+
+* 8dd7dbd website: remove unused customField.js
+* 6a0ecb2 build-assets: move customFields to websiteConfig
+* abedef1 website: re-generate commons
+
+## 2025-01-17
+
+* 94532b5 website: re-generate commons
+* 4abede5 re-generate commons
+* 3bad801 website: re-generate commons
+
+## 2025-01-16
+
+* 9849e7b website: re-generate commons
+* 8b59eb5 re-generate commons
+
+## 2025-01-15
+
+* 1791724 re-generate commons
+
+## 2025-01-14
+
+* d58a115 re-generate commons
+* 42d4cd9 re-generate commons
+
+## 2025-01-13
+
+* df0ca04 re-generate workflows
+* af0f629 copyright updates
+* 2c92e5c copyright updates
+
+## 2025-01-10
+
+* 7c3825e website: updates
+* b3f4211 website: updates
+* e14b611 website: updates
+
+## 2025-01-09
+
+* f31ab4b build-assets/package.json: bump deps
+* da2ce73 website: updates
+
+## 2025-01-02
+
+* 45c0a8a top package.json: fix homepage url
+* f8b00c9 website/_xpack fix tools path
+* c77394b package.json: cosmetics
+* c31481e website: updates
+* c829084 build-assets/package.json: bump deps
+
+## 2024-12-31
+
+* 71b4607 website: updates
+
+## 2024-12-30
+
+* 7112f1a package.json: bump deps
+* c1d22c1 website: updates
+
+## 2024-12-24
+
+* 1b77d11 website: updates
+* 9630d26 website: updates
+
+## 2024-12-22
+
+* 2744712 website: updates
+* 73255a3 website: add _xpack.github.io
+
+## 2024-12-20
+
+* c58b531 website: updates
+* 6a040ad website: updates
+* 210b9e2 website: updates
+
+## 2024-12-11
+
+* a17061a website: updates
+* 793fd74 website/blog updates
+* 6916ec6 website/blog/_templates/blog-post-release*
+
+## 2024-12-04
+
+* 4f35cac website: updates
+
+## 2024-11-30
+
+* e89687b build-assets/package.json bump deps
+* 9152456 website update
+
+## 2024-10-15
+
+* e746421 website: updates
+* ce23cae website: updates
+
+## 2024-10-14
+
+* 1c3b454 website: updates
+
+## 2024-10-13
+
+* d637cb0 website: updates
+* 63dc901 website: updates
+* a4243f3 website: updates
+
+## 2024-10-11
+
+* ca80cd8 website: updates
+* dcc6f16 website/blog/_templates/blog-post-release*
+* 119cd09 website/blog/_templates/blog-post-release*
+
+## 2024-10-10
+
+* b3e63c7 website: updates
+* edf864a website: updates
+
+## 2024-10-09
+
+* 222f577 website move blog post templates
+* 4df5b71 website: updates
+* a02f156 website: updates
+
+## 2024-10-07
+
+* d9d2f5b website: updates
+* 1b5e720 website: updates
+
+## 2024-10-06
+
+* 4b16d3e website: updates
+* 8d0e8f8 website: updates
+* 21d2734 re-generate workflows
+
+## 2024-10-04
+
+* 2c0ba1e website: updates
+* 48f3eee templates/body-blog update
+
+## 2024-09-18
+
+* f1501c1 website: updates
+* 2ae4f4f website update
+* 42390a8 build-assets/package.json: bump deps
+* e8ba77c build-assets/templates updates
+
+## 2024-09-12
+
+* 08ae272 update scripts copyright notices
+
+## 2024-08-17
+
+* 6d114e6 website update
+* d952a93 website updates
+* 4f43ebd build-assets/package.json updates
+* 7f35170 templates updates
+* d4f8461 re-generate workflows
+
+## 2024-08-16
+
+* 29fb91e templates/body-github: update
+* 68786c5 website: re-generate workflows
+* 20a7d6c re-generate workflows
+* ed9b74d build-assets/package.json: bump deps
+* fdc4963 build-assets/package.json: fix syntax
+* a7b2000 website: re-generate commons
+
+## 2024-08-14
+
+* b0a05ba build-assets/package.json: updates
+
+## 2024-08-10
+
+* 41cb7f0 website: re-generate commons
+* 354dffd website: rework install quick tests
+
 ## 2024-08-09
 
+## 2024-08-09
+
+* 18ede8f website: re-generate commons
+* 867743c re-generate workflows
+* f06cb41 website: regenerate posts
+* 35c7e5e website updates
+* ac6a353 website updates
+* faa4667 website: fix release post
+* b415b69 website: re-generate commons
+* e1da5c8 website: re-generate commons
+* 4dac60a website: add tests results
+* b9f7d12 website: re-generate commons
+* 8c5b77e 14.2.0-1.1
+* df7c557 CHANGELOG: publish npm v14.2.0-1.1
 * v14.2.0-1 published on npmjs.com
 * 98a47f1 package.json: update urls for 14.2.0-1.1 release
 * ae55863 blog post release 14.2.0-1 published
@@ -318,7 +634,7 @@ Entries in this file are in reverse chronological order.
 ## 2023-08-21
 
 * 88dd427 READMEs update
-2023-08-21 * f9a1c35 package.json: bump deps
+* f9a1c35 package.json: bump deps
 
 ## 2023-08-19
 
@@ -386,7 +702,7 @@ Entries in this file are in reverse chronological order.
 ## 2023-02-22
 
 * 056ea96 tests/README update
-2023-02-22 * 98803a9 READMEs update
+* 98803a9 READMEs update
 
 ## 2023-02-14
 
