@@ -33,7 +33,7 @@ function gcc_mingw_build_common()
   # Note: binutils_build needs xbb_activate_installed_bin.
 
   # Requires libiconf & ncurses.
-#  texinfo_build "${XBB_TEXINFO_VERSION}"
+  texinfo_build "${XBB_TEXINFO_VERSION}"
 
   # -------------------------------------------------------------------------
   # Build the target dependencies.
