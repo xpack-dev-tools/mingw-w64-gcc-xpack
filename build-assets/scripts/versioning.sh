@@ -117,7 +117,7 @@ function application_build_versioned_components()
   # ---------------------------------------------------------------------------
 
   # Keep the versions in sync with gcc-xpack.
-  # https://ftp.gnu.org/gnu/gcc/
+  # https://ftpmirror.gnu.org/gnu/gcc/
   # The release date for XX.1.0 seems to be May, and for XX.2.0 August.
 
   # XBB_GCC_GIT_URL="git://gcc.gnu.org/git/gcc.git"
@@ -153,7 +153,7 @@ function application_build_versioned_components()
       XBB_GCC_GIT_BRANCH="releases/gcc-${XBB_GCC_VERSION_MAJOR}"
     fi
 
-    # https://ftp.gnu.org/gnu/binutils/
+    # https://ftpmirror.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.42" # "2.41"
 
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
@@ -177,10 +177,10 @@ function application_build_versioned_components()
     # https://ftp.gnu.org/pub/gnu/libiconv/
     XBB_LIBICONV_VERSION="1.17"
 
-    # https://ftp.gnu.org/gnu/ncurses/
+    # https://ftpmirror.gnu.org/gnu/ncurses/
     XBB_NCURSES_VERSION="6.4"
 
-    # https://ftp.gnu.org/gnu/texinfo/
+    # https://ftpmirror.gnu.org/gnu/texinfo/
     XBB_TEXINFO_VERSION="7.0.3"
 
     # https://sourceforge.net/projects/lzmautils/files/
@@ -190,7 +190,7 @@ function application_build_versioned_components()
     # https://github.com/libexpat/libexpat/releases
     XBB_EXPAT_VERSION="2.6.2" # "2.5.0"
 
-    # https://ftp.gnu.org/gnu/gdb/
+    # https://ftpmirror.gnu.org/gnu/gdb/
     XBB_GDB_VERSION="14.2" # "13.2"
 
     # Number
@@ -219,7 +219,7 @@ function application_build_versioned_components()
 
     XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
 
-    # https://ftp.gnu.org/gnu/binutils/
+    # https://ftpmirror.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.41" # "2.39"
 
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
@@ -243,10 +243,10 @@ function application_build_versioned_components()
     # https://ftp.gnu.org/pub/gnu/libiconv/
     XBB_LIBICONV_VERSION="1.17"
 
-    # https://ftp.gnu.org/gnu/ncurses/
+    # https://ftpmirror.gnu.org/gnu/ncurses/
     XBB_NCURSES_VERSION="6.4" # "6.3"
 
-    # https://ftp.gnu.org/gnu/texinfo/
+    # https://ftpmirror.gnu.org/gnu/texinfo/
     XBB_TEXINFO_VERSION="7.0.3"
 
     # https://sourceforge.net/projects/lzmautils/files/
@@ -256,7 +256,7 @@ function application_build_versioned_components()
     # https://github.com/libexpat/libexpat/releases
     XBB_EXPAT_VERSION="2.5.0" # "2.4.8"
 
-    # https://ftp.gnu.org/gnu/gdb/
+    # https://ftpmirror.gnu.org/gnu/gdb/
     XBB_GDB_VERSION="13.2" # "12.1"
 
     # Number
@@ -278,7 +278,7 @@ function application_build_versioned_components()
 
     XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
 
-    # https://ftp.gnu.org/gnu/binutils/
+    # https://ftpmirror.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.39"
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
     XBB_MINGW_VERSION="10.0.0"
@@ -304,7 +304,7 @@ function application_build_versioned_components()
     # https://sourceforge.net/projects/lzmautils/files/
     XBB_XZ_VERSION="5.2.5"
 
-    # https://ftp.gnu.org/gnu/ncurses/
+    # https://ftpmirror.gnu.org/gnu/ncurses/
     # XBB_NCURSES_VERSION="6.3"
 
     # https://github.com/libexpat/libexpat/releases
@@ -329,7 +329,7 @@ function application_build_versioned_components()
 
     XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
 
-    # https://ftp.gnu.org/gnu/binutils/
+    # https://ftpmirror.gnu.org/gnu/binutils/
     XBB_BINUTILS_VERSION="2.38"
 
     # https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
