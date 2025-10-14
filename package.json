@@ -147,7 +147,7 @@
     "permalinkName": "mingw-w64-gcc",
     "showTestsResults": "true",
     "skipCiTests": "true",
-    "useSelfHostedRunners": "true"
+    "useSelfHostedRunners": "false"
   },
   "engines": {
     "node": " >=20.0"
