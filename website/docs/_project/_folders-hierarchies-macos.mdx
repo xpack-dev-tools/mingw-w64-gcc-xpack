@@ -7,7 +7,6 @@ import customField from '@site/src/libs/customField';
 <CodeBlock language="console"> {
 `$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('releaseVersion') }.${ customField('npmSubversion') }/.content/
 /Users/ilg/Library/xPacks/\@xpack-dev-tools/mingw-w64-gcc/${ customField('releaseVersion') }.${ customField('npmSubversion') }/.content/
-├── README.md
 ├── bin
 │   ├── i686-w64-mingw32-addr2line
 │   ├── i686-w64-mingw32-ar
@@ -103,10 +102,11 @@ import customField from '@site/src/libs/customField';
 │   ├── libunwind.1.0.dylib
 │   ├── libz.1.3.1.dylib
 │   ├── libz.1.dylib -> libz.1.3.1.dylib
-│   ├── libzstd.1.5.6.dylib
-│   └── libzstd.1.dylib -> libzstd.1.5.6.dylib
+│   ├── libzstd.1.5.7.dylib
+│   └── libzstd.1.dylib -> libzstd.1.5.7.dylib
+├── README.md
 ├── share
-│   └── gcc-${ customField('upstreamVersion') }
+│   └── gcc-15.2.0
 └── x86_64-w64-mingw32
     ├── bin
     ├── include
