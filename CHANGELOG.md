@@ -4,6 +4,10 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-15
 
+* db788d9 package.json bump deps
+* 1f466a5 website: update folder hierarchies
+* 7595a52 website: update development durations
+* 39a5c6e prepare v13.4.0-1
 * v13.4.0-1 prepared
 * c059228 website blog posts update
 * 7ab101b add 12.5 test
