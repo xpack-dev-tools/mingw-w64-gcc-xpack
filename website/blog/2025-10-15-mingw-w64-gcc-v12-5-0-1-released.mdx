@@ -1,0 +1,175 @@
+---
+
+title: xPack xPack MinGW-w64 GCC v12.5.0-1 released
+seo_title: Version 12.5.0-1 released
+description: Version 12.5.0-1 is a new release.
+keywords:
+  - xpack
+  - mingw-w64-gcc
+  - release
+
+date: 2025-10-15 19:45:32 +0300
+
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - releases
+
+# ----- Custom properties -----------------------------------------------------
+
+gcc_version: "12.5.0"
+binutils_version: "."
+mingw_version: "13.0.0"
+
+version: "12.5.0-1"
+npm_subversion: "1"
+
+download_url: https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/tag/v12.5.0-1/
+
+---
+
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
+
+import Prerequisites from './_common/_prerequisites-glib-2.28.mdx';
+import DeprecationNotices from './_common/_deprecation-notices-glib-2.28.mdx';
+import DownloadAnalytics from './_common/_download-analytics.mdx';
+
+Version **12.5.0-1.1** is a new release; it follows the official GNU GCC release.
+
+<!-- truncate -->
+
+<PageMetadata title={frontMatter.seo_title} />
+
+The [xPack MinGW-w64 GCC](https://xpack-dev-tools.github.io/mingw-w64-gcc-xpack/)
+is a standalone cross-platform binary distribution of
+[Mingw-w64](https://www.mingw-w64.org)
+[GCC](https://gcc.gnu.org).
+
+There are separate binaries for **Windows** (x64),
+**macOS** (x64 and arm64)
+and **GNU/Linux** (x64 and arm64).
+
+:::note Raspberry Pi
+
+The main targets for the GNU/Linux Arm
+binaries are the **Raspberry Pi** class devices (aarch64 only;
+armv6 and armv7l are no longer supported).
+
+:::
+
+## Download
+
+The binary files can be downloaded automatically with **xpm** or manually
+from <a href={frontMatter.download_url}>GitHub Releases</a>.
+
+<Prerequisites/>
+
+## Install
+
+The easiest way to install this specific version, is by using **xpm**:
+
+<CodeBlock language="console"> {
+`xpm install @xpack-dev-tools/mingw-w64-gcc@${frontMatter.version}.${frontMatter.npm_subversion} -verbose
+`} </CodeBlock>
+
+Comprehensive instructions for installing **xPack xPack MinGW-w64 GCC** on different platforms
+can be found in the [Install Guide](/docs/install/).
+
+## Compliance
+
+The xPack MinGW-w64 GCC uses the official sources,
+with no functional changes:
+
+- GCC {frontMatter.gcc_version}
+- binutils {frontMatter.binutils_version}
+- mingw-w64 {frontMatter.mingw_version}
+
+## Supported languages
+
+The supported languages are:
+
+- C
+- C++
+- Fortran
+- Obj-C
+- Obj-C++
+- Fortran
+
+Note: Obj-C/C++ support is minimalistic.
+
+## Changes
+
+Compared to the upstream, there are no functional changes.
+
+## Bug fixes
+
+- none
+
+## Enhancements
+
+- none
+
+## Known problems
+
+Please see the separate
+[tests results page](/docs/tests/12.5.0-1/).
+
+## Documentation
+
+The original documentation is available from
+the project web site:
+
+- https://gcc.gnu.org/onlinedocs/
+
+## Build
+
+The binaries for all supported platforms
+(Windows, macOS and GNU/Linux) were built using the
+[xPack Build Box (XBB)](https://xpack.github.io/xbb/), a set
+of build environments based on slightly older distributions, that should be
+compatible with most recent systems.
+
+For the prerequisites and more details on the build procedure, please see the
+[Maintainer Info](/docs/maintainer/) page.
+
+## CI tests
+
+Before publishing, a set of simple tests were performed on an exhaustive
+set of platforms. The results are available from:
+
+- [GitHub Actions](https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/actions/)
+
+## Tests
+
+The binaries were tested on a variety of platforms,
+but mainly to check the integrity of the
+build, not the compiler functionality.
+
+## Checksums
+
+The SHA-256 hashes for the files are:
+
+```txt
+165c3ef7a51ae19c825b9c4944243306b04a562a94535c0d43e453dc466d7307
+xpack-mingw-w64-gcc-12.5.0-1-darwin-arm64.tar.gz
+
+dd990c422a834ae3880bdb69f80e0974697cf33e691dd6527c3cf8c993d3a766
+xpack-mingw-w64-gcc-12.5.0-1-darwin-x64.tar.gz
+
+13cd519215edae33802fd6ff01a9af64b412fc5302dad8ce7e325d88d62066ea
+xpack-mingw-w64-gcc-12.5.0-1-linux-arm64.tar.gz
+
+d0953ba2c1094990d3e01daf6f148af0c4e759d06f91273767b745cf88fa2b09
+xpack-mingw-w64-gcc-12.5.0-1-linux-x64.tar.gz
+
+a93b34b49933f2fcb9aae01f44283a098c3d881cd308fc168e7c416344bb12b4
+xpack-mingw-w64-gcc-12.5.0-1-win32-x64.zip
+
+```
+
+<DeprecationNotices/>
+
+<DownloadAnalytics version={frontMatter.version}/>
