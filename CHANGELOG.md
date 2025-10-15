@@ -2,8 +2,18 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2025-10-15
+
+* v15.2.0-1 prepared
+* 835793a 12.5 dev
+* 9352eb7 13.4 dev
+
 ## 2025-10-14
 
+* da62cfa 14.3 dev
+* 662d4ee texinfo rationale
+* 2c3bdf6 re-enable texinfo
+* 45a350d prepare v15.2.0-1
 * v15.2.0-1 prepared
 * 9a0caec website update
 * 977597f re-generate website commons
