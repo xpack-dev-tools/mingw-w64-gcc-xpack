@@ -29,13 +29,13 @@ function tests_run_all()
     xbb_set_target "mingw-w64-native"
   fi
 
-  if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "linux" ] && \
-     [ "${XBB_REQUESTED_HOST_ARCH}" == "x64" ]
-  then
-    mkdir -p /tmp/wineprefix
-    export WINEPREFIX=/tmp/wineprefix
-    winecfg
-  fi
+  # if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "linux" ] && \
+  #    [ "${XBB_REQUESTED_HOST_ARCH}" == "x64" ]
+  # then
+  #   mkdir -p /tmp/wineprefix
+  #   export WINEPREFIX=/tmp/wineprefix
+  #   winecfg
+  # fi
 
   # 32-bit first, since it is more probable to fail.
   XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
