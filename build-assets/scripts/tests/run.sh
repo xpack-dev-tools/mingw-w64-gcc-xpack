@@ -32,7 +32,7 @@ function tests_run_all()
   if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "linux" ] && \
      [ "${XBB_REQUESTED_HOST_ARCH}" == "x64" ]
   then
-    then  mkdir -p /tmp/wineprefix
+    mkdir -p /tmp/wineprefix
     export WINEPREFIX=/tmp/wineprefix
     winecfg
   fi
