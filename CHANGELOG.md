@@ -4,6 +4,23 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-15
 
+* v12.5.0-1 released
+* fe7df09 website: update folder hierarchies
+* abfe5cf website: update development durations
+* 8352be2 run.sh PATH
+* f595e1b run.sh verbose
+* 0b24469 run.sh manually install wine
+* 808afde package.json bump deps
+* 9d0233e run.sh: comment out winecfg
+* 6990ff3 run.sh: fix syntax
+* d435969 package.json bump deps
+* 532aacd run.sh: prime wine
+* c48f3c4 package.json bump deps
+* 131a7d0 package.json bump deps
+* 86d070b website update durations
+* 05daf0c website: update folder hierarchies
+* cfa0c1d website: update development durations
+* 5df3693 prepare v15.2.0-1
 * v15.2.0-1 prepared
 * 835793a 12.5 dev
 * 9352eb7 13.4 dev
