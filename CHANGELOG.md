@@ -4,6 +4,16 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-15
 
+* v13.4.0-1 prepared
+* c059228 website blog posts update
+* 7ab101b add 12.5 test
+* 3e0c3b3 re-generate commons
+* 276f9a9 12.5.0-1.2
+* 9d90dfb package.json 12.5.0-1.2.pre
+* bad4820 12.5.0-1.1
+* 3d8ea00 Revert "12.5.0-1.1"
+* fe2b5d7 12.5.0-1.1
+* 69b97cd CHANGELOG: publish npm v12.5.0-1.1
 * v12.5.0-1.1 published on npmjs.com
 * 0c6535e package.json: update URLs for 12.5.0-1.1 release
 * bf7846f website package.json update
