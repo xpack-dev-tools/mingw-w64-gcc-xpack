@@ -29,13 +29,22 @@ function tests_run_all()
     xbb_set_target "mingw-w64-native"
   fi
 
-  # if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "linux" ] && \
-  #    [ "${XBB_REQUESTED_HOST_ARCH}" == "x64" ]
-  # then
-  #   mkdir -p /tmp/wineprefix
-  #   export WINEPREFIX=/tmp/wineprefix
-  #   winecfg
-  # fi
+  if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "linux" ] && \
+     [ "${XBB_REQUESTED_HOST_ARCH}" == "x64" ]
+  then
+    (
+      mkdir -p Downloads
+      cd Downloads
+      curl --insecure --fail --location --output xpack-wine-10.0.0-1-linux-x64.tar.gz \
+        https://github.com/xpack-dev-tools/wine-xpack/releases/download/v10.0.0-1/xpack-wine-10.0.0-1-linux-x64.tar.gz
+      tar -xzfv xpack-wine-10.0.0-1-linux-x64.tar.gz
+    )
+    export PATH="$(pwd)/Downloads/xpack-wine-10.0.0-1-linux-x64/bin:${PATH}"
+
+    mkdir -p /tmp/wineprefix
+    export WINEPREFIX=/tmp/wineprefix
+    winecfg
+  fi
 
   # 32-bit first, since it is more probable to fail.
   XBB_MINGW_TRIPLETS=( "i686-w64-mingw32" "x86_64-w64-mingw32" )
