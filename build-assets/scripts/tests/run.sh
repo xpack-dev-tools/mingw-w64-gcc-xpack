@@ -38,9 +38,10 @@ function tests_run_all()
       run_verbose curl --insecure --fail --location --output xpack-wine-10.0.0-1-linux-x64.tar.gz \
         https://github.com/xpack-dev-tools/wine-xpack/releases/download/v10.0.0-1/xpack-wine-10.0.0-1-linux-x64.tar.gz
       run_verbose ls -l
-      run_verbose tar -xvf xpack-wine-10.0.0-1-linux-x64.tar.gz
+      run_verbose tar -xf xpack-wine-10.0.0-1-linux-x64.tar.gz
+      run_verbose ls -l
     )
-    export PATH="$(pwd)/Downloads/xpack-wine-10.0.0-1-linux-x64/bin:${PATH}"
+    export PATH="$(pwd)/Downloads/xpack-wine-10.0.0-1/bin:${PATH}"
 
     mkdir -p /tmp/wineprefix
     export WINEPREFIX=/tmp/wineprefix
