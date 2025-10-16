@@ -4,6 +4,11 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-16
 
+* v14.3.0-1 prepared
+* e358d68  website: add test results
+* 4b6014e 13.4.0-1.1
+* 591e963 13.4.0-1.1.pre
+* 6e409b7 CHANGELOG: publish npm v13.4.0-1.1
 * v13.4.0-1.1 published on npmjs.com
 * 452aebb package.json: update URLs for 13.4.0-1.1 release
 * 6854e01 website: blog post release 13.4.0-1.1 published
