@@ -5,8 +5,10 @@ title: Test results
 
 ## Reports by version
 
+- [14.3.0-1](/docs/tests/14.3.0-1/)
 - [14.2.0-1](/docs/tests/14.2.0-1/)
 - [14.1.0-1](/docs/tests/14.1.0-1/)
+- [13.4.0-1](/docs/tests/13.4.0-1/)
 - [13.3.0-1](/docs/tests/13.3.0-1/)
 - [12.4.0-1](/docs/tests/12.4.0-1/)
 - [11.5.0-1](/docs/tests/11.5.0-1/)
