@@ -4,7 +4,13 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-16
 
-* v15.2.0-1 prepared
+* v15.2.0-1 released
+* fb9c3d2 website update
+* e9f8fed website blog folders hierarchy
+* 06ba109 website: update actions durations
+* 4654aa2 website: update folder hierarchies
+* 6c567ec website: update development durations
+* 677f66b prepare v15.2.0-1* v15.2.0-1 prepared
 * f667c08 website: add test results
 * 47b1d79 14.3.0-1.1
 * 6fda3e0 14.3.0-1.1.pre
