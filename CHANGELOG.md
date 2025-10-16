@@ -4,11 +4,11 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-16
 
-* v13.4.0-1.1 published on npmjs.com
-* 7792cf1 package.json: update URLs for 13.4.0-1.1 release
-* 58342da website: blog post release 13.4.0-1.1 published
+* v14.3.0-1.1 published on npmjs.com
+* 7792cf1 package.json: update URLs for 14.3.0-1.1 release
+* 58342da website: blog post release 14.3.0-1.1 published
 * f338a4b CHANGELOG update
-* v13.4.0-1 released
+* v14.3.0-1 released
 * 455538e website: update actions durations
 * 2ee8cb4 website: update development durations
 * b8ebcd4 prepare v14.3.0-1
