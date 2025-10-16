@@ -4,6 +4,10 @@ Entries in this file are in reverse chronological order.
 
 ## 2025-10-16
 
+* v13.4.0-1 released
+* 455538e website: update actions durations
+* 2ee8cb4 website: update development durations
+* b8ebcd4 prepare v14.3.0-1
 * v14.3.0-1 prepared
 * e358d68  website: add test results
 * 4b6014e 13.4.0-1.1
