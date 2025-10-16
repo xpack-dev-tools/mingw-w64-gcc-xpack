@@ -40,28 +40,28 @@
     "minimumXpmRequired": "0.20.5",
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v12.5.0-1",
+      "baseUrl": "https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/releases/download/v13.4.0-1",
       "skip": 1,
       "platforms": {
         "darwin-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-12.5.0-1-darwin-arm64.tar.gz",
-          "sha256": "165c3ef7a51ae19c825b9c4944243306b04a562a94535c0d43e453dc466d7307"
+          "fileName": "xpack-mingw-w64-gcc-13.4.0-1-darwin-arm64.tar.gz",
+          "sha256": "781e0f6434251ee15185a49f6a4171783e2b661a3d6b4d31b876f295c7ccc00a"
         },
         "darwin-x64": {
-          "fileName": "xpack-mingw-w64-gcc-12.5.0-1-darwin-x64.tar.gz",
-          "sha256": "dd990c422a834ae3880bdb69f80e0974697cf33e691dd6527c3cf8c993d3a766"
+          "fileName": "xpack-mingw-w64-gcc-13.4.0-1-darwin-x64.tar.gz",
+          "sha256": "baad3e3656b568741b3aa526186b35ba8f438ec1e3cd11a62317df0422824b95"
         },
         "linux-arm64": {
-          "fileName": "xpack-mingw-w64-gcc-12.5.0-1-linux-arm64.tar.gz",
-          "sha256": "13cd519215edae33802fd6ff01a9af64b412fc5302dad8ce7e325d88d62066ea"
+          "fileName": "xpack-mingw-w64-gcc-13.4.0-1-linux-arm64.tar.gz",
+          "sha256": "fa36d3c2fdd59954ad309ebe6a6f4124de71964f11c016f3a79a59de7e720cfb"
         },
         "linux-x64": {
-          "fileName": "xpack-mingw-w64-gcc-12.5.0-1-linux-x64.tar.gz",
-          "sha256": "d0953ba2c1094990d3e01daf6f148af0c4e759d06f91273767b745cf88fa2b09"
+          "fileName": "xpack-mingw-w64-gcc-13.4.0-1-linux-x64.tar.gz",
+          "sha256": "4be10a97690c29ebf8d8fc0b27ecf3ce960434c35189d1f21b9bc09b3e447103"
         },
         "win32-x64": {
-          "fileName": "xpack-mingw-w64-gcc-12.5.0-1-win32-x64.zip",
-          "sha256": "a93b34b49933f2fcb9aae01f44283a098c3d881cd308fc168e7c416344bb12b4"
+          "fileName": "xpack-mingw-w64-gcc-13.4.0-1-win32-x64.zip",
+          "sha256": "a28fa69f4c2ed494f1beed479eed885fa8a1e5ff472f64f761f1c3402bb08be8"
         }
       }
     },
