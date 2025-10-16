@@ -2,8 +2,16 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2025-10-16
+
+* v13.4.0-1 released
+* 599675a website: update actions durations
+* 561d931 package.json bump deps
+
 ## 2025-10-15
 
+* 018650b re-generate workflows
+* 523c4b9 CHANGELOG.md update
 * db788d9 package.json bump deps
 * 1f466a5 website: update folder hierarchies
 * 7595a52 website: update development durations
