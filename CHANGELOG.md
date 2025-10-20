@@ -2,8 +2,21 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2025-10-20
+
+* v15.2.0-2 prepared
+
+## 2025-10-19
+
+* 281cb84 website: re-generate commons
+* 498e610 re-generate commons
+* 351f397 re-generate commons
+
 ## 2025-10-16
 
+* dc6a464 website: add test results
+* c60cdd4 15.2.0-1.1
+* 0f26dbf CHANGELOG: publish npm v15.2.0-1.1
 * v15.2.0-1.1 published on npmjs.com
 * f70c2fb package.json: update URLs for 15.2.0-1.1 release
 * 60dce7e website: blog post release 15.2.0-1.1 published
