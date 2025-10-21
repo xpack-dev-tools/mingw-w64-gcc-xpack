@@ -2,8 +2,13 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2025-10-21
+
+* v15.2.0-2 released
+
 ## 2025-10-20
 
+* 8c934e1 prepare v15.2.0-2
 * v15.2.0-2 prepared
 
 ## 2025-10-19
