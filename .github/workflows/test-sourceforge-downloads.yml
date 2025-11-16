@@ -47,7 +47,13 @@ jobs:
           # https://github.com/xpack-dev-tools/mingw-w64-gcc-xpack/tags
           # https://sourceforge.net/projects/mingw-w64-gcc-xpack/files/
           name="mingw-w64-gcc"
-          threshold=100
+
+          if [ "${GITHUB_REF_NAME}" == "xpack-development" ]
+          then
+            threshold=100
+          else
+            threshold=66
+          fi
 
           # 2025
           platforms="win32-x64,linux-x64,linux-arm64,darwin-x64,darwin-arm64"
