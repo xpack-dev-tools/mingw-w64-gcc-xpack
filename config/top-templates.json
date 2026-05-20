@@ -1,0 +1,9 @@
+{
+  "descriptiveName": "xPack MinGW-w64 GCC",
+  "permalinkName": "mingw-w64-gcc",
+  "preferredName": "xPack MinGW-w64 GCC",
+  "upstreamDescriptiveName": "MinGW-w64 GCC",
+  "showTestsResults": true,
+  "skipCiTests": true,
+  "useSelfHostedRunners": false
+}
